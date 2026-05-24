@@ -28,8 +28,7 @@ body{background:var(--warm-white);color:var(--charcoal);font-family:'Noto Serif 
 
 /* HERO */
 .hero{position:relative;height:100vh;min-height:680px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;}
-.hero-video-wrap{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
-.hero-video-wrap iframe{position:absolute;top:50%;left:50%;width:177.78vh;height:100%;min-width:100%;min-height:56.25vw;transform:translate(-50%,-50%);filter:brightness(0.82) saturate(0.9);}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(0.84);transform:scale(1.04);animation:slowZoom 20s ease-out forwards;}
 @keyframes slowZoom{from{transform:scale(1.04)}to{transform:scale(1)}}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,15,10,0.08) 0%,rgba(20,15,10,0) 32%,rgba(20,15,10,0.58) 72%,rgba(20,15,10,0.9) 100%);}
 .hero-content{position:relative;z-index:2;text-align:center;padding:0 2rem 9vh;animation:fadeUp 2s ease 0.6s both;}
@@ -337,9 +336,7 @@ body{background:var(--warm-white);color:var(--charcoal);font-family:'Noto Serif 
 <div class="page active" id="tab1">
 
 <div class="hero">
-  <div class="hero-video-wrap">
-    <iframe src="https://www.youtube.com/embed/KY9C5AzBa9Q?autoplay=1&mute=1&loop=1&playlist=KY9C5AzBa9Q&controls=0&rel=0&modestbranding=1&playsinline=1&showinfo=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-  </div>
+  <img class="hero-img" src="../img/ChatGPT Image 2026年5月24日 下午04_23_46.png" alt="峇里島深度轉化七日營">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">IGNI Retreat · Bali · 7 Days</p>
