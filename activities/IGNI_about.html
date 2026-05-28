@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IGNI — About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ease-breathe: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-settle:  cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-precise: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      background: #F3EEE7;
+      font-family: 'Jost', 'Noto Serif TC', sans-serif;
+      font-weight: 300;
+      color: #2C2A25;
+      letter-spacing: 0.01em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 32px 56px;
+      border-bottom: 0.5px solid rgba(44,42,37,0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      color: #2C2A25;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: #2C2A25;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 320ms var(--ease-precise);
+    }
+
+    .nav-links li.active a {
+      color: #C9A55A;
+      border-bottom: 0.5px solid #C9A55A;
+      padding-bottom: 2px;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 120px 56px 80px;
+      max-width: 860px;
+    }
+
+    .hero-label {
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      color: #C9A55A;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant', 'Noto Serif TC', serif;
+      font-size: 72px;
+      font-weight: 300;
+      line-height: 1.0;
+      color: #2C2A25;
+      margin-bottom: 48px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: #B85C40;
+    }
+
+    .hero-statement {
+      font-family: 'Cormorant', serif;
+      font-size: 22px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.6;
+      color: #2C2A25;
+      max-width: 560px;
+      border-left: 0.5px solid #C9A55A;
+      padding-left: 24px;
+    }
+
+    /* DIVIDER */
+    hr {
+      border: none;
+      border-top: 0.5px solid rgba(44,42,37,0.12);
+    }
+
+    /* SECTION */
+    .section {
+      padding: 88px 56px;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .section-label {
+      font-family: 'Cormorant', 'Noto Serif TC', serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: rgba(44,42,37,0.55);
+      text-transform: none;
+      padding-top: 8px;
+    }
+
+    .belief-text {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: #2C2A25;
+      margin-bottom: 20px;
+    }
+
+    .belief-highlight {
+      font-family: 'Cormorant', serif;
+      font-size: 20px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.6;
+      color: #2C2A25;
+      border-left: 0.5px solid #C9A55A;
+      padding-left: 24px;
+      margin: 32px 0;
+    }
+
+    /* FIRE SECTION */
+    .fire-section {
+      background: url('../img/terra.png') center/cover no-repeat;
+      padding: 100px 56px;
+      text-align: center;
+    }
+
+    .fire-inner {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .fire-overline {
+      font-family: 'Cormorant', 'Noto Serif TC', serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: #F3EEE7;
+      text-transform: none;
+      margin-bottom: 48px;
+    }
+
+    .fire-para {
+      font-family: 'Cormorant', 'Noto Serif TC', serif;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: #F3EEE7;
+      margin-bottom: 24px;
+    }
+
+    .fire-para:last-child { margin-bottom: 0; }
+
+    /* VALUES — ACCORDION */
+    .values-section {
+      padding: 88px 56px;
+    }
+
+    .values-header {
+      margin-bottom: 56px;
+    }
+
+    .values-grid {
+      display: flex;
+      flex-direction: column;
+      border-top: 0.5px solid rgba(44,42,37,0.12);
+    }
+
+    .value-item {
+      border-bottom: 0.5px solid rgba(44,42,37,0.12);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .value-header {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 28px 0;
+      user-select: none;
+    }
+
+    .value-num {
+      font-family: 'Cormorant', serif;
+      font-size: 11px;
+      font-weight: 400;
+      color: #C9A55A;
+      letter-spacing: 0.2em;
+      flex-shrink: 0;
+      width: 28px;
+    }
+
+    .value-name {
+      font-family: 'Cormorant', 'Noto Serif TC', serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: #2C2416;
+      line-height: 1.0;
+      flex: 1;
+      transition: color 320ms var(--ease-precise);
+    }
+
+    .value-indicator {
+      width: 18px;
+      height: 18px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .value-indicator::before,
+    .value-indicator::after {
+      content: '';
+      position: absolute;
+      background: #C9A55A;
+      transition: transform 400ms var(--ease-breathe), opacity 320ms var(--ease-precise);
+    }
+
+    .value-indicator::before {
+      width: 18px; height: 0.5px;
+      top: 50%; left: 0;
+      transform: translateY(-50%);
+    }
+
+    .value-indicator::after {
+      width: 0.5px; height: 18px;
+      left: 50%; top: 0;
+      transform: translateX(-50%);
+    }
+
+    .value-item.open .value-indicator::after {
+      transform: translateX(-50%) scaleY(0);
+      opacity: 0;
+    }
+
+    .value-item:hover .value-name {
+      color: #C9A55A;
+    }
+
+    @keyframes valueBounce {
+      0%   { transform: translateY(0); }
+      30%  { transform: translateY(-6px); }
+      55%  { transform: translateY(-2px); }
+      75%  { transform: translateY(-5px); }
+      90%  { transform: translateY(-1px); }
+      100% { transform: translateY(0); }
+    }
+
+    .value-item:not(.open):hover .value-name {
+      animation: valueBounce 550ms var(--ease-breathe);
+    }
+
+    .value-desc {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: rgba(44,42,37,0.65);
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 0 0 56px;
+      opacity: 0;
+      transition: max-height 600ms var(--ease-breathe), opacity 400ms var(--ease-precise), padding-bottom 400ms var(--ease-precise);
+    }
+
+    .value-item.open .value-desc {
+      max-height: 160px;
+      opacity: 1;
+      padding-bottom: 32px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 40px 56px;
+      border-top: 0.5px solid rgba(44,42,37,0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant', serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      color: #2C2A25;
+    }
+
+    .footer-copy {
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: rgba(44,42,37,0.4);
+    }
+
+    .amber-dot {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: #C9A55A;
+      margin: 0 8px;
+      vertical-align: middle;
+    }
+
+    /* REVEAL ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 800ms var(--ease-breathe), transform 800ms var(--ease-breathe);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 24px; flex-direction: column; gap: 24px; }
+      .nav-links { gap: 24px; }
+      .hero { padding: 72px 24px 56px; }
+      .hero-title { font-size: 48px; }
+      .section { padding: 64px 24px; }
+      .section-grid { grid-template-columns: 1fr; gap: 24px; }
+      .fire-section { padding: 64px 24px; }
+      .fire-para { font-size: 16px; }
+      .values-section { padding: 64px 24px; }
+      .value-name { font-size: 22px; }
+      .value-desc { padding-left: 40px; }
+      .value-header { padding: 20px 0; }
+      footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">IGNI</a>
+    <ul class="nav-links">
+      <li><a href="#">HOME</a></li>
+      <li class="active"><a href="#">ABOUT</a></li>
+      <li><a href="#">SESSIONS</a></li>
+      <li><a href="#">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <p class="hero-label">About</p>
+    <h1 class="hero-title"><em>IGNI</em></h1>
+    <p class="hero-statement">
+      你不需要被修好。<br>你只是需要一個入口，回到自己。
+    </p>
+  </div>
+
+  <hr />
+
+  <div class="section reveal">
+    <div class="section-grid">
+      <div class="section-label">品牌理念</div>
+      <div>
+        <p class="belief-text">
+          我們相信，一個人真正的改變，必須同時發生在三個層次——身體、心理、與對自身存在的清醒覺知。
+        </p>
+        <p class="belief-text">
+          身體的修煉、心理的探索、對自身存在的清醒覺知——每一條路，我們都走過，都是真實而有價值的生命經驗。<br>但我們始終在尋找一個更完整的入口——一次進入，同時觸及三個層次。
+        </p>
+        <p class="belief-text">
+          讓身體還原、讓心理清晰、讓對自身存在的覺知重新被記起。
+        </p>
+
+        <p class="belief-highlight">
+          我們找了很久，直到遇見重生呼吸。
+        </p>
+
+        <p class="belief-text">
+          這是一套簡單、自主又強大的呼吸技術，直接作用於身體層次，同時深入潛意識——<br>呼吸之後，內心感到飽滿與滿足，身體是輕盈的，而那股想要好好活著的動能，自然地從內部升起。
+        </p>
+        <p class="belief-text">
+          我們每天做的事，是為願意為自己負責的人，建立一個可以安全進入自己的場域——在呼吸中重新接管自己的生命，帶著那個清醒，回到日常去創造、去行動、去活出自由意志。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="fire-section reveal">
+    <div class="fire-inner">
+      <p class="fire-overline">那團火</p>
+      <p class="fire-para">
+        在每個人之中，都有一股尚未被完全活出的動能——那是創造力的源頭，是情緒的流動，<br>是渴望本身，也是推動你成為自己的力量。
+      </p>
+      <p class="fire-para">
+        只是，在成長與現實之中，這團火常常被壓抑、被忽略，甚至逐漸微弱。
+      </p>
+      <p class="fire-para">
+        在 IGNI，我們以「呼吸」為入口，帶領人們重新回到身體、回到當下，<br>讓那團火，被重新記起、釋放、流動。
+      </p>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="values-section reveal">
+    <div class="section-grid values-header">
+      <div class="section-label">品牌價值</div>
+      <div></div>
+    </div>
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-header">
+          <div class="value-num">01</div>
+          <div class="value-name">真實</div>
+          <div class="value-indicator"></div>
+        </div>
+        <p class="value-desc">正確傳遞呼吸知識，誠實引導。建立在科學基礎之上。</p>
+      </div>
+      <div class="value-item">
+        <div class="value-header">
+          <div class="value-num">02</div>
+          <div class="value-name">自主</div>
+          <div class="value-indicator"></div>
+        </div>
+        <p class="value-desc">主動權永遠屬於你。那個頓悟的瞬間、那份清醒的喜悅——是你自己呼吸出來的。</p>
+      </div>
+      <div class="value-item">
+        <div class="value-header">
+          <div class="value-num">03</div>
+          <div class="value-name">尊重</div>
+          <div class="value-indicator"></div>
+        </div>
+        <p class="value-desc">每個人有自己的進程。我們真正的看見你現在在哪裡，而不是你應該在哪裡。</p>
+      </div>
+      <div class="value-item">
+        <div class="value-header">
+          <div class="value-num">04</div>
+          <div class="value-name">專業</div>
+          <div class="value-indicator"></div>
+        </div>
+        <p class="value-desc">以清晰的引導框架與專業倫理為準則。</p>
+      </div>
+      <div class="value-item">
+        <div class="value-header">
+          <div class="value-num">05</div>
+          <div class="value-name">整合</div>
+          <div class="value-indicator"></div>
+        </div>
+        <p class="value-desc">東方智慧、西方心理學、身體科學——整合三者，不偏執，不獨尊。</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">IGNI</div>
+    <div class="footer-copy">brand@igni.tw<span class="amber-dot"></span>Brand Identity System · 2025</div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Values accordion
+    document.querySelectorAll('.value-item').forEach(item => {
+      item.querySelector('.value-header').addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.value-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
