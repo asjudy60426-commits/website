@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IGNI Conscious Consultation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fffcf7;
+  --cream2:#F3EEE7;
+  --ink:#2C2416;
+  --cta:#B85C40;
+  --gold:#B8913E;
+  --ink40:rgba(44,36,22,0.4);
+  --ink15:rgba(44,36,22,0.15);
+  --font:'Cormorant Garamond',serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:var(--font);font-weight:300;line-height:1.75;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,252,247,0.92);backdrop-filter:blur(8px);border-bottom:0.5px solid var(--ink15)}
+.logo{font-size:1.1rem;letter-spacing:.18em;font-weight:400;color:var(--ink);text-decoration:none}
+.logo span{color:var(--gold)}
+.nav-cta{font-family:var(--font);font-size:.85rem;letter-spacing:.12em;color:var(--cta);border:0.5px solid var(--cta);padding:.4rem 1.1rem;text-decoration:none;transition:all .25s}
+.nav-cta:hover{background:var(--cta);color:var(--cream)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8rem 2rem 5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(184,145,62,0.07) 0%,transparent 70%);pointer-events:none}
+.eyebrow{font-size:.78rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:2rem;opacity:.8}
+.hero h1{font-size:clamp(2.6rem,5vw,4.2rem);font-weight:300;line-height:1.2;max-width:720px;margin-bottom:1.5rem}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:1.15rem;color:var(--ink40);max-width:460px;margin-bottom:2.8rem;font-style:italic}
+.divider-line{width:40px;height:1px;background:var(--gold);margin:0 auto 2.8rem;opacity:.6}
+
+/* PROVOCATIONS */
+.provocations{max-width:640px;margin:0 auto 3.5rem;text-align:left}
+.prov-item{padding:.85rem 0;border-bottom:0.5px solid var(--ink15);font-size:1.05rem;display:flex;gap:.75rem;align-items:flex-start}
+.prov-item::before{content:'—';color:var(--gold);flex-shrink:0;margin-top:.1rem;font-weight:300}
+
+/* CTA BUTTON */
+.btn{display:inline-block;font-family:var(--font);font-size:.9rem;letter-spacing:.15em;color:var(--cream);background:var(--cta);border:none;padding:.85rem 2.4rem;text-decoration:none;cursor:pointer;transition:all .25s;text-transform:uppercase}
+.btn:hover{background:#9e4e34}
+
+/* METAPHOR */
+.metaphor-section{background:none;padding:4rem 2rem 0;text-align:center;margin-bottom:4rem}
+.metaphor-inner{max-width:620px;margin:0 auto;background:#D4C4A4;padding:3.5rem 3rem}
+.metaphor-inner blockquote{font-size:clamp(1.15rem,2.2vw,1.45rem);font-weight:300;line-height:1.65;font-style:italic;color:#7A7060;margin-bottom:0;position:relative;padding:0 1rem}
+.metaphor-inner blockquote::before{content:'\201C';font-size:4rem;color:var(--gold);opacity:.5;position:absolute;top:-1.2rem;left:-0.5rem;line-height:1}
+
+/* SECTION BASE */
+.section{padding:6rem 2rem}
+.section-inner{max-width:760px;margin:0 auto}
+.section-label{font-size:.75rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:1.2rem;display:block}
+.section h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;line-height:1.25;margin-bottom:1.2rem}
+.section h2 em{font-style:italic;color:var(--gold)}
+.section-desc{font-size:1.05rem;color:var(--ink40);margin-bottom:3.5rem;font-style:italic}
+
+/* STEPS SECTION — terra background */
+.steps-section{background:url('../img/terra.png') center/cover no-repeat}
+.steps-section .section-label{color:#2C2416}
+.steps-section h2{color:#F3EEE7}
+.steps-section h2 em{color:#2C2416}
+.steps-section .section-desc{color:rgba(243,238,231,0.75)}
+
+/* STEPS FLOW */
+.steps-flow{display:flex;align-items:stretch;gap:0;margin-bottom:4rem}
+.steps-flow .step-card{background:#F3EEE7;padding:1.8rem 1.4rem;border:none;flex:1;min-width:0}
+.steps-flow .step-num{font-size:2.4rem;font-weight:300;color:#2C2416;opacity:1;line-height:1;margin-bottom:.6rem}
+.steps-flow .step-title{font-size:1rem;font-weight:400;margin-bottom:.35rem;color:#2C2416}
+.steps-flow .step-body{font-size:.85rem;color:rgba(44,36,22,0.65);line-height:1.6}
+.step-arrow{display:flex;align-items:center;justify-content:center;color:#F3EEE7;font-size:2rem;padding:0 .35rem;flex-shrink:0;opacity:.6;line-height:1;align-self:center}
+@media(max-width:640px){
+  .steps-flow{flex-direction:column;gap:.5rem}
+  .step-arrow{display:none}
+}
+
+/* VENN DIAGRAM */
+.venn-section{padding:6rem 2rem;text-align:center}
+.venn-wrap{max-width:720px;margin:0 auto}
+.venn-wrap h3{font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:300;margin-bottom:.6rem}
+.venn-wrap p{font-size:1rem;color:var(--ink40);font-style:italic;margin-bottom:3rem}
+svg.venn{overflow:visible;margin:0 auto;display:block;max-width:100%;height:auto}
+.circ-lbl-grp{cursor:pointer}
+
+/* TESTIMONIALS */
+.testimonials-section{padding:6rem 2rem;background:var(--cream)}
+.testi-grid{max-width:860px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
+.testi-card{padding:2rem;border:0.5px solid var(--ink15);position:relative}
+.testi-card::before{content:'\201C';font-size:5rem;color:var(--gold);opacity:.18;position:absolute;top:.5rem;left:1.2rem;line-height:1;font-family:var(--font)}
+.testi-text{font-size:1rem;font-style:italic;line-height:1.7;margin-bottom:1.2rem;position:relative;z-index:1}
+.testi-author{font-size:.78rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+
+/* FIT SECTION */
+.fit-section{background:var(--cream2);padding:6rem 2rem}
+.fit-inner{max-width:760px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:640px){.fit-inner{grid-template-columns:1fr}}
+.fit-col h4{font-size:1.2rem;font-weight:400;margin-bottom:1.4rem;padding-bottom:.7rem;border-bottom:1px solid var(--gold)}
+.fit-col h4.not{border-color:var(--ink15);color:var(--ink40)}
+.fit-list{list-style:none}
+.fit-list li{font-size:.95rem;padding:.5rem 0;border-bottom:0.5px solid var(--ink15);display:flex;gap:.6rem;align-items:flex-start;line-height:1.5}
+.fit-list li.yes::before{content:'◆';color:var(--gold);font-size:.55rem;margin-top:.45rem;flex-shrink:0}
+.fit-list li.no::before{content:'○';color:var(--ink40);font-size:.65rem;margin-top:.4rem;flex-shrink:0}
+
+/* 適合這樣的你 — large accent column */
+.fit-col-yes{background:#7A7060;padding:2.5rem;color:#F3EEE7}
+.fit-col-yes h4{color:#F3EEE7;border-bottom:1px solid var(--gold);opacity:1;margin-bottom:1.4rem;padding-bottom:.7rem;font-size:1.2rem;font-weight:400}
+.fit-col-yes .fit-list li{color:#F3EEE7;border-bottom-color:rgba(243,238,231,0.15)}
+.fit-col-yes .fit-list li.yes::before{color:var(--gold)}
+
+/* PRICING */
+.pricing-section{padding:6rem 2rem;text-align:center}
+.pricing-inner{max-width:680px;margin:0 auto}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:3rem 0}
+@media(max-width:500px){.pricing-grid{grid-template-columns:1fr}}
+.plan-card{padding:2.4rem 2rem;border:0.5px solid var(--ink15);text-align:left;position:relative;background:var(--cream)}
+.plan-card.featured{border:1.5px solid var(--cta);background:rgba(184,92,64,0.06)}
+.plan-badge{position:absolute;top:-1px;right:1.4rem;background:var(--cta);color:var(--cream);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;padding:.25rem .8rem}
+.plan-mins{font-size:3rem;font-weight:300;color:var(--gold);line-height:1}
+.plan-card.featured .plan-mins{color:var(--cta)}
+.plan-label{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink40);margin-bottom:1rem}
+.plan-title{font-size:1.3rem;font-weight:400;margin-bottom:.5rem}
+.plan-desc{font-size:.9rem;color:var(--ink40);font-style:italic;margin-bottom:1.5rem;line-height:1.55}
+.plan-price{font-size:1.6rem;font-weight:300;color:var(--ink)}
+.plan-price small{font-size:.85rem;color:var(--ink40)}
+
+/* FOOTER CTA */
+.footer-cta{background:var(--ink);color:var(--cream);padding:6rem 2rem;text-align:center}
+.footer-cta h2{font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;line-height:1.3;margin-bottom:1rem}
+.footer-cta h2 em{font-style:italic;color:var(--gold)}
+.footer-cta p{color:rgba(255,252,247,0.5);font-style:italic;margin-bottom:2.5rem}
+.footer-cta .btn{background:var(--cream);color:var(--ink)}
+.footer-cta .btn:hover{background:var(--gold);color:var(--cream)}
+
+footer{background:var(--ink);padding:1.5rem 2.5rem;display:flex;justify-content:center;align-items:center;border-top:0.5px solid rgba(255,252,247,0.1)}
+footer p{font-size:.75rem;letter-spacing:.12em;color:rgba(255,252,247,0.35);text-transform:uppercase}
+
+/* INTERSECTION FLOAT ANIMATION */
+@keyframes floatIntersection{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-11px) scale(1.06)}
+}
+.venn-float{
+  animation:floatIntersection 3.2s cubic-bezier(0.45,0,0.55,1) infinite;
+  transform-box:fill-box;
+  transform-origin:center;
+}
+
+/* FADE IN */
+.fade{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.fade.in{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">IGNI <span>✦</span></a>
+  <a class="nav-cta" href="https://line.me/R/ti/p/@012gesap" target="_blank">立即預約</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="eyebrow fade">Conscious Consultation</p>
+  <h1 class="fade">別再花時間<br>解決<em>行為現象</em>了</h1>
+  <div class="divider-line fade"></div>
+  <p class="hero-sub fade">90 分鐘，帶你一步步找到問題的核心</p>
+
+  <div class="provocations fade">
+    <div class="prov-item">明明很努力了，但情況好像還是沒有改變？</div>
+    <div class="prov-item">就算換了好幾份工作，還是一直遇到一樣的問題？</div>
+    <div class="prov-item">想要生活改變、成長，但不知道方向……</div>
+    <div class="prov-item">為什麼對方總是聽不懂我在說什麼？</div>
+  </div>
+
+  <a href="https://line.me/R/ti/p/@012gesap" target="_blank" class="btn fade">立即預約諮詢</a>
+</section>
+
+<!-- METAPHOR -->
+<section class="metaphor-section">
+  <div class="metaphor-inner fade">
+    <blockquote>
+      水龍頭打開是灰灰的髒水，你要做的不是換個杯子，而是去檢查水龍頭管線、水塔、甚至是水源處。找到問題的根源，才能對症下藥，改變也才會真正的發生。
+    </blockquote>
+  </div>
+</section>
+
+<!-- ABOUT SERVICE -->
+<section class="section steps-section">
+  <div class="section-inner">
+    <span class="section-label fade">關於服務</span>
+    <h2 class="fade">不是諮商，也不是<em>給你答案</em></h2>
+    <p class="section-desc fade">帶你一起看見問題的根源，讓你的努力用在對的方向。</p>
+
+    <div class="steps-flow fade">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">整理混亂思緒</div>
+        <div class="step-body">清晰脈絡取代混沌感受</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">釐清真正卡點</div>
+        <div class="step-body">分辨表象問題與深層根源</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">看見重複模式</div>
+        <div class="step-body">找到一再出現的核心議題</div>
+      </div>
+      <div class="step-arrow">›</div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-title">建立行動方向</div>
+        <div class="step-body">具體可執行的下一步</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENN / REPORT BONUS -->
+<section class="venn-section">
+  <div class="venn-wrap fade">
+    <h3>加碼贈送：諮詢報告</h3>
+    <p>諮詢結束後，你將收到一份專屬報告，清楚看見這段對話帶來的轉化。</p>
+
+    <svg class="venn" viewBox="0 0 590 430" role="img" aria-label="加碼贈送諮詢報告三要素">
+      <defs>
+        <style>
+          .vfont{font-family:'Cormorant Garamond',serif;font-weight:300}
+        </style>
+      </defs>
+
+      <!-- ── Solid filled circles, no stroke ── -->
+      <!-- Circle 1: 洞察 — #D4C4A4 -->
+      <circle cx="200" cy="162" r="132" fill="#D4C4A4" stroke="none"/>
+      <!-- Circle 2: 洞見 — #B8913E -->
+      <circle cx="390" cy="162" r="132" fill="#B8913E" stroke="none"/>
+      <!-- Circle 3: 動起來 — #B85C40 -->
+      <circle cx="295" cy="270" r="132" fill="#B85C40" stroke="none"/>
+
+      <!-- Triple intersection fill #F3EEE7 — sweep=1 (CW) traces the correct central region -->
+      <g class="venn-float">
+        <path d="M259,143 A132,132,0,0,1,331,143 A132,132,0,0,1,295,254 A132,132,0,0,1,259,143 Z"
+              fill="#F3EEE7" stroke="none"/>
+        <!-- 改變 — centered on intersection, #B85C40 -->
+        <text x="295" y="208" text-anchor="middle" class="vfont"
+              font-size="22" font-weight="500" fill="#B85C40">改變</text>
+      </g>
+
+      <!-- ── Circle 1: 洞察 (#D4C4A4 bg, #2C2416 text) ── -->
+      <g id="c1-lbl" class="circ-lbl-grp" onclick="toggleCircle(1)">
+        <text x="148" y="118" text-anchor="middle" class="vfont" font-size="20" fill="#2C2416">洞察</text>
+        <text x="148" y="138" text-anchor="middle" class="vfont" font-size="12" fill="rgba(44,36,22,0.55)">卡在哪裡？</text>
+        <!-- + at upper-right of label area -->
+        <text x="196" y="93" text-anchor="middle" class="vfont" font-size="20" font-weight="400" fill="#2C2416">+</text>
+      </g>
+      <foreignObject id="c1-det" x="60" y="88" width="168" height="145"
+                     visibility="hidden" style="cursor:pointer"
+                     onclick="event.stopPropagation();toggleCircle(1)">
+        <div xmlns="http://www.w3.org/1999/xhtml"
+             style="font-family:'Cormorant Garamond',serif;font-size:12px;
+                    background:rgba(212,196,164,0.96);
+                    color:#2C2416;line-height:1.65;
+                    text-align:center;padding:10px 8px;height:100%">
+          <div style="font-size:15px;font-weight:400;margin-bottom:6px">洞察</div>
+          這段對話中你對自己的觀察——看見自己卡在哪裡、為什麼
+          <div style="margin-top:10px;font-size:9px;color:rgba(44,36,22,0.45)">▲ 收起</div>
+        </div>
+      </foreignObject>
+
+      <!-- ── Circle 2: 洞見 (#B8913E bg, #F3EEE7 text) ── -->
+      <g id="c2-lbl" class="circ-lbl-grp" onclick="toggleCircle(2)">
+        <text x="442" y="118" text-anchor="middle" class="vfont" font-size="20" fill="#F3EEE7">洞見</text>
+        <text x="442" y="138" text-anchor="middle" class="vfont" font-size="12" fill="rgba(243,238,231,0.7)">模式與根源</text>
+        <!-- + at upper-right of label area -->
+        <text x="490" y="93" text-anchor="middle" class="vfont" font-size="20" font-weight="400" fill="#F3EEE7">+</text>
+      </g>
+      <foreignObject id="c2-det" x="362" y="88" width="168" height="145"
+                     visibility="hidden" style="cursor:pointer"
+                     onclick="event.stopPropagation();toggleCircle(2)">
+        <div xmlns="http://www.w3.org/1999/xhtml"
+             style="font-family:'Cormorant Garamond',serif;font-size:12px;
+                    background:rgba(184,145,62,0.96);
+                    color:#F3EEE7;line-height:1.65;
+                    text-align:center;padding:10px 8px;height:100%">
+          <div style="font-size:15px;font-weight:400;margin-bottom:6px">洞見</div>
+          看見重複的模式，找到問題真正的核心
+          <div style="margin-top:10px;font-size:9px;color:rgba(243,238,231,0.55)">▲ 收起</div>
+        </div>
+      </foreignObject>
+
+      <!-- ── Circle 3: 動起來 (#B85C40 bg, #F3EEE7 text) ── -->
+      <g id="c3-lbl" class="circ-lbl-grp" onclick="toggleCircle(3)">
+        <text x="295" y="358" text-anchor="middle" class="vfont" font-size="20" fill="#F3EEE7">動起來</text>
+        <text x="295" y="378" text-anchor="middle" class="vfont" font-size="12" fill="rgba(243,238,231,0.7)">行動方案</text>
+        <!-- + at upper-right of label area -->
+        <text x="341" y="345" text-anchor="middle" class="vfont" font-size="20" font-weight="400" fill="#F3EEE7">+</text>
+      </g>
+      <foreignObject id="c3-det" x="192" y="292" width="206" height="112"
+                     visibility="hidden" style="cursor:pointer"
+                     onclick="event.stopPropagation();toggleCircle(3)">
+        <div xmlns="http://www.w3.org/1999/xhtml"
+             style="font-family:'Cormorant Garamond',serif;font-size:12px;
+                    background:rgba(184,92,64,0.96);
+                    color:#F3EEE7;line-height:1.65;
+                    text-align:center;padding:10px 8px;height:100%">
+          <div style="font-size:15px;font-weight:400;margin-bottom:6px">動起來</div>
+          清晰具體的下一步建議行動方案
+          <div style="margin-top:10px;font-size:9px;color:rgba(243,238,231,0.55)">▲ 收起</div>
+        </div>
+      </foreignObject>
+    </svg>
+
+    <div style="margin-top:3rem">
+      <a href="https://line.me/R/ti/p/@012gesap" target="_blank" class="btn">立即預約諮詢</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+  <div style="max-width:860px;margin:0 auto">
+    <span class="section-label fade" style="text-align:center;display:block;margin-bottom:2.5rem">見證</span>
+    <div class="testi-grid">
+      <div class="testi-card fade">
+        <p class="testi-text">和雅妃老師聊完後，原本困擾我的事情，就這樣豁然開朗，而且知道下一步該怎麼做，思緒變得很清晰。</p>
+        <p class="testi-author">科技人</p>
+      </div>
+      <div class="testi-card fade">
+        <p class="testi-text">老師讓人感到很安心、可以說出自己真實的感覺。原本很氣的工作上的事，在被理解後，反而可以清楚、理性地處理事情。</p>
+        <p class="testi-author">餐飲業老闆</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT SECTION -->
+<section class="fit-section">
+  <div style="max-width:760px;margin:0 auto">
+    <span class="section-label fade" style="display:block;text-align:center;margin-bottom:.5rem">適合的你</span>
+    <h2 style="text-align:center;font-size:clamp(1.6rem,2.8vw,2.2rem);font-weight:300;margin-bottom:3rem;font-family:var(--font)" class="fade">這個諮詢，<em>適不適合你？</em></h2>
+    <div class="fit-inner fade">
+      <div class="fit-col fit-col-yes">
+        <h4>✦ 適合這樣的你</h4>
+        <ul class="fit-list">
+          <li class="yes">生涯轉折期，開始思考方向與意義</li>
+          <li class="yes">事業有成，渴望開創第二人生</li>
+          <li class="yes">對生命充滿好奇，想體驗更多可能</li>
+          <li class="yes">在親密關係中感到困住，想找回自己</li>
+          <li class="yes">長期感到空、累、失去熱情</li>
+          <li class="yes">準備好誠實面對自己</li>
+        </ul>
+      </div>
+      <div class="fit-col">
+        <h4 class="not">○ 不適合這樣的你</h4>
+        <ul class="fit-list">
+          <li class="no">只想被安慰、被認同，不想看見真實</li>
+          <li class="no">希望有人替你做決定、告訴你該怎麼選</li>
+          <li class="no">想改變他人，而非回到自己身上</li>
+          <li class="no">尚未準備好為人生下一步負起責任</li>
+        </ul>
+        <p style="font-size:.85rem;color:var(--ink40);font-style:italic;margin-top:1rem;line-height:1.6">這個對話需要誠實與承擔。若你目前只想逃離或合理化，這段對話可能讓你感到不舒服。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section">
+  <div class="pricing-inner">
+    <span class="section-label fade" style="display:block;text-align:center">方案選擇</span>
+    <h2 style="font-size:clamp(1.6rem,2.8vw,2.2rem);font-weight:300;text-align:center;margin-bottom:.5rem;font-family:var(--font)" class="fade">選擇你的<em>深度</em></h2>
+    <div class="pricing-grid fade">
+      <div class="plan-card">
+        <div class="plan-mins">40</div>
+        <div class="plan-label">分鐘</div>
+        <div class="plan-title">精準對焦</div>
+        <div class="plan-desc">問題明確，需要快速釐清與校準的你</div>
+        <div class="plan-price">NT$1,800 <small>/ 次</small></div>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">深度推薦</div>
+        <div class="plan-mins">90</div>
+        <div class="plan-label">分鐘</div>
+        <div class="plan-title">深度對焦</div>
+        <div class="plan-desc">還不確定狀態與方向，正處人生轉換期的你</div>
+        <div class="plan-price">NT$3,600 <small>/ 次</small></div>
+      </div>
+    </div>
+    <p style="font-size:.85rem;color:var(--ink40);font-style:italic;margin-bottom:0">線上 Google Meet 進行 · 匯款後填表預約</p>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta">
+  <h2 class="fade">有些時候，你不需要<br>更多方法，也不需要<em>再更加努力</em></h2>
+  <p class="fade">你需要的是——看清自己站在哪裡，才能決定下一步怎麼走。</p>
+  <a href="https://line.me/R/ti/p/@012gesap" target="_blank" class="btn">立即預約諮詢</a>
+</section>
+
+<footer>
+  <p>IGNI Conscious Consultation</p>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+function toggleCircle(id){
+  const lbl=document.getElementById('c'+id+'-lbl');
+  const det=document.getElementById('c'+id+'-det');
+  const isOpen=(det.getAttribute('visibility')==='visible');
+  [1,2,3].forEach(i=>{
+    document.getElementById('c'+i+'-lbl').setAttribute('visibility','visible');
+    document.getElementById('c'+i+'-det').setAttribute('visibility','hidden');
+  });
+  if(!isOpen){
+    lbl.setAttribute('visibility','hidden');
+    det.setAttribute('visibility','visible');
+  }
+}
+</script>
+</body>
+</html>
