@@ -62,7 +62,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 2.5rem;displ
 /* STEPS SECTION — terra background */
 .steps-section{background:url('../img/terra.png') center/cover no-repeat}
 .steps-section .section-label{color:#2C2416}
-.steps-section h2{color:#F3EEE7}
+.steps-section h2{color:#F3EEE7;font-size:clamp(1rem,3.2vw,2rem)}
 .steps-section h2 em{color:#2C2416}
 .steps-section .section-desc{color:rgba(243,238,231,0.75)}
 
@@ -254,64 +254,61 @@ footer p{font-size:.75rem;letter-spacing:.12em;color:rgba(255,252,247,0.35);text
 
       <!-- ── Circle 1: 洞察 (#D4C4A4 bg, #2C2416 text) ── -->
       <g id="c1-lbl" class="circ-lbl-grp" onclick="toggleCircle(1)">
-        <text x="148" y="118" text-anchor="middle" class="vfont" font-size="20" fill="#2C2416">洞察</text>
-        <text x="148" y="138" text-anchor="middle" class="vfont" font-size="12" fill="rgba(44,36,22,0.55)">卡在哪裡？</text>
+        <text x="148" y="118" text-anchor="middle" class="vfont" font-size="22" fill="#2C2416">洞察</text>
+        <text x="148" y="142" text-anchor="middle" class="vfont" font-size="18" fill="rgba(44,36,22,0.55)">卡在哪裡？</text>
         <!-- + at upper-right of label area -->
-        <text x="196" y="93" text-anchor="middle" class="vfont" font-size="20" font-weight="400" fill="#2C2416">+</text>
+        <text x="196" y="93" text-anchor="middle" class="vfont" font-size="22" font-weight="400" fill="#2C2416">+</text>
       </g>
       <foreignObject id="c1-det" x="60" y="88" width="168" height="145"
                      visibility="hidden" style="cursor:pointer"
                      onclick="event.stopPropagation();toggleCircle(1)">
         <div xmlns="http://www.w3.org/1999/xhtml"
              style="font-family:'Cormorant Garamond',serif;font-size:12px;
-                    background:rgba(212,196,164,0.96);
+                    background:#F3EEE7;
                     color:#2C2416;line-height:1.65;
                     text-align:center;padding:10px 8px;height:100%">
           <div style="font-size:15px;font-weight:400;margin-bottom:6px">洞察</div>
           這段對話中你對自己的觀察——看見自己卡在哪裡、為什麼
-          <div style="margin-top:10px;font-size:9px;color:rgba(44,36,22,0.45)">▲ 收起</div>
         </div>
       </foreignObject>
 
       <!-- ── Circle 2: 洞見 (#B8913E bg, #F3EEE7 text) ── -->
       <g id="c2-lbl" class="circ-lbl-grp" onclick="toggleCircle(2)">
-        <text x="442" y="118" text-anchor="middle" class="vfont" font-size="20" fill="#F3EEE7">洞見</text>
-        <text x="442" y="138" text-anchor="middle" class="vfont" font-size="12" fill="rgba(243,238,231,0.7)">模式與根源</text>
+        <text x="442" y="118" text-anchor="middle" class="vfont" font-size="22" fill="#F3EEE7">洞見</text>
+        <text x="442" y="142" text-anchor="middle" class="vfont" font-size="18" fill="rgba(243,238,231,0.7)">模式與根源</text>
         <!-- + at upper-right of label area -->
-        <text x="490" y="93" text-anchor="middle" class="vfont" font-size="20" font-weight="400" fill="#F3EEE7">+</text>
+        <text x="490" y="93" text-anchor="middle" class="vfont" font-size="22" font-weight="400" fill="#F3EEE7">+</text>
       </g>
       <foreignObject id="c2-det" x="362" y="88" width="168" height="145"
                      visibility="hidden" style="cursor:pointer"
                      onclick="event.stopPropagation();toggleCircle(2)">
         <div xmlns="http://www.w3.org/1999/xhtml"
              style="font-family:'Cormorant Garamond',serif;font-size:12px;
-                    background:rgba(184,145,62,0.96);
-                    color:#F3EEE7;line-height:1.65;
+                    background:#F3EEE7;
+                    color:#2C2416;line-height:1.65;
                     text-align:center;padding:10px 8px;height:100%">
           <div style="font-size:15px;font-weight:400;margin-bottom:6px">洞見</div>
           看見重複的模式，找到問題真正的核心
-          <div style="margin-top:10px;font-size:9px;color:rgba(243,238,231,0.55)">▲ 收起</div>
         </div>
       </foreignObject>
 
       <!-- ── Circle 3: 動起來 (#B85C40 bg, #F3EEE7 text) ── -->
       <g id="c3-lbl" class="circ-lbl-grp" onclick="toggleCircle(3)">
-        <text x="295" y="358" text-anchor="middle" class="vfont" font-size="20" fill="#F3EEE7">動起來</text>
-        <text x="295" y="378" text-anchor="middle" class="vfont" font-size="12" fill="rgba(243,238,231,0.7)">行動方案</text>
+        <text x="295" y="358" text-anchor="middle" class="vfont" font-size="22" fill="#F3EEE7">動起來</text>
+        <text x="295" y="382" text-anchor="middle" class="vfont" font-size="18" fill="rgba(243,238,231,0.7)">行動方案</text>
         <!-- + at upper-right of label area -->
-        <text x="341" y="345" text-anchor="middle" class="vfont" font-size="20" font-weight="400" fill="#F3EEE7">+</text>
+        <text x="341" y="345" text-anchor="middle" class="vfont" font-size="22" font-weight="400" fill="#F3EEE7">+</text>
       </g>
       <foreignObject id="c3-det" x="192" y="292" width="206" height="112"
                      visibility="hidden" style="cursor:pointer"
                      onclick="event.stopPropagation();toggleCircle(3)">
         <div xmlns="http://www.w3.org/1999/xhtml"
              style="font-family:'Cormorant Garamond',serif;font-size:12px;
-                    background:rgba(184,92,64,0.96);
-                    color:#F3EEE7;line-height:1.65;
+                    background:#F3EEE7;
+                    color:#2C2416;line-height:1.65;
                     text-align:center;padding:10px 8px;height:100%">
           <div style="font-size:15px;font-weight:400;margin-bottom:6px">動起來</div>
           清晰具體的下一步建議行動方案
-          <div style="margin-top:10px;font-size:9px;color:rgba(243,238,231,0.55)">▲ 收起</div>
         </div>
       </foreignObject>
     </svg>
@@ -374,7 +371,7 @@ footer p{font-size:.75rem;letter-spacing:.12em;color:rgba(255,252,247,0.35);text
 <section class="pricing-section">
   <div class="pricing-inner">
     <span class="section-label fade" style="display:block;text-align:center">方案選擇</span>
-    <h2 style="font-size:clamp(1.6rem,2.8vw,2.2rem);font-weight:300;text-align:center;margin-bottom:.5rem;font-family:var(--font)" class="fade">選擇你的<em>深度</em></h2>
+    <h2 style="font-size:clamp(1.6rem,2.8vw,2.2rem);font-weight:300;text-align:center;margin-bottom:.5rem;font-family:var(--font)" class="fade">選擇你的<em style="color:#B85C40">深度</em></h2>
     <div class="pricing-grid fade">
       <div class="plan-card">
         <div class="plan-mins">40</div>
@@ -398,7 +395,7 @@ footer p{font-size:.75rem;letter-spacing:.12em;color:rgba(255,252,247,0.35);text
 
 <!-- FOOTER CTA -->
 <section class="footer-cta">
-  <h2 class="fade">有些時候，你不需要<br>更多方法，也不需要<em>再更加努力</em></h2>
+  <h2 class="fade">有些時候，你不需要<br>更多方法，也不需要<br><em>再更加努力</em></h2>
   <p class="fade">你需要的是——看清自己站在哪裡，才能決定下一步怎麼走。</p>
   <a href="https://line.me/R/ti/p/@012gesap" target="_blank" class="btn">立即預約諮詢</a>
 </section>
