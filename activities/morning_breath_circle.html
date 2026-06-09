@@ -7,16 +7,17 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --sage: #8a9e8c; --sage-light: #c5d4c7; --sage-pale: #eef3ee;
-    --stone: #6b6560; --stone-light: #b5afa9;
-    --cream: #f7f3ee; --ink: #2c2a27;
-    --gold: #b89b6a; --gold-light: #d4bc93; --warm-white: #fdfaf5;
+    --sage: #B85C40; --sage-light: #D4C4A4; --sage-pale: #F3EEE7;
+    --stone: #2C2416; --stone-light: rgba(44,36,22,0.4);
+    --ink15: rgba(44,36,22,0.15);
+    --cream: #FFFCF7; --cream2: #F3EEE7; --ink: #2C2416;
+    --gold: #B8913E; --gold-light: rgba(184,145,62,0.3); --warm-white: #FFFCF7;
   }
   body { font-family:'Noto Sans TC',sans-serif; background:var(--warm-white); color:var(--ink); overflow-x:hidden; }
 
   .hero { position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:80px 40px 60px; background:var(--cream); overflow:hidden; }
-  .hero::before { content:''; position:absolute; top:-120px; right:-120px; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle,rgba(138,158,140,0.12) 0%,transparent 70%); pointer-events:none; }
-  .hero::after { content:''; position:absolute; bottom:-80px; left:-80px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle,rgba(184,155,106,0.08) 0%,transparent 70%); pointer-events:none; }
+  .hero::before { content:''; position:absolute; top:-120px; right:-120px; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle,rgba(184,92,64,0.07) 0%,transparent 70%); pointer-events:none; }
+  .hero::after { content:''; position:absolute; bottom:-80px; left:-80px; width:380px; height:380px; border-radius:50%; background:radial-gradient(circle,rgba(184,92,64,0.08) 0%,transparent 70%); pointer-events:none; }
   .breath-circle { width:160px; height:160px; border-radius:50%; border:1.5px solid var(--sage-light); display:flex; align-items:center; justify-content:center; position:relative; margin-bottom:40px; animation:breathe 6s ease-in-out infinite; }
   .breath-circle::before { content:''; position:absolute; width:130px; height:130px; border-radius:50%; border:0.5px solid var(--sage-light); opacity:0.5; }
   .breath-circle::after { content:''; position:absolute; width:100px; height:100px; border-radius:50%; background:var(--sage-pale); border:0.5px solid var(--sage); opacity:0.4; animation:breathe-inner 6s ease-in-out infinite; }
@@ -40,8 +41,11 @@
 
   .time-block { background:white; border:0.5px solid var(--gold-light); border-radius:12px; padding:32px; margin-top:40px; display:flex; align-items:center; gap:32px; }
   .time-icon { width:56px; height:56px; border-radius:50%; background:var(--sage-pale); border:0.5px solid var(--sage-light); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:22px; }
-  .time-main { font-family:'Noto Serif TC',serif; font-size:28px; font-weight:300; color:var(--ink); letter-spacing:0.05em; margin-bottom:6px; }
-  .time-sub { font-size:13px; color:var(--stone-light); font-weight:300; letter-spacing:0.1em; }
+  .time-main { font-family:'Noto Serif TC',serif; font-size:28px; font-weight:300; color:var(--ink); letter-spacing:0.05em; margin-bottom:16px; }
+  .timezone-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-top:0; }
+  .timezone-item { background:var(--cream2); border:0.5px solid var(--ink15); border-radius:14px; padding:16px; font-size:13px; color:var(--stone); line-height:1.7; }
+  .timezone-item strong { display:block; margin-bottom:6px; color:var(--ink); font-weight:500; }
+  .time-sub { display:none; }
   .notice-box { background:white; border-left:2px solid var(--sage); padding:16px 20px; margin-top:20px; font-size:13px; color:var(--stone); line-height:1.9; font-weight:300; }
   .notice-box a { color:var(--sage); text-decoration:underline; }
 
@@ -62,6 +66,7 @@
   .flow-bar-fill { height:100%; background:var(--sage); border-radius:2px; }
 
   .season-tag { display:inline-block; padding:4px 14px; border:0.5px solid var(--gold-light); border-radius:20px; font-size:11px; color:var(--gold); letter-spacing:0.2em; margin-bottom:24px; }
+  .season-tag--large { font-size:14px; padding:8px 18px; }
   .schedule-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
   .schedule-card { background:white; border:0.5px solid var(--sage-light); border-radius:12px; padding:28px; position:relative; overflow:hidden; }
   .schedule-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--sage); opacity:0.4; }
@@ -115,6 +120,7 @@
 <body>
 
 <section class="hero">
+  <img src="../img/早晨呼吸圈海報.png" alt="早晨呼吸圈海報" style="max-width:100%;height:auto;margin-bottom:32px;border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,0.08);" />
   <div class="breath-circle"><span class="logo-text">呼吸</span></div>
   <h1 class="hero-title">早晨呼吸圈</h1>
   <p class="hero-sub"><span class="ornament">⊱</span> 每週 30 分鐘，為生活種下一顆穩定的心 <span class="ornament">⊱</span></p>
@@ -135,7 +141,12 @@
     <div class="time-icon">◎</div>
     <div class="time-info">
       <div class="time-main">06:30 — 07:00 AM</div>
-      <div class="time-sub">台灣時區 ‧ 每週三、五晨間</div>
+      <div class="timezone-grid">
+        <div class="timezone-item"><strong>台灣時區</strong>每週三、五晨間<br>06:30-07:00am</div>
+        <div class="timezone-item"><strong>日本時區</strong>07:30-08:00am</div>
+        <div class="timezone-item"><strong>美東時間</strong>16:30-19:00pm EDT</div>
+        <div class="timezone-item"><strong>美西時間</strong>15:30-16:00pm PDT</div>
+      </div>
     </div>
   </div>
   <div class="notice-box">
@@ -207,31 +218,18 @@
 <section class="section">
   <div class="section-label">共修時程</div>
   <h2 class="section-title">開課日期</h2>
-  <div class="season-tag">春季 ‧ ５月份</div>
-  <div class="schedule-grid">
-    <div class="schedule-card">
-      <div class="schedule-card-month">五月份</div>
-      <div class="schedule-card-title">週三班</div>
-      <div class="schedule-card-dates">05/06 &nbsp;｜&nbsp; 05/13<br>05/20 &nbsp;｜&nbsp; 05/27</div>
-    </div>
-    <div class="schedule-card">
-      <div class="schedule-card-month">五月份</div>
-      <div class="schedule-card-title">週五班</div>
-      <div class="schedule-card-dates">05/08 &nbsp;｜&nbsp; 05/15<br>05/22 &nbsp;｜&nbsp; 05/29</div>
-    </div>
-  </div>
   <div style="margin-top:40px;">
-    <div class="season-tag">夏季 ‧ ６ — ８ 月</div>
+    <div class="season-tag season-tag--large">夏季 ‧ ７ — ９ 月</div>
     <div class="schedule-grid">
       <div class="schedule-card">
-        <div class="schedule-card-month">六至八月份</div>
+        <div class="schedule-card-month">七至九月份</div>
         <div class="schedule-card-title">週三班</div>
-        <div class="schedule-card-dates">6/3 ‧ 6/10 ‧ 6/17 ‧ 6/24<br>7/1 ‧ 7/8 ‧ 7/15 ‧ 7/22<br>8/5 ‧ 8/12 ‧ 8/19 ‧ 8/26</div>
+        <div class="schedule-card-dates">7/1 ‧ 7/8 ‧ 7/15 ‧ 7/22<br>8/5 ‧ 8/12 ‧ 8/19 ‧ 8/26<br>9/2 ‧ 9/9 ‧ 9/16 ‧ 9/30</div>
       </div>
       <div class="schedule-card">
-        <div class="schedule-card-month">六至八月份</div>
+        <div class="schedule-card-month">七至九月份</div>
         <div class="schedule-card-title">週五班</div>
-        <div class="schedule-card-dates">6/5 ‧ 6/12 ‧ 6/19 ‧ 6/26<br>7/3 ‧ 7/10 ‧ 7/17 ‧ 7/31<br>8/7 ‧ 8/14 ‧ 8/21 ‧ 8/28</div>
+        <div class="schedule-card-dates">7/3 ‧ 7/10 ‧ 7/17 ‧ 7/31<br>8/7 ‧ 8/14 ‧ 8/21 ‧ 8/28<br>9/4 ‧ 9/11 ‧ 9/18 ‧ 9/25</div>
       </div>
     </div>
   </div>
@@ -248,14 +246,8 @@
     <h2 class="section-title">採季度報名，每三個月為單位</h2>
     <p class="price-intro">週三班、週五班分開報名，請選擇您合適的練習日期。<br>歡迎報名兩班，一週練習 2 次，加深身體記憶。</p>
     <div class="price-cards">
-      <div class="price-card">
-        <span class="price-card-tag">五月份 ‧ 單月報名</span>
-        <div class="price-card-label">每班 / 月</div>
-        <div><span class="price-card-amount">1,200</span><span class="price-card-unit">元</span></div>
-        <div class="price-card-note">共 4 堂</div>
-      </div>
       <div class="price-card highlight">
-        <span class="price-card-tag">夏季 ‧ 季度報名</span>
+        <span class="price-card-tag">七至九月 ‧ 季度報名</span>
         <div class="price-card-label">每班 / 季</div>
         <div><span class="price-card-amount">3,600</span><span class="price-card-unit">元</span></div>
         <div class="price-card-note">共 12 堂</div>
