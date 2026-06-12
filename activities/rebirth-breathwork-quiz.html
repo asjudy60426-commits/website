@@ -24,7 +24,7 @@
       --line: #d9cbb5;
       --cta: var(--terra);
       --cta-hover: var(--terra-dk);
-      --radius: 28px;
+      --radius: 0;
     }
 
     * { box-sizing: border-box; }
@@ -211,24 +211,22 @@
 
     .option {
       width: 100%;
-      border: 1px solid rgba(217,203,181,0.9);
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,252,247,0.96), rgba(243,238,231,0.96));
+      background: var(--aman-sand);
       color: var(--ink);
       display: block;
       padding: 0;
       text-align: left;
       cursor: pointer;
-      transition: border-color .32s ease, background .32s ease, color .32s ease, transform .32s ease;
+      transition: border-color .32s ease, background .32s ease, color .32s ease;
       overflow: hidden;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35), 0 12px 40px rgba(44,36,22,0.06);
     }
 
     .option:hover,
     .option:focus {
       border-color: var(--terra);
-      background: linear-gradient(180deg, rgba(255,250,244,1), rgba(236,223,209,0.98));
-      transform: translateY(-1px);
+      background: #efe4d5;
       outline: none;
     }
 
@@ -240,53 +238,24 @@
     .option-visual {
       width: 100%;
       aspect-ratio: 16 / 9;
-      border-bottom: 1px solid rgba(217,203,181,0.85);
+      border-bottom: 1px solid var(--line);
       display: block;
-      position: relative;
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .option-visual.photo-1 {
-      background: linear-gradient(220deg, #e7d1b7 0%, #d4b28a 40%, #a56f47 100%);
-    }
-
-    .option-visual.photo-2 {
-      background: linear-gradient(220deg, #e9d8c9 0%, #c6a883 40%, #8f6c50 100%);
-    }
-
-    .option-visual.photo-3 {
-      background: linear-gradient(220deg, #f4e5da 0%, #d9b99f 40%, #a97f59 100%);
-    }
-
-    .option-visual::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 25% 20%, rgba(255,255,255,0.32), transparent 24%),
-                  radial-gradient(circle at 70% 70%, rgba(255,255,255,0.2), transparent 20%),
-                  linear-gradient(90deg, rgba(255,255,255,0.08), transparent 45%, rgba(255,255,255,0.06));
-      pointer-events: none;
-      mix-blend-mode: soft-light;
+      background: #f8f4ed;
     }
 
     .option-visual svg {
       width: 100%;
       height: 100%;
       display: block;
-      position: relative;
-      z-index: 1;
-      filter: saturate(1.05) contrast(1.02);
     }
 
-    .scene-bg { fill: #f0e5d6; }
-    .scene-paper { fill: #faf2ea; opacity: .68; }
-    .scene-ground { fill: #d6b691; opacity: .34; }
-    .scene-shadow { fill: #b69160; opacity: .22; }
-    .scene-fill { fill: #c9ad8c; opacity: .45; }
-    .scene-terra { fill: #ac6b45; opacity: .32; }
-    .scene-gold { fill: #b78c4d; opacity: .42; }
+    .scene-bg { fill: #fbf6ee; }
+    .scene-paper { fill: #f3eee7; opacity: .55; }
+    .scene-ground { fill: #d4c4a4; opacity: .28; }
+    .scene-shadow { fill: #c9a55a; opacity: .18; }
+    .scene-fill { fill: #d4c4a4; opacity: .42; }
+    .scene-terra { fill: #b85c40; opacity: .28; }
+    .scene-gold { fill: #b8913e; opacity: .32; }
     .wash-sand { fill: #d4c4a4; opacity: .24; }
     .wash-terra { fill: #b85c40; opacity: .18; }
     .wash-gold { fill: #b8913e; opacity: .22; }
@@ -1232,8 +1201,7 @@
 
     function optionVisual(q, opt, index) {
       const name = visualName(q, opt, index);
-      const photoClass = `photo-${(index % 3) + 1}`;
-      return `<span class="option-visual ${photoClass}" aria-hidden="true">${visualSvg(name, index)}</span>`;
+      return `<span class="option-visual" aria-hidden="true">${visualSvg(name, index)}</span>`;
     }
 
     function visualName(q, opt, index) {
