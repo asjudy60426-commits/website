@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一對一重生呼吸個案 · IGNI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --cream:#fffcf7;
+      --cream2:#F3EEE7;
+      --ink:#2C2416;
+      --cta:#B85C40;
+      --dot:#B8913E;
+      --gold:#B8913E;
+      --ink40:rgba(44,36,22,0.4);
+      --ink15:rgba(44,36,22,0.15);
+      --max-w:760px;
+      --font:'Cormorant Garamond',serif;
+    }
+
+    html{scroll-behavior:smooth}
+
+    body{background:var(--cream);color:var(--ink);font-family:var(--font);font-weight:300;line-height:1.75;overflow-x:hidden}
+
+    .serif{font-family:var(--font)}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(255,252,247,0.92);backdrop-filter:blur(8px);border-bottom:0.5px solid var(--ink15)}
+
+    .nav-logo{font-size:1.1rem;letter-spacing:.18em;font-weight:400;color:var(--ink);text-decoration:none}
+    .nav-logo span{color:var(--gold)}
+
+    .nav-cta{font-family:var(--font);font-size:.85rem;letter-spacing:.12em;color:var(--cta);border:0.5px solid var(--cta);padding:.4rem 1.1rem;text-decoration:none;transition:all .25s}
+    .nav-cta:hover{background:var(--cta);color:var(--cream)}
+
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8rem 2rem 5rem;text-align:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(184,92,64,0.07) 0%,transparent 70%);pointer-events:none}
+
+    .hero-eyebrow{font-size:.78rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-bottom:2rem;opacity:.8}
+    .hero-h1{font-size:clamp(2.6rem,5vw,4.2rem);font-weight:300;line-height:1.2;max-width:720px;margin-bottom:1.5rem}
+    .hero-h1 em{font-style:italic;color:var(--gold)}
+    .hero-sub{font-size:1.15rem;color:var(--ink40);max-width:460px;margin-bottom:2.8rem;font-style:italic}
+
+    .divider-line{width:40px;height:1px;background:var(--gold);margin:0 auto 2.8rem;opacity:.6}
+    .sep{border:none;height:1px;background:var(--ink15);margin:0}
+
+    .section{padding:6rem 2rem}
+    .section-inner{max-width:var(--max-w);margin:0 auto}
+    .section-label{font-size:.75rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:1.2rem;display:block}
+    .section-h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;line-height:1.25;margin-bottom:1.2rem}
+    .section-h2 em{font-style:italic;color:var(--gold)}
+    .section-desc,.body-text,.phase-desc,.layer-body,.pricing-desc,.cta-note{color:var(--ink40)}
+    .section-desc{font-size:1.05rem;margin-bottom:3.5rem;font-style:italic}
+    .body-text{font-size:1rem;margin-bottom:1.5rem;line-height:1.95}
+
+    .circle-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.6rem;margin:2.5rem 0}
+    .circle-card{border:0.5px solid var(--ink15);background:rgba(184,92,64,0.06);border-radius:999px;min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2.4rem 1.4rem;position:relative;animation:floatCircle 6s ease-in-out infinite;transition:transform .3s}
+    .circle-card:hover{transform:translateY(-6px)}
+    .circle-card::before{content:'';position:absolute;inset:12px;border-radius:999px;background:rgba(255,252,247,0.75)}
+    .circle-title{position:relative;font-size:1.05rem;font-weight:400;color:var(--cta);margin-bottom:.85rem}
+    .circle-text{position:relative;font-size:.95rem;line-height:1.7;color:var(--ink40)}
+    @keyframes floatCircle{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+    .process-grid{margin:2.5rem 0;padding-left:0}
+    .process-item{position:relative;padding:1.5rem 0 1.5rem 3rem}
+    .process-item::before{content:attr(data-step);position:absolute;left:0;top:.45rem;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--dot);color:var(--cream);display:flex;align-items:center;justify-content:center;font-weight:500;font-size:.95rem;box-shadow:0 0 0 6px rgba(184,145,62,0.15)}
+    .process-step{display:flex;align-items:center;gap:.8rem;margin-bottom:.6rem;font-size:1.15rem;letter-spacing:.02em;color:var(--gold);font-weight:400}
+    .process-step strong{font-weight:500;color:var(--gold)}
+    .process-desc{font-size:.95rem;line-height:1.8}
+    .process-break{margin:2.5rem 0;padding-top:1.5rem;border-top:1px solid rgba(44,36,22,0.15)}
+    .process-break strong{display:block;margin-bottom:.6rem;color:var(--ink);font-size:1rem}
+    .process-break .process-desc{margin-top:.25rem}
+
+    .pricing-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:2rem 0}
+    .pricing-card{background:var(--cream);border:0.5px solid var(--ink15);padding:1.75rem 1.5rem;position:relative}
+    .pricing-card.featured{border:1.5px solid var(--cta);background:rgba(184,92,64,0.06)}
+    .why-section{background:url("../img/terra.png") center/cover no-repeat;background-size:cover;padding:4rem 2rem;border-radius:0;width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw}
+    .why-section .section-label,.why-section .section-h2,.why-section .body-text{color:var(--ink)}
+    .why-section .section-h2 em{color:var(--cream2)}
+    details.pricing-extra{position:absolute;top:1.4rem;right:1.4rem;max-width:170px;text-align:right}
+    details.pricing-extra summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:1.8rem;height:1.8rem;border-radius:50%;background:var(--cta);color:var(--cream);font-weight:500;border:none;transition:background .25s}
+    details.pricing-extra summary::-webkit-details-marker{display:none}
+    details.pricing-extra[open] summary{background:#9e4e34}
+    details.pricing-extra p{font-size:.85rem;color:#7A7060;line-height:1.6;margin:0;padding:.95rem 1rem .6rem 1.2rem;background:var(--cream2);border-radius:12px;position:relative;text-align:left}
+    details.pricing-extra p.pricing-lines{padding:.95rem 1rem .95rem 1.6rem}
+    details.pricing-extra p.pricing-lines span{display:block;padding-left:1.4rem;position:relative;margin-bottom:.5rem}
+    details.pricing-extra p.pricing-lines span:before{content:'✦';color:#7A7060;position:absolute;left:0;top:0.12rem;font-size:.9rem}
+    details.pricing-extra p.centered{padding:.75rem 1rem;text-align:center}
+    details.pricing-extra summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:1.8rem;height:1.8rem;border-radius:50%;background:var(--cta);color:var(--cream);font-weight:500;border:none;transition:background .25s}
+    .pricing-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;padding:.25rem .8rem;background:var(--cream);color:var(--ink);white-space:nowrap}
+    .pricing-label{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink40);margin-bottom:1rem}
+    .pricing-price{font-size:3rem;font-weight:300;color:var(--ink);margin-bottom:.75rem}
+    .pricing-price span{font-size:.85rem;color:var(--ink40)}
+    .pricing-desc{font-size:.9rem;line-height:1.55;margin-bottom:1.5rem}
+    .pricing-items{font-size:.95rem;line-height:1.8;color:var(--ink40)}
+    .pricing-items p{display:flex;align-items:flex-start;gap:.45rem;padding-left:1.2rem;position:relative;margin-bottom:.8rem}
+    .pricing-items p:before{content:'✦';color:var(--gold);position:absolute;left:0;top:0.15rem;font-size:0.9rem}
+
+    .cta-section{padding:6rem 2rem;max-width:var(--max-w);margin:0 auto;text-align:center}
+    .cta-h{font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;line-height:1.3;margin-bottom:1rem}
+    .cta-h em{font-style:italic;color:var(--gold)}
+    .cta-note{font-size:.95rem;margin-bottom:2rem;line-height:1.9;color:var(--ink40)}
+    .flow-list{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-top:2rem;margin-bottom:1.6rem;width:100%;max-width:640px;margin-left:auto;margin-right:auto}
+    .flow-step{display:flex;align-items:center;justify-content:flex-start;gap:1rem;position:relative;padding:0.9rem 1rem 0.9rem 3.2rem;background:#E5DDD0;border-radius:18px;color:#2C2416;min-height:64px;height:auto;text-align:left;width:270px;margin-left:auto;margin-right:auto}
+    .flow-step::before{content:attr(data-step);position:absolute;left:0.9rem;top:50%;transform:translateY(-50%);width:2rem;height:2rem;border-radius:50%;background:var(--cream);color:#2C2416;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;box-shadow:0 0 0 8px rgba(229,221,208,0.45)}
+    .flow-step::after{content:none}
+    .flow-step:hover{background:#D8CDBD}
+    .flow-step span,.flow-step a{font-size:.95rem;line-height:1.55;display:block;color:#2C2416;margin-left:0.4rem}
+    .cta-btn{display:inline-block;font-family:var(--font);font-size:.9rem;letter-spacing:.15em;color:var(--cream);background:var(--cta);border:none;padding:.85rem 2.4rem;text-decoration:none;cursor:pointer;transition:all .25s;text-transform:uppercase;margin-top:1.6rem}
+    .cta-btn:hover{background:#9e4e34}
+
+    footer{background:var(--ink);padding:1.5rem 2.5rem;display:flex;justify-content:center;align-items:center;border-top:0.5px solid rgba(255,252,247,0.1)}
+    footer p,footer{font-size:.75rem;letter-spacing:.12em;color:rgba(255,252,247,0.35);text-transform:uppercase}
+
+    @media(max-width:640px){.pricing-wrap{grid-template-columns:1fr}.hero{padding:3.5rem 1.25rem 3rem}.section{padding:3.5rem 1.25rem}.cta-section{padding:3.5rem 1.25rem}nav{padding:1.2rem 1.25rem}}
+    @media(max-width:520px){.hero-h1{font-size:2rem}.circle-grid{grid-template-columns:1fr}.flow-list{grid-template-columns:1fr}.pricing-extra{position:static;max-width:none;text-align:left;flex-direction:row;gap:.75rem;margin-bottom:1rem}}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-logo">IGNI <span>✦</span></span>
+    <a class="nav-cta" href="https://line.me/R/ti/p/@012gesap">預約個案</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-eyebrow">一對一重生呼吸個案</p>
+    <h1 class="hero-h1 serif">
+      你知道，是時候改變了，<br>
+      那微小的聲音，已經<br>
+      <em>大到無法忽視了</em>
+    </h1>
+    <p class="hero-sub">有些關卡，不是想通了就能跨過去。你可能比任何人都清楚問題在哪——但身體沒有跟上，情緒沒有鬆開。這不是你不夠好，而是你的系統，可能已經撐太久了。</p>
+  </div>
+
+  <hr class="sep">
+
+  <!-- WHY BREATHWORK -->
+  <div class="section why-section">
+    <p class="section-label">為什麼是呼吸</p>
+    <h2 class="section-h2 serif">有些轉化，<em>不只發生在頭腦裡</em></h2>
+    <p class="body-text">重生呼吸透過連續而有意識的呼吸，帶你同時進入身體、心理與靈性的工作。不依靠外力，不依賴權威——你不是被修理、被拯救、被改造，而是在安全的陪伴裡，重新拿回自己的力量。</p>
+
+    <div class="circle-grid">
+      <div class="circle-card">
+        <p class="circle-title">身體層次</p>
+        <p class="circle-text">釋放長期緊繃，讓神經系統逐漸回到更有彈性的狀態。</p>
+      </div>
+      <div class="circle-card">
+        <p class="circle-title">心理層次</p>
+        <p class="circle-text">越過理性防線，碰觸更深層的情緒與潛意識模式。</p>
+      </div>
+      <div class="circle-card">
+        <p class="circle-title">靈性層次</p>
+        <p class="circle-text">重新連結內在智慧，聽見平常被壓力覆蓋的訊息。</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- PROCESS -->
+  <div class="section">
+    <p class="section-label">個案流程</p>
+    <h2 class="section-h2 serif">每次個案 <em>3 小時</em></h2>
+
+    <div class="process-grid">
+      <div class="process-item" data-step="01">
+        <div class="process-step">靜心與聚焦</div>
+        <p class="process-desc">安定下來，釐清你此刻真正想面對的主題。不是表面問題，而是內在最需要被看見的核心。</p>
+      </div>
+      <div class="process-item" data-step="02">
+        <div class="process-step">重生呼吸</div>
+        <p class="process-desc">進入完整呼吸流程。讓身體帶路，讓意識深入，讓被壓住的能量有機會流動、釋放與整合。</p>
+      </div>
+      <div class="process-item" data-step="03">
+        <div class="process-step">整合與對話</div>
+        <p class="process-desc">透過對話整理過程中的感受、畫面與洞察，讓轉化不只是體驗，而是帶回生活的實際轉變。</p>
+      </div>
+      <div class="process-break">
+        <strong>呼吸結束後，一週內...</strong>
+        <p class="process-desc">這份回饋報告讓你更清晰看到整體轉化如何在日常生活中延伸與落實。</p>
+      </div>
+      <div class="process-item" data-step="04">
+        <div class="process-step">個案報告</div>
+        <p class="process-desc">這份回饋報告讓你更清晰看到整體轉化如何在日常生活中延伸與落實。</p>
+      </div>
+      <div class="process-item" data-step="05">
+        <div class="process-step">40 分鐘線上諮詢</div>
+        <p class="process-desc">深層呼吸後，轉化往往不只發生在當天。這次線上諮詢，將呼吸後的生活變化再次對焦，讓新的理解真正進入你的生命。</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- PRICING -->
+  <div class="section">
+    <p class="section-label">方案</p>
+    <h2 class="section-h2 serif">選擇你的<em>深度</em></h2>
+
+    <div class="pricing-wrap">
+      <div class="pricing-card">
+        <details class="pricing-extra">
+          <summary>＋</summary>
+          <p class="pricing-lines">
+            <span>場地位在台北地區，近古亭捷運站。</span>
+            <span>外縣市需另收車馬費。</span>
+            <span>到府服務需另收場地淨化費（NT. 3000）。</span>
+          </p>
+        </details>
+        <p class="pricing-label">單次個案</p>
+        <p class="pricing-price">NT$12,800</p>
+        <p class="pricing-desc">正在面對明確生命主題，或想先體驗一次深度呼吸的你。</p>
+        <div class="pricing-items">
+          <p>3 小時一對一個案</p>
+          <p>40 分鐘會後線上諮詢</p>
+          <p>場地費用已含</p>
+        </div>
+      </div>
+      <div class="pricing-card featured">
+        <span class="pricing-badge">一年限量 10 位</span>
+        <details class="pricing-extra">
+          <summary>＋</summary>
+          <p class="centered">須於 8 個月內完成。</p>
+        </details>
+        <p class="pricing-label" style="margin-top:0.5rem">深度轉化 10 次</p>
+        <p class="pricing-price">NT$108,000</p>
+        <p class="pricing-desc">在 8 個月內，穩定陪伴自己穿越關卡、重建內在秩序、讓生命進入下一個階段。</p>
+        <div class="pricing-items">
+          <p>10 次完整個案</p>
+          <p>專屬轉化旅程節奏</p>
+          <p>深度陪伴</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2 class="cta-h serif">
+      如果你已經感覺到<br>
+      生命正在呼喚你<em>做出行動</em>
+    </h2>
+    <div class="flow-list">
+      <div class="flow-step" data-step="01"><a href="https://line.me/R/ti/p/@012gesap" target="_blank">加入官方 LINE</a></div>
+      <div class="flow-step" data-step="02"><span>輸入『預約個案』</span></div>
+      <div class="flow-step" data-step="03"><span>將有專人和您預約日期</span></div>
+    </div>
+    <a class="cta-btn" href="https://line.me/R/ti/p/@012gesap">立即預約個案</a>
+  </div>
+
+  <footer>IGNI · 一對一重生呼吸個案</footer>
+
+</body>
+</html>

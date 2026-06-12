@@ -1,0 +1,1731 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>你的內在呼吸地圖</title>
+  <style>
+    :root {
+      --aman-sand: #f3eee7;
+      --aman-brown: #2b2418;
+      --terra: #b85c40;
+      --terra-dk: #9c4a30;
+      --gold: #b8913e;
+      --gold-lt: #c9a55a;
+      --sand: #d4c4a4;
+      --jungle-green: #314f39;
+      --leaf-green: #6f8a4f;
+      --deep-blue: #27556a;
+      --bird-blue: #7fa7b8;
+      --ink: var(--aman-brown);
+      --muted: #7a6f60;
+      --paper: var(--aman-sand);
+      --panel: #f8f4ed;
+      --line: #d9cbb5;
+      --cta: var(--terra);
+      --cta-hover: var(--terra-dk);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
+    }
+
+    .scene {
+      position: relative;
+      overflow: hidden;
+      padding: 42px;
+      color: var(--aman-sand);
+      background: var(--aman-brown);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+    }
+
+    .brand {
+      position: relative;
+      z-index: 1;
+    }
+
+    .kicker {
+      margin: 0 0 14px;
+      color: var(--gold-lt);
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(38px, 5vw, 68px);
+      line-height: 1.04;
+      font-weight: 400;
+      letter-spacing: .08em;
+    }
+
+    .scene-copy {
+      position: relative;
+      z-index: 1;
+      margin-top: 34px;
+      max-width: 28rem;
+      color: #e1d6c4;
+      line-height: 1.9;
+    }
+
+    .scene-status {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 14px;
+      margin-top: 40px;
+    }
+
+    .breath-mark {
+      width: 74px;
+      height: 74px;
+      border: 1px solid var(--gold);
+      border-radius: 0;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .breath-mark::before,
+    .breath-mark::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(201, 165, 90, .68);
+      border-radius: 0;
+      inset: 12px;
+      animation: breathe 5s ease-in-out infinite;
+    }
+
+    .breath-mark::after {
+      inset: 26px;
+      border-color: var(--terra);
+      animation-delay: .6s;
+    }
+
+    .breath-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 0;
+      background: var(--aman-sand);
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(.82); opacity: .54; }
+      50% { transform: scale(1.14); opacity: 1; }
+    }
+
+    .content {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 38px;
+    }
+
+    .panel {
+      width: min(760px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .progress-wrap {
+      height: 7px;
+      background: #e4d8c7;
+    }
+
+    .progress {
+      width: 0;
+      height: 100%;
+      background: var(--terra);
+      transition: width .8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .screen {
+      padding: clamp(24px, 5vw, 48px);
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .section-label {
+      margin: 0 0 12px;
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(27px, 4vw, 42px);
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .prompt {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.85;
+    }
+
+    .field-note {
+      margin: 10px 0 0;
+      color: var(--terra-dk);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .option {
+      width: 100%;
+      border: 1px solid rgba(217,203,181,0.9);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,252,247,0.96), rgba(243,238,231,0.96));
+      color: var(--ink);
+      display: block;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color .32s ease, background .32s ease, color .32s ease, transform .32s ease;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35), 0 12px 40px rgba(44,36,22,0.06);
+    }
+
+    .option:hover,
+    .option:focus {
+      border-color: var(--terra);
+      background: linear-gradient(180deg, rgba(255,250,244,1), rgba(236,223,209,0.98));
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .option.selected {
+      border-color: var(--terra);
+      background: #ead9c7;
+    }
+
+    .option-visual {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-bottom: 1px solid rgba(217,203,181,0.85);
+      display: block;
+      position: relative;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .option-visual.photo-1 {
+      background: linear-gradient(220deg, #e7d1b7 0%, #d4b28a 40%, #a56f47 100%);
+    }
+
+    .option-visual.photo-2 {
+      background: linear-gradient(220deg, #e9d8c9 0%, #c6a883 40%, #8f6c50 100%);
+    }
+
+    .option-visual.photo-3 {
+      background: linear-gradient(220deg, #f4e5da 0%, #d9b99f 40%, #a97f59 100%);
+    }
+
+    .option-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 25% 20%, rgba(255,255,255,0.32), transparent 24%),
+                  radial-gradient(circle at 70% 70%, rgba(255,255,255,0.2), transparent 20%),
+                  linear-gradient(90deg, rgba(255,255,255,0.08), transparent 45%, rgba(255,255,255,0.06));
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+    }
+
+    .option-visual svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: relative;
+      z-index: 1;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .scene-bg { fill: #f0e5d6; }
+    .scene-paper { fill: #faf2ea; opacity: .68; }
+    .scene-ground { fill: #d6b691; opacity: .34; }
+    .scene-shadow { fill: #b69160; opacity: .22; }
+    .scene-fill { fill: #c9ad8c; opacity: .45; }
+    .scene-terra { fill: #ac6b45; opacity: .32; }
+    .scene-gold { fill: #b78c4d; opacity: .42; }
+    .wash-sand { fill: #d4c4a4; opacity: .24; }
+    .wash-terra { fill: #b85c40; opacity: .18; }
+    .wash-gold { fill: #b8913e; opacity: .22; }
+    .wash-brown { fill: #2b2418; opacity: .08; }
+    .wash-clear { fill: none; stroke: #d4c4a4; stroke-width: 10; stroke-linecap: round; opacity: .22; }
+    .wash-warm { fill: none; stroke: #b85c40; stroke-width: 12; stroke-linecap: round; opacity: .16; }
+    .wash-light { fill: none; stroke: #b8913e; stroke-width: 12; stroke-linecap: round; opacity: .2; }
+    .jungle-leaf { fill: #314f39; opacity: .84; stroke: #2b2418; stroke-width: .55; }
+    .jungle-light { fill: #6f8a4f; opacity: .78; stroke: #2b2418; stroke-width: .45; }
+    .jungle-blue { fill: #27556a; opacity: .82; }
+    .jungle-bird { fill: #7fa7b8; opacity: .86; stroke: #2b2418; stroke-width: .65; }
+    .jungle-animal { fill: #c4ad8b; opacity: .9; stroke: #2b2418; stroke-width: .7; }
+    .jungle-red { fill: #b85c40; opacity: .88; }
+    .paper-crack { fill: none; stroke: #d9cbb5; stroke-width: .55; opacity: .32; }
+
+    .option-visual .stroke {
+      fill: none;
+      stroke: var(--aman-brown);
+      stroke-width: 1.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: .82;
+    }
+
+    .option-visual .accent {
+      fill: none;
+      stroke: var(--terra);
+      stroke-width: 1.35;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: .78;
+    }
+
+    .option-visual .gold {
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 1.35;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: .82;
+    }
+
+    .option-label {
+      display: block;
+      padding: 14px 16px 16px;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .scale {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .scale button {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--aman-sand);
+      color: var(--ink);
+      cursor: pointer;
+      padding: 0;
+      display: block;
+      text-align: left;
+      transition: background .32s ease, border-color .32s ease;
+      overflow: hidden;
+    }
+
+    .scale span {
+      display: block;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .scale button:hover,
+    .scale button:focus,
+    .scale button.selected {
+      border-color: var(--terra);
+      background: #ead9c7;
+      outline: none;
+    }
+
+    .text-field,
+    .select-field {
+      width: 100%;
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--aman-sand);
+      color: var(--ink);
+      padding: 14px 15px;
+      outline: none;
+    }
+
+    textarea.text-field {
+      min-height: 150px;
+      resize: vertical;
+      line-height: 1.7;
+    }
+
+    .grid-fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--aman-brown);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      min-height: 46px;
+      border: 1px solid transparent;
+      border-radius: var(--radius);
+      padding: 11px 18px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background .32s ease, border-color .32s ease;
+    }
+
+    .btn:hover,
+    .btn:focus {
+      outline: none;
+    }
+
+    .btn-primary {
+      background: var(--cta);
+      color: var(--aman-sand);
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background: var(--cta-hover);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--aman-brown);
+      border-color: var(--line);
+    }
+
+    .btn[disabled] {
+      cursor: not-allowed;
+      opacity: .45;
+      transform: none;
+    }
+
+    .counter {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .report {
+      display: grid;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .report-section {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: var(--aman-sand);
+    }
+
+    .report-section h3 {
+      margin: 0 0 10px;
+      color: var(--aman-brown);
+      font-size: 18px;
+    }
+
+    .report-section p,
+    .report-section li {
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .report-section ul {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .score-bars {
+      display: grid;
+      gap: 10px;
+    }
+
+    .score-row {
+      display: grid;
+      grid-template-columns: 7.5rem 1fr 2rem;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .bar {
+      height: 9px;
+      border-radius: 0;
+      background: #e4d8c7;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: var(--terra);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      padding: 12px 16px;
+      border-radius: 0;
+      background: var(--aman-brown);
+      color: var(--aman-sand);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .app {
+        display: block;
+      }
+
+      .scene {
+        min-height: auto;
+        padding: 28px;
+      }
+
+      .scene-copy,
+      .scene-status {
+        display: none;
+      }
+
+      .content {
+        min-height: auto;
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .screen {
+        min-height: 610px;
+        padding: 24px;
+      }
+
+      .option,
+      .scale button {
+        min-height: 0;
+      }
+
+      .options,
+      .scale {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-fields {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        align-items: stretch;
+        flex-direction: column-reverse;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .counter {
+        text-align: center;
+      }
+
+      .score-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+
+    @media print {
+      body {
+        background: var(--aman-sand);
+      }
+
+      .scene,
+      .progress-wrap,
+      .actions,
+      .toast {
+        display: none !important;
+      }
+
+      .app,
+      .content,
+      .panel,
+      .screen {
+        display: block;
+        min-height: 0;
+        padding: 0;
+        box-shadow: none;
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <aside class="scene" aria-label="呼吸旅程場景">
+      <div class="brand">
+        <p class="kicker">一對一重生呼吸前導測驗</p>
+        <h1>你的內在<br>呼吸地圖</h1>
+        <p class="scene-copy">每一道題都是一盞小燈，照見你現在的身體、情緒、關係與方向。答案沒有好壞，只有此刻的真實。</p>
+      </div>
+
+      <div class="scene-status">
+        <div class="breath-mark"><span class="breath-dot"></span></div>
+        <p class="kicker">目前章節會隨你的作答推進，像走進一座安靜的森林。</p>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="panel">
+        <div class="progress-wrap"><div class="progress" id="progress"></div></div>
+        <div class="screen" id="screen"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">已複製摘要</div>
+
+  <script>
+    const archetypes = {
+      A: {
+        name: "撐住世界的守門人",
+        element: "土",
+        gift: "可靠、能承擔、在混亂中維持秩序",
+        invitation: "練習把肩膀放下，讓身體知道：現在不必只靠意志撐住。",
+        report: "你很習慣把事情扛起來，也可能在關係或工作裡先照顧別人的需要。呼吸旅程可以從安全感、界線和放鬆開始，慢慢讓控制鬆動。"
+      },
+      B: {
+        name: "深海裡的感受者",
+        element: "水",
+        gift: "敏銳、共感、能碰觸很深的情緒層次",
+        invitation: "允許感受有出口，不急著分析，也不急著變好。",
+        report: "你內在可能有許多尚未被說出口的感覺。呼吸旅程可以支持情緒流動，讓你在被接住的節奏裡釋放累積。"
+      },
+      C: {
+        name: "迷霧中的尋路者",
+        element: "風",
+        gift: "願意思考、願意探索、對生命方向保持誠實",
+        invitation: "先不用逼自己立刻有答案，讓身體帶你靠近真正的方向。",
+        report: "你可能正站在人生階段的轉折處，對工作、關係或自我價值有新的提問。呼吸旅程可以協助你從身體感受中整理方向。"
+      },
+      D: {
+        name: "準備重啟的火種",
+        element: "火",
+        gift: "有行動力、渴望突破、願意讓生命更新",
+        invitation: "讓改變不只是用力推進，而是從內在力量自然長出來。",
+        report: "你已經感覺到某種改變正在靠近，舊模式可能開始變得太小。呼吸旅程可以支持你釋放阻力，重新連回生命感與行動力。"
+      }
+    };
+
+    const questions = [
+      {
+        id: "gate",
+        type: "single",
+        section: "第一章：森林入口",
+        title: "你來到一座安靜的森林，入口有四條小徑。你會先走向哪一條？",
+        prompt: "這一題像是替你目前的內在狀態選一張地圖。",
+        options: [
+          ["A", "一條穩穩的石階路，我想先確認自己是安全的。"],
+          ["B", "一條通往湖邊的路，我想找地方讓情緒慢慢流出來。"],
+          ["C", "一條有霧的小路，我想知道自己到底在尋找什麼。"],
+          ["D", "一條有微光的山路，我想走向改變，即使還有點怕。"]
+        ]
+      },
+      {
+        id: "weather",
+        type: "single",
+        section: "第一章：森林入口",
+        title: "如果你的最近是一種天氣，它最像什麼？",
+        prompt: "不用想太久，選最像這段時間的身心氣候。",
+        options: [
+          ["A", "表面晴朗，但土地有點乾裂，像是撐很久了。"],
+          ["B", "大雨前的濕重空氣，很多感覺快要落下來。"],
+          ["C", "晨霧，走得到下一步，但遠方還看不清楚。"],
+          ["D", "遠方有雷聲，知道有什麼快要被打開。"]
+        ]
+      },
+      {
+        id: "themes",
+        type: "single",
+        section: "第二章：幾扇門",
+        title: "眼前有幾扇門，你會選擇哪一扇門？",
+        prompt: "單選。先選此刻最想推開的一扇門，其他門之後仍然可以在諮詢中慢慢看見。",
+        options: [
+          ["career", "事業／職涯規劃的門"],
+          ["intimacy", "親密關係的門"],
+          ["money", "金錢與安全感的門"],
+          ["family", "家庭關係的門"],
+          ["people", "人際關係的門"],
+          ["growth", "個人成長／靈性覺醒的門"],
+          ["body", "身體與健康狀態的門"],
+          ["emotion", "情緒壓力與內在穩定的門"]
+        ]
+      },
+      {
+        id: "stress",
+        type: "scale",
+        section: "第三章：身體的訊號",
+        title: "一陣風經過，空氣忽然變重。你通常怎麼處理心裡累積的東西？",
+        metric: "情緒累積",
+        options: [
+          [1, "我會先停一下，讓它散掉，再回到生活。"],
+          [2, "我會找地方喘口氣，但很快又繼續往前。"],
+          [3, "我把它收進身體裡，直到某個小事讓它溢出來。"],
+          [4, "我感覺有一場雨在裡面等很久，快要落下。"]
+        ]
+      },
+      {
+        id: "body_tension",
+        type: "scale",
+        section: "第三章：身體的訊號",
+        title: "你走到一面安靜的牆前，身體先替你回答。它比較像哪一種狀態？",
+        metric: "身體緊繃",
+        options: [
+          [1, "身體還算柔軟，呼吸可以自然進出。"],
+          [2, "肩頸或胸口偶爾收緊，提醒我該慢下來。"],
+          [3, "身體像長時間握拳，呼吸常停在比較淺的地方。"],
+          [4, "整個人像被一層硬殼包住，很難真正鬆開。"]
+        ]
+      },
+      {
+        id: "relax",
+        type: "scale",
+        section: "第三章：身體的訊號",
+        title: "眼前有一張椅子，邀請你坐下。你比較可能發生什麼事？",
+        metric: "放鬆困難",
+        options: [
+          [1, "我能坐下來，讓身體慢慢回到安靜。"],
+          [2, "我會坐一下，但腦中還有幾件事在轉。"],
+          [3, "我人在休息，裡面卻像還開著很多視窗。"],
+          [4, "我一停下來反而更不安，好像不該什麼都不做。"]
+        ]
+      },
+      {
+        id: "tired",
+        type: "scale",
+        section: "第三章：身體的訊號",
+        title: "你撿起一塊沒有名字的石頭。那種累，比較像什麼？",
+        metric: "無名疲憊",
+        options: [
+          [1, "累有明確來源，休息後通常會回來。"],
+          [2, "有些累，但我大致知道它從哪裡來。"],
+          [3, "累像霧一樣散在身體裡，說不上是哪裡。"],
+          [4, "我像背著一塊看不見的重量，很久沒有放下。"]
+        ]
+      },
+      {
+        id: "work",
+        type: "scale",
+        section: "第四章：路標",
+        title: "路標指向工作與生活。你看見自己的腳步，比較像哪一幕？",
+        metric: "生活消耗",
+        options: [
+          [1, "我知道自己為什麼走，也還有力氣。"],
+          [2, "方向大致清楚，只是最近步伐有點重。"],
+          [3, "我一直在走，但開始懷疑這是不是我要的路。"],
+          [4, "我像被路推著走，消耗多過於活著的感覺。"]
+        ]
+      },
+      {
+        id: "effort",
+        type: "scale",
+        section: "第四章：路標",
+        title: "你回頭看見一路留下的腳印。心裡浮現的是什麼？",
+        metric: "內在不踏實",
+        options: [
+          [1, "我看見自己的努力，也感覺它有回到身上。"],
+          [2, "我做了很多，偶爾會問自己是否也被滋養。"],
+          [3, "我很努力，但內在常有一塊地方沒有被填滿。"],
+          [4, "我像一直交出成果，卻很少真正感覺到自己。"]
+        ]
+      },
+      {
+        id: "relationship",
+        type: "scale",
+        section: "第五章：關係之橋",
+        title: "橋的另一端站著重要的人。你最熟悉哪一種互動方式？",
+        metric: "關係壓抑",
+        options: [
+          [1, "我能說出自己的感受，也能聽見對方。"],
+          [2, "我會表達，但有時會先修飾，避免衝突。"],
+          [3, "我常先看對方反應，再決定自己能不能說。"],
+          [4, "我習慣把真正的話吞回去，維持表面的平衡。"]
+        ]
+      },
+      {
+        id: "boundary",
+        type: "scale",
+        section: "第五章：關係之橋",
+        title: "橋上有一道界線。當你需要說「不」時，通常發生什麼？",
+        metric: "界線模糊",
+        options: [
+          [1, "我能清楚說出界線，也能承受對方的反應。"],
+          [2, "我會說，但需要一點時間整理語氣。"],
+          [3, "我常說得很委婉，說完還會擔心很久。"],
+          [4, "我很難說出口，最後多半選擇忍耐或退讓。"]
+        ]
+      },
+      {
+        id: "direction",
+        type: "scale",
+        section: "第六章：火光",
+        title: "遠方有一點光。你和人生方向的關係，比較像哪一幕？",
+        metric: "方向探索",
+        options: [
+          [1, "我看得見目前的方向，也願意照著節奏走。"],
+          [2, "方向還在調整，但我知道自己正在靠近。"],
+          [3, "我站在路口很久，心裡有很多未完成的提問。"],
+          [4, "我像卡在某個階段，知道該變，但不知道怎麼開始。"]
+        ]
+      },
+      {
+        id: "inner_power",
+        type: "scale",
+        section: "第六章：火光",
+        title: "你把手放在心口，裡面有一點熱。那比較像什麼？",
+        metric: "轉化渴望",
+        options: [
+          [1, "一點安靜的溫度，提醒我可以照顧自己。"],
+          [2, "一個想更理解自己的念頭，正在慢慢變清楚。"],
+          [3, "一股想回到自己的力量，開始在身體裡升起。"],
+          [4, "一團被壓住很久的火，想重新流動。"]
+        ]
+      },
+      {
+        id: "stress_response",
+        type: "single",
+        section: "第七章：遇見風暴",
+        title: "當風暴靠近，你最常怎麼保護自己？",
+        options: [
+          ["A", "先把門關好，把事情處理完再說。"],
+          ["B", "情緒很快湧上來，但不一定知道怎麼說。"],
+          ["C", "開始反覆想：我是不是走錯路了？"],
+          ["D", "很想立刻做點什麼，讓現況不再一樣。"]
+        ]
+      },
+      {
+        id: "need",
+        type: "single",
+        section: "第七章：遇見風暴",
+        title: "如果這次呼吸是一盞燈，你最希望它照亮什麼？",
+        options: [
+          ["A", "讓我終於能鬆一口氣，不再一直緊繃。"],
+          ["B", "讓壓住的情緒有一個安全的出口。"],
+          ["C", "讓我更清楚自己真正想去哪裡。"],
+          ["D", "讓我找回改變的勇氣和生命感。"]
+        ]
+      },
+      {
+        id: "voice",
+        type: "single",
+        section: "第八章：內在聲音",
+        title: "你在樹洞裡聽見一句話，哪一句最像你的內在聲音？",
+        options: [
+          ["A", "我不能倒下，還有很多事要處理。"],
+          ["B", "其實我很想被懂，但我不知道怎麼說。"],
+          ["C", "我好像走到一個需要重新選擇的路口。"],
+          ["D", "我不想再用舊方式活下去了。"]
+        ]
+      },
+      {
+        id: "difficulty",
+        type: "single",
+        section: "第八章：內在聲音",
+        title: "森林問你：對你來說，最不容易的是什麼？",
+        options: [
+          ["A", "允許自己休息。"],
+          ["B", "允許自己有情緒。"],
+          ["C", "相信自己的選擇。"],
+          ["D", "真的開始改變。"]
+        ]
+      },
+      {
+        id: "breath_exp",
+        type: "single",
+        section: "第九章：呼吸經驗",
+        title: "你以前是否走過重生呼吸這條路？",
+        options: [
+          ["yes", "有，我曾體驗過重生呼吸。"],
+          ["no", "還沒有，這會是第一次。"]
+        ]
+      },
+      {
+        id: "practices",
+        type: "text",
+        section: "第九章：呼吸經驗",
+        title: "除了重生呼吸，你是否有其他身心練習？",
+        prompt: "例如冥想、瑜伽、呼吸法、諮商、能量療癒、靜心、身體工作。沒有也可以寫「無」。",
+        placeholder: "請簡述你的經驗、頻率，或你喜歡／不喜歡的地方。"
+      },
+      {
+        id: "stuck",
+        type: "text",
+        section: "第十章：卡住的石頭",
+        title: "目前生活中，讓你最困擾或最卡住的是什麼？",
+        prompt: "把它當成森林路中央的一顆石頭。你可以描述它的樣子、重量，或它常在什麼情境出現。",
+        placeholder: "我最近最卡住的是..."
+      },
+      {
+        id: "change",
+        type: "text",
+        section: "第十章：卡住的石頭",
+        title: "如果這段時間能改變一件事，你最希望搬開哪一塊石頭？",
+        placeholder: "我最希望改變／提升的是..."
+      },
+      {
+        id: "expectation",
+        type: "text",
+        section: "第十一章：給引導者的信",
+        title: "你期待透過這次諮詢／呼吸，獲得什麼樣的支持或改變？",
+        placeholder: "我希望這次旅程能支持我..."
+      },
+      {
+        id: "respect",
+        type: "text",
+        section: "第十一章：給引導者的信",
+        title: "有沒有任何你希望引導者特別知道、避開或尊重的地方？",
+        prompt: "例如界線、用語、身體觸碰、節奏、過去經驗、害怕被怎麼對待。",
+        placeholder: "我希望被這樣支持..."
+      },
+      {
+        id: "safety",
+        type: "text",
+        section: "第十二章：安全確認",
+        title: "是否有任何身心狀況，需要在呼吸前讓引導者知道？",
+        prompt: "例如懷孕、心血管狀況、癲癇、近期手術、重大身心疾病、正在服藥、恐慌或創傷相關經驗。沒有可寫「無」。",
+        placeholder: "目前需要留意的狀況是..."
+      },
+      {
+        id: "support",
+        type: "text",
+        section: "第十二章：安全確認",
+        title: "如果過程中你出現強烈情緒或不舒服，你希望如何被支持？",
+        placeholder: "我希望引導者可以..."
+      },
+      {
+        id: "schedule",
+        type: "multi",
+        section: "第十三章：抵達前的安排",
+        title: "哪些時段比較適合安排 40 分鐘一對一諮詢？",
+        prompt: "可複選，越多時段越容易安排。",
+        options: [
+          ["平日白天", "平日白天"],
+          ["平日中午", "平日中午"],
+          ["平日下午", "平日下午"],
+          ["平日晚上", "平日晚上"],
+          ["假日白天", "假日白天"],
+          ["假日中午", "假日中午"],
+          ["假日下午", "假日下午"],
+          ["假日晚上", "假日晚上"]
+        ]
+      }
+    ];
+
+    const state = {
+      step: -1,
+      answers: {},
+      basic: {}
+    };
+
+    const screen = document.getElementById("screen");
+    const progress = document.getElementById("progress");
+    const toast = document.getElementById("toast");
+
+    function setProgress() {
+      const total = questions.length + 2;
+      const current = state.step < 0 ? 0 : Math.min(state.step + 1, total);
+      progress.style.width = `${Math.round((current / total) * 100)}%`;
+    }
+
+    function renderStart() {
+      state.step = -1;
+      setProgress();
+      screen.innerHTML = `
+        <p class="section-label">開始之前</p>
+        <h2>這份測驗會帶你走過一段內在旅程。</h2>
+        <p class="prompt">你會一題一題回答，最後留下基本資料，並得到一份可提供給引導者的前導報告。內容只在這個頁面中整理，不會自動送出。</p>
+        <p class="field-note">提醒：重生呼吸或深度呼吸練習不取代醫療、心理治療或診斷；若有身心醫療狀況，請在安全確認題中誠實填寫。</p>
+        <div class="actions">
+          <span class="counter">約 8 至 12 分鐘</span>
+          <button class="btn btn-primary" type="button" onclick="nextStep()">開始測驗</button>
+        </div>
+      `;
+    }
+
+    function renderQuestion() {
+      const q = questions[state.step];
+      setProgress();
+      const answered = state.answers[q.id];
+      let body = "";
+
+      if (q.type === "single") {
+        body = `<div class="options">${q.options.map((opt, index) => `
+          <button class="option ${answered === opt[0] ? "selected" : ""}" type="button" onclick="answerSingle('${q.id}', '${escapeAttribute(opt[0])}')">
+            ${optionVisual(q, opt, index)}
+            <span class="option-label">${opt[1]}</span>
+          </button>
+        `).join("")}</div>`;
+      }
+
+      if (q.type === "multi") {
+        const values = Array.isArray(answered) ? answered : [];
+        body = `<div class="options">${q.options.map((opt, index) => `
+          <button class="option ${values.includes(opt[0]) ? "selected" : ""}" type="button" onclick="toggleMulti('${q.id}', '${escapeAttribute(opt[0])}')">
+            ${optionVisual(q, opt, index)}
+            <span class="option-label">${opt[1]}</span>
+          </button>
+        `).join("")}</div>`;
+      }
+
+      if (q.type === "scale") {
+        body = `<div class="scale">${q.options.map((opt, index) => `
+          <button class="${answered === opt[0] ? "selected" : ""}" type="button" onclick="answerScale('${q.id}', ${opt[0]})">
+            ${optionVisual(q, opt, index)}
+            <span class="option-label">${opt[1]}</span>
+          </button>
+        `).join("")}</div>`;
+      }
+
+      if (q.type === "text") {
+        body = `<textarea class="text-field" id="textAnswer" placeholder="${escapeAttribute(q.placeholder || "")}">${escapeHtml(answered || "")}</textarea>`;
+      }
+
+      screen.innerHTML = `
+        <p class="section-label">${q.section}</p>
+        <h2>${q.title}</h2>
+        ${q.prompt ? `<p class="prompt">${q.prompt}</p>` : ""}
+        ${body}
+        <div class="actions">
+          <button class="btn btn-secondary" type="button" onclick="prevStep()">上一題</button>
+          <span class="counter">${state.step + 1} / ${questions.length}</span>
+          <button class="btn btn-primary" type="button" onclick="nextStep()" ${canContinue(q) ? "" : "disabled"}>${state.step === questions.length - 1 ? "填寫基本資料" : "下一題"}</button>
+        </div>
+      `;
+
+      if (q.type === "text") {
+        const input = document.getElementById("textAnswer");
+        input.addEventListener("input", () => {
+          state.answers[q.id] = input.value.trim();
+          const next = screen.querySelector(".btn-primary");
+          next.disabled = !canContinue(q);
+        });
+        input.focus();
+      }
+    }
+
+    function renderBasic() {
+      setProgress();
+      const b = state.basic;
+      screen.innerHTML = `
+        <p class="section-label">最後一步：留下聯繫資料</p>
+        <h2>你已經走完整座森林，現在把名字寫在地圖背面。</h2>
+        <p class="prompt">這些資料會出現在報告中，方便後續安排諮詢。</p>
+        <div class="grid-fields">
+          <div class="field">
+            <label for="name">姓名</label>
+            <input class="text-field" id="name" value="${escapeAttribute(b.name || "")}" placeholder="你的姓名">
+          </div>
+          <div class="field">
+            <label for="age">年齡區間</label>
+            <select class="select-field" id="age">
+              ${["", "18-22", "23-29", "30-39", "40-49", "50-59", "60以上"].map(value => `<option value="${value}" ${b.age === value ? "selected" : ""}>${value || "請選擇"}</option>`).join("")}
+            </select>
+          </div>
+          <div class="field">
+            <label for="location">現居地</label>
+            <select class="select-field" id="location">
+              ${["", "台北地區（台北、新北、桃園）", "中部地區（新竹、苗栗、台中、彰化）", "南部地區（雲林、嘉義、台南、高雄、屏東）", "東部地區（宜蘭、花蓮、台東）", "國外", "其他"].map(value => `<option value="${value}" ${b.location === value ? "selected" : ""}>${value || "請選擇"}</option>`).join("")}
+            </select>
+          </div>
+          <div class="field">
+            <label for="phone">聯絡電話</label>
+            <input class="text-field" id="phone" value="${escapeAttribute(b.phone || "")}" placeholder="電話">
+          </div>
+          <div class="field">
+            <label for="line">Line ID</label>
+            <input class="text-field" id="line" value="${escapeAttribute(b.line || "")}" placeholder="Line ID">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input class="text-field" id="email" value="${escapeAttribute(b.email || "")}" placeholder="email@example.com">
+          </div>
+          <div class="field full">
+            <label for="note">其他想補充的聯繫或安排事項</label>
+            <textarea class="text-field" id="note" placeholder="例如兩地居、特殊時段、偏好的聯絡方式。">${escapeHtml(b.note || "")}</textarea>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary" type="button" onclick="prevStep()">上一題</button>
+          <span class="counter">資料可稍後再調整</span>
+          <button class="btn btn-primary" type="button" onclick="finishQuiz()">產生結果報告</button>
+        </div>
+      `;
+    }
+
+    function renderResult() {
+      setProgress();
+      const result = calculateResult();
+      const type = archetypes[result.top];
+      const highMetrics = getHighMetrics();
+      const themes = getAnswerLabels("themes");
+      const schedule = getAnswerLabels("schedule");
+      const summary = buildSummary(result, type, highMetrics, themes, schedule);
+
+      screen.innerHTML = `
+        <p class="section-label">結果報告</p>
+        <h2>你的主要呼吸原型：${type.name}</h2>
+        <p class="prompt">${type.report}</p>
+        <div class="report">
+          <section class="report-section">
+            <h3>這份地圖給你的邀請</h3>
+            <p>${type.invitation}</p>
+            <p>你的天賦線索：${type.gift}。</p>
+          </section>
+          <section class="report-section">
+            <h3>四種原型分布</h3>
+            <div class="score-bars">
+              ${Object.keys(archetypes).map(key => {
+                const score = result.scores[key];
+                const width = result.maxScore ? Math.round((score / result.maxScore) * 100) : 0;
+                return `<div class="score-row">
+                  <span>${archetypes[key].name}</span>
+                  <div class="bar"><span style="width:${width}%"></span></div>
+                  <strong>${score}</strong>
+                </div>`;
+              }).join("")}
+            </div>
+          </section>
+          <section class="report-section">
+            <h3>諮詢前重點</h3>
+            <ul>
+              <li>最想被支持的主題：${escapeHtml(themes.length ? themes.join("、") : "尚未填寫")}</li>
+              <li>目前較高的身心訊號：${escapeHtml(highMetrics.length ? highMetrics.join("、") : "目前量表沒有特別高分項目")}</li>
+              <li>重生呼吸經驗：${escapeHtml(answerText("breath_exp") || "尚未填寫")}</li>
+              <li>可預約時段：${escapeHtml(schedule.length ? schedule.join("、") : "尚未填寫")}</li>
+            </ul>
+          </section>
+          <section class="report-section">
+            <h3>你寫下的重要內容</h3>
+            <p><strong>目前最卡住：</strong>${escapeHtml(state.answers.stuck || "尚未填寫")}</p>
+            <p><strong>最想改變：</strong>${escapeHtml(state.answers.change || "尚未填寫")}</p>
+            <p><strong>期待支持：</strong>${escapeHtml(state.answers.expectation || "尚未填寫")}</p>
+            <p><strong>安全確認：</strong>${escapeHtml(state.answers.safety || "尚未填寫")}</p>
+          </section>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary" type="button" onclick="renderBasicFromResult()">修改基本資料</button>
+          <button class="btn btn-secondary" type="button" onclick="copySummary()">複製諮詢摘要</button>
+          <button class="btn btn-primary" type="button" onclick="window.print()">列印／存 PDF</button>
+        </div>
+      `;
+      state.summary = summary;
+    }
+
+    function nextStep() {
+      if (state.step < questions.length - 1) {
+        state.step += 1;
+        renderQuestion();
+        return;
+      }
+      state.step = questions.length;
+      renderBasic();
+    }
+
+    function prevStep() {
+      if (state.step === questions.length) {
+        state.step = questions.length - 1;
+        renderQuestion();
+        return;
+      }
+      if (state.step > 0) {
+        state.step -= 1;
+        renderQuestion();
+        return;
+      }
+      renderStart();
+    }
+
+    function answerSingle(id, value) {
+      state.answers[id] = value;
+      setTimeout(() => nextStep(), 160);
+    }
+
+    function answerScale(id, value) {
+      state.answers[id] = value;
+      setTimeout(() => nextStep(), 160);
+    }
+
+    function toggleMulti(id, value) {
+      const current = Array.isArray(state.answers[id]) ? state.answers[id] : [];
+      state.answers[id] = current.includes(value)
+        ? current.filter(item => item !== value)
+        : current.concat(value);
+      renderQuestion();
+    }
+
+    function canContinue(q) {
+      const answer = state.answers[q.id];
+      if (q.type === "text") return typeof answer === "string" && answer.length > 0;
+      if (q.type === "multi") return Array.isArray(answer) && answer.length > 0;
+      return answer !== undefined && answer !== null && answer !== "";
+    }
+
+    function optionVisual(q, opt, index) {
+      const name = visualName(q, opt, index);
+      const photoClass = `photo-${(index % 3) + 1}`;
+      return `<span class="option-visual ${photoClass}" aria-hidden="true">${visualSvg(name, index)}</span>`;
+    }
+
+    function visualName(q, opt, index) {
+      const byQuestion = {
+        gate: ["stonePath", "waterPath", "mistPath", "lightPath"],
+        weather: ["drySun", "rainCloud", "mist", "thunder"],
+        themes: ["doorWork", "doorHeart", "doorGold", "doorHome", "doorPeople", "doorSpark", "doorBody", "doorCloud"],
+        stress: ["openAir", "breath", "vessel", "rainCloud"],
+        body_tension: ["softBody", "shoulder", "fist", "shell"],
+        relax: ["chair", "window", "manyWindows", "alert"],
+        tired: ["smallStone", "twoStones", "fogStone", "heavyStone"],
+        work: ["signClear", "signSlow", "crossroad", "pushedRoad"],
+        effort: ["footprint", "bowl", "hollow", "offering"],
+        relationship: ["bridgeOpen", "bridgeSoft", "bridgeWatch", "bridgeClosed"],
+        boundary: ["clearLine", "softLine", "thinLine", "brokenLine"],
+        direction: ["pathLight", "pathTurn", "crossroad", "blockedPath"],
+        inner_power: ["ember", "seed", "risingFire", "flame"],
+        stress_response: ["closedDoor", "wave", "questionPath", "sparkAction"],
+        need: ["exhale", "release", "map", "flame"],
+        voice: ["pillar", "message", "crossroad", "brokenShell"],
+        difficulty: ["rest", "waterDrop", "choice", "step"],
+        breath_exp: ["spiral", "firstDoor"],
+        schedule: ["sun", "midday", "afternoon", "moon", "weekendSun", "weekendMidday", "weekendAfternoon", "weekendMoon"]
+      };
+      return (byQuestion[q.id] && byQuestion[q.id][index]) || ["door", "wave", "path", "flame"][index % 4];
+    }
+
+    function visualSvg(name, index) {
+      const label = index + 1;
+      const svgs = {
+        door: `<rect class="stroke" x="20" y="8" width="24" height="30"/><path class="gold" d="M28 38V20h8v18"/><path class="accent" d="M39 24h2"/>`,
+        stonePath: `<path class="stroke" d="M10 36h44"/><rect class="gold" x="18" y="25" width="8" height="6"/><rect class="stroke" x="29" y="20" width="9" height="7"/><rect class="accent" x="41" y="14" width="8" height="8"/>`,
+        waterPath: `<path class="stroke" d="M8 31c8-8 16 8 24 0s16 8 24 0"/><path class="accent" d="M14 20c6-5 12 5 18 0s12 5 18 0"/>`,
+        mistPath: `<path class="stroke" d="M9 30h46"/><path class="gold" d="M15 20h26"/><path class="accent" d="M24 12h28"/>`,
+        lightPath: `<path class="stroke" d="M14 38c8-11 16-17 36-25"/><path class="gold" d="M42 9h10v10H42z"/><path class="accent" d="M47 4v20M37 14h20"/>`,
+        drySun: `<circle class="gold" cx="34" cy="16" r="8"/><path class="stroke" d="M10 36h44M17 28h30"/><path class="accent" d="M26 36l-4 6M38 36l4 6"/>`,
+        rainCloud: `<path class="stroke" d="M17 23c2-8 12-9 16-3 6-5 16 0 15 7H14c-5 0-6-7 3-7"/><path class="accent" d="M22 32v8M33 32v8M44 32v8"/>`,
+        mist: `<path class="stroke" d="M9 18h32M20 27h35M10 36h28"/><path class="gold" d="M45 14h8M42 40h10"/>`,
+        thunder: `<path class="stroke" d="M17 22c3-8 11-8 16-3 6-4 15 0 14 7H14"/><path class="accent" d="M34 27l-7 12h8l-5 9"/>`,
+        doorWork: `<rect class="stroke" x="18" y="8" width="28" height="32"/><path class="accent" d="M24 20h16M24 28h10"/><path class="gold" d="M40 24h2"/>`,
+        doorHeart: `<rect class="stroke" x="18" y="8" width="28" height="32"/><path class="accent" d="M32 29c-8-5-9-12-3-12 2 0 3 1 3 3 0-2 2-3 4-3 6 0 5 7-4 12z"/>`,
+        doorGold: `<rect class="stroke" x="18" y="8" width="28" height="32"/><circle class="gold" cx="32" cy="24" r="7"/><path class="accent" d="M32 17v14M25 24h14"/>`,
+        doorHome: `<rect class="stroke" x="18" y="17" width="28" height="23"/><path class="accent" d="M14 18l18-12 18 12"/><path class="gold" d="M29 40V28h7v12"/>`,
+        doorPeople: `<rect class="stroke" x="18" y="8" width="28" height="32"/><circle class="gold" cx="28" cy="22" r="4"/><circle class="accent" cx="38" cy="22" r="4"/><path class="stroke" d="M22 34c2-5 10-5 12 0M32 34c2-5 10-5 12 0"/>`,
+        doorSpark: `<rect class="stroke" x="18" y="8" width="28" height="32"/><path class="gold" d="M32 13v22M22 24h20"/><path class="accent" d="M26 18l12 12M38 18L26 30"/>`,
+        doorBody: `<rect class="stroke" x="18" y="8" width="28" height="32"/><path class="accent" d="M32 15c5 5 5 13 0 20-5-7-5-15 0-20z"/><path class="gold" d="M25 24h14"/>`,
+        doorCloud: `<rect class="stroke" x="18" y="8" width="28" height="32"/><path class="accent" d="M24 27c2-7 10-7 13-2 4-3 9 0 8 5H22"/>`,
+        openAir: `<path class="stroke" d="M10 24h44"/><path class="accent" d="M20 16h24M18 32h28"/><path class="gold" d="M49 18l5 6-5 6"/>`,
+        breath: `<path class="stroke" d="M16 14c18-8 35 3 21 11-9 5-21-1-16-7"/><path class="accent" d="M13 32c10 8 25 8 38-1"/>`,
+        vessel: `<path class="stroke" d="M20 14h24l-4 27H24z"/><path class="accent" d="M23 27h18"/><path class="gold" d="M32 8v10"/>`,
+        softBody: `<path class="stroke" d="M32 9c8 7 10 21 0 32-10-11-8-25 0-32z"/><path class="gold" d="M22 24h20"/>`,
+        shoulder: `<path class="stroke" d="M15 36c5-12 29-12 34 0"/><path class="accent" d="M24 20c4-5 12-5 16 0"/><path class="gold" d="M32 15v15"/>`,
+        fist: `<path class="stroke" d="M20 34V19h24v15l-5 7H25z"/><path class="accent" d="M26 19v14M32 19v14M38 19v14"/>`,
+        shell: `<path class="stroke" d="M16 38c2-20 30-28 34 0z"/><path class="accent" d="M32 12v26M22 22l10 16M42 22L32 38"/>`,
+        chair: `<path class="stroke" d="M21 13h24v16H21zM24 29v13M42 29v13M18 42h30"/><path class="gold" d="M22 22h22"/>`,
+        window: `<rect class="stroke" x="18" y="10" width="30" height="28"/><path class="accent" d="M33 10v28M18 24h30"/>`,
+        manyWindows: `<rect class="stroke" x="10" y="12" width="14" height="12"/><rect class="accent" x="30" y="12" width="14" height="12"/><rect class="gold" x="20" y="30" width="14" height="12"/><rect class="stroke" x="40" y="30" width="14" height="12"/>`,
+        alert: `<path class="stroke" d="M32 8l22 35H10z"/><path class="accent" d="M32 18v12"/><path class="gold" d="M32 35h1"/>`,
+        smallStone: `<path class="stroke" d="M19 34c5-14 22-15 29 0-5 8-24 8-29 0z"/>`,
+        twoStones: `<path class="stroke" d="M10 36c3-10 16-12 21 0-4 6-17 6-21 0z"/><path class="accent" d="M32 34c4-13 18-13 22 0-3 7-18 7-22 0z"/>`,
+        fogStone: `<path class="stroke" d="M20 36c4-12 20-12 25 0-4 6-21 6-25 0z"/><path class="gold" d="M8 16h34M17 25h40"/>`,
+        heavyStone: `<path class="stroke" d="M14 37c5-20 31-22 39 0-7 8-32 8-39 0z"/><path class="accent" d="M32 9v18"/>`,
+        signClear: `<path class="stroke" d="M32 40V12M18 12h28l6 6-6 6H18z"/><path class="gold" d="M24 18h16"/>`,
+        signSlow: `<path class="stroke" d="M32 40V12M16 14h26l5 5-5 5H16z"/><path class="accent" d="M24 30h22"/>`,
+        crossroad: `<path class="stroke" d="M32 42V10M16 26h32M22 16l-8 10 8 10M42 16l8 10-8 10"/>`,
+        pushedRoad: `<path class="stroke" d="M12 38c8-14 28-20 42-28"/><path class="accent" d="M42 9h12v12"/><path class="gold" d="M19 35l-3 7M32 28l-2 7"/>`,
+        footprint: `<path class="stroke" d="M20 32c-2-8 3-17 9-16 7 1 8 11 3 18-4 5-10 4-12-2z"/><path class="accent" d="M39 26c-1-7 3-13 8-12 5 1 6 8 2 13-3 4-8 3-10-1z"/>`,
+        bowl: `<path class="stroke" d="M17 24h30c-2 13-8 18-15 18s-13-5-15-18z"/><path class="gold" d="M24 17c3-5 13-5 16 0"/>`,
+        hollow: `<circle class="stroke" cx="32" cy="25" r="15"/><circle class="accent" cx="32" cy="25" r="6"/>`,
+        offering: `<path class="stroke" d="M16 30h32v10H16z"/><path class="accent" d="M24 30V14h16v16"/><path class="gold" d="M32 14v26"/>`,
+        bridgeOpen: `<path class="stroke" d="M9 36c14-15 32-15 46 0M13 36h38"/><path class="gold" d="M23 28v8M41 28v8"/>`,
+        bridgeSoft: `<path class="stroke" d="M10 36c14-12 30-12 44 0"/><path class="accent" d="M20 30h24"/>`,
+        bridgeWatch: `<path class="stroke" d="M10 36c14-12 30-12 44 0"/><circle class="accent" cx="32" cy="20" r="6"/><path class="gold" d="M20 36v-6M44 36v-6"/>`,
+        bridgeClosed: `<path class="stroke" d="M10 36h44"/><path class="accent" d="M20 18l24 24M44 18L20 42"/>`,
+        clearLine: `<path class="stroke" d="M32 8v36"/><path class="gold" d="M12 26h14M38 26h14"/>`,
+        softLine: `<path class="stroke" d="M32 8v36"/><path class="accent" d="M15 30c7-7 16 7 24 0s9 0 10 1"/>`,
+        thinLine: `<path class="gold" d="M32 8v36"/><path class="stroke" d="M14 25h36"/>`,
+        brokenLine: `<path class="stroke" d="M32 8v12M32 28v16"/><path class="accent" d="M15 35h34"/>`,
+        pathLight: `<path class="stroke" d="M14 40c9-15 18-23 36-31"/><circle class="gold" cx="48" cy="10" r="5"/>`,
+        pathTurn: `<path class="stroke" d="M12 38c10-12 24-8 28-18 2-5-1-8-5-10"/><path class="accent" d="M36 9h10v10"/>`,
+        blockedPath: `<path class="stroke" d="M12 39c9-11 18-17 36-26"/><path class="accent" d="M38 23h14v14H38z"/>`,
+        ember: `<path class="stroke" d="M22 34c5-12 15-18 20-28 7 16 1 28-10 34-5-2-8-4-10-6z"/><path class="gold" d="M29 34c2-6 7-10 9-16 3 8 0 14-5 18"/>`,
+        seed: `<path class="stroke" d="M32 38V16"/><path class="accent" d="M32 24c-10-10-18-5-19 3 8 4 14 2 19-3z"/><path class="gold" d="M32 22c9-9 16-4 17 3-7 4-13 2-17-3z"/>`,
+        risingFire: `<path class="stroke" d="M22 38c3-17 16-18 14-31 11 10 14 22 4 32"/><path class="accent" d="M30 38c1-9 9-11 8-19"/>`,
+        flame: `<path class="stroke" d="M22 38c-2-14 12-18 12-30 12 10 15 24 2 34"/><path class="accent" d="M30 39c-1-8 6-11 7-18"/>`,
+        closedDoor: `<rect class="stroke" x="19" y="8" width="26" height="32"/><path class="accent" d="M25 15h14M25 24h14"/><path class="gold" d="M40 24h2"/>`,
+        questionPath: `<path class="stroke" d="M15 38c9-15 30-8 24-25-3-8-16-6-16 3"/><path class="accent" d="M32 35h1"/>`,
+        sparkAction: `<path class="gold" d="M32 7v34M15 24h34"/><path class="accent" d="M21 13l22 22M43 13L21 35"/>`,
+        exhale: `<path class="stroke" d="M14 22c8-9 23 5 12 10"/><path class="accent" d="M32 18h20M34 28h14M28 38h20"/>`,
+        release: `<path class="stroke" d="M18 35c12 9 29-1 28-14-1-10-15-14-22-5"/><path class="accent" d="M22 19l-7-1 1 7"/>`,
+        map: `<path class="stroke" d="M12 12l13-4 14 4 13-4v30l-13 4-14-4-13 4z"/><path class="accent" d="M25 8v30M39 12v30"/>`,
+        message: `<path class="stroke" d="M14 12h36v22H27l-8 8v-8h-5z"/><path class="accent" d="M22 21h20"/>`,
+        pillar: `<path class="stroke" d="M23 12h18M26 12v26M38 12v26M21 38h22"/><path class="gold" d="M32 8v34"/>`,
+        brokenShell: `<path class="stroke" d="M16 38c2-20 30-28 34 0z"/><path class="accent" d="M32 12l-5 12 8 5-5 9"/>`,
+        rest: `<path class="stroke" d="M12 32h40M17 22h22c5 0 8 3 8 10"/><path class="gold" d="M17 32v9M47 32v9"/>`,
+        waterDrop: `<path class="stroke" d="M32 8c10 12 15 20 15 27 0 7-6 10-15 10s-15-3-15-10c0-7 5-15 15-27z"/>`,
+        choice: `<path class="stroke" d="M32 42V10M16 24h32"/><path class="accent" d="M44 16l8 8-8 8"/><path class="gold" d="M20 16l-8 8 8 8"/>`,
+        step: `<path class="stroke" d="M14 38h12v-8h12v-8h12"/><path class="accent" d="M42 15h10v10"/>`,
+        spiral: `<path class="stroke" d="M35 24c0 5-7 7-10 3-4-5 2-13 10-12 12 2 15 18 5 25-12 8-29-1-28-16"/><path class="gold" d="M49 10v10h-10"/>`,
+        firstDoor: `<rect class="stroke" x="19" y="9" width="26" height="31"/><path class="gold" d="M25 40V24h14v16"/><path class="accent" d="M40 24h2"/>`,
+        sun: `<circle class="gold" cx="32" cy="23" r="10"/><path class="stroke" d="M32 6v7M32 33v7M15 23h7M42 23h7"/>`,
+        midday: `<path class="stroke" d="M13 30h38"/><circle class="gold" cx="32" cy="19" r="9"/><path class="accent" d="M24 38h16"/>`,
+        afternoon: `<circle class="gold" cx="22" cy="21" r="8"/><path class="stroke" d="M12 36h42"/><path class="accent" d="M35 18h16M38 27h12"/>`,
+        moon: `<path class="stroke" d="M39 9c-10 5-12 21 0 28-16 2-25-10-20-22 3-8 11-9 20-6z"/><path class="gold" d="M47 17h4M43 29h4"/>`,
+        weekendSun: `<rect class="stroke" x="12" y="13" width="40" height="27"/><circle class="gold" cx="32" cy="27" r="8"/>`,
+        weekendMidday: `<rect class="stroke" x="12" y="13" width="40" height="27"/><path class="gold" d="M18 29h28"/><circle class="accent" cx="32" cy="23" r="6"/>`,
+        weekendAfternoon: `<rect class="stroke" x="12" y="13" width="40" height="27"/><path class="gold" d="M18 33h28"/><path class="accent" d="M23 22h18"/>`,
+        weekendMoon: `<rect class="stroke" x="12" y="13" width="40" height="27"/><path class="gold" d="M36 20c-7 3-8 12 0 16-10 1-15-6-12-13 2-5 7-5 12-3z"/>`,
+        wave: `<path class="stroke" d="M8 31c8-8 16 8 24 0s16 8 24 0"/><path class="accent" d="M14 20c6-5 12 5 18 0s12 5 18 0"/>`
+      };
+      const custom = sceneOverride(name, label);
+      if (custom) return custom;
+      return `<svg viewBox="0 0 240 135" role="img" aria-label="選項${label}情境圖">
+        ${sceneBase(label, name)}
+        <g transform="${motifTransform(name)}">${svgs[name] || svgs.door}</g>
+      </svg>`;
+    }
+
+    function sceneBase(label, name) {
+      return `
+        <rect class="scene-bg" x="0" y="0" width="240" height="135"/>
+        <path class="scene-paper" d="M0 0h240v135H0z"/>
+        ${paperTexture()}
+        ${sceneAtmosphere(name)}
+        ${jungleFrame(name)}
+        <path class="scene-ground" d="M0 90h240v45H0z"/>
+        <path class="scene-shadow" d="M18 104c42-13 88-18 139-8 29 6 48 5 69-4v43H18z"/>
+        <path class="wash-sand" d="M12 100c44 9 87 4 124-4 37-7 70-5 94 10v29H12z"/>
+        ${sceneContextLines(name)}
+        <path class="stroke" d="M0 90h240"/>
+        <text x="206" y="28" fill="#b8913e" font-size="18" font-family="Georgia, 'Times New Roman', serif">${label}</text>
+      `;
+    }
+
+    function sceneAtmosphere(name) {
+      if (["rainCloud", "wave", "waterDrop", "release"].includes(name)) {
+        return `<path class="wash-terra" d="M16 61c36-22 75-22 112-7 36 14 68 8 94-3v60H16z"/>
+          <path class="wash-clear" d="M24 82c32-12 58 10 86-2 35-15 65-4 104 5"/>`;
+      }
+      if (["flame", "risingFire", "ember", "sparkAction", "lightPath"].includes(name)) {
+        return `<path class="wash-gold" d="M76 18c34-18 84-12 111 15 19 19 23 43 15 70H46c-10-34 0-67 30-85z"/>
+          <path class="wash-warm" d="M67 82c27-37 78-49 118-18"/>`;
+      }
+      if (["mist", "fogStone", "mistPath", "questionPath"].includes(name)) {
+        return `<path class="wash-sand" d="M8 31c43-18 81 9 124 0 37-8 68-17 101 0v64H8z"/>
+          <path class="wash-clear" d="M20 48c47-8 87-7 145 0"/>
+          <path class="wash-clear" d="M52 70c43-8 93-7 153 2"/>`;
+      }
+      if (["chair", "window", "manyWindows", "rest"].includes(name)) {
+        return `<path class="wash-gold" d="M35 23c37-14 89-15 122 4 22 13 42 8 62 0v74H35z"/>
+          <path class="wash-brown" d="M44 93c41-12 90-12 151 0v42H44z"/>`;
+      }
+      if (name.includes("bridge") || ["clearLine", "softLine", "thinLine", "brokenLine"].includes(name)) {
+        return `<path class="wash-sand" d="M20 35c38-18 75-15 112-1 36 14 62 9 91-3v72H20z"/>
+          <path class="wash-light" d="M34 86c52-18 113-18 173 0"/>`;
+      }
+      if (["signClear", "signSlow", "crossroad", "pushedRoad", "pathTurn", "pathLight", "blockedPath", "choice", "step"].includes(name)) {
+        return `<path class="wash-gold" d="M25 23c41-17 77-10 113 6 33 14 61 9 84-5v69H25z"/>
+          <path class="wash-clear" d="M50 91c31-26 79-39 137-38"/>`;
+      }
+      if (["smallStone", "twoStones", "heavyStone", "fist", "shell", "hollow"].includes(name)) {
+        return `<path class="wash-brown" d="M30 30c44-17 93-11 131 9 28 15 47 9 65 0v73H30z"/>
+          <path class="wash-sand" d="M23 94c52-19 109-16 190 3v38H23z"/>`;
+      }
+      if (["sun", "midday", "afternoon", "weekendSun", "weekendMidday", "weekendAfternoon"].includes(name)) {
+        return `<path class="wash-gold" d="M26 19c34-12 67-8 92 7 29 17 65 14 101-5v70H26z"/>`;
+      }
+      if (["moon", "weekendMoon"].includes(name)) {
+        return `<path class="wash-brown" d="M33 19c42-15 78-6 112 9 32 14 52 5 75-9v74H33z"/>`;
+      }
+      return `<path class="wash-gold" d="M26 19c25-12 61-8 82 5 19 12 44 12 70 1 12-5 25-5 36 2v35H26z"/>`;
+    }
+
+    function sceneContextLines(name) {
+      if (name.includes("bridge")) return `<path class="gold" d="M35 91c45-21 101-21 169 0"/>`;
+      if (["window", "manyWindows"].includes(name)) return `<path class="stroke" d="M52 33h136v72H52z"/>`;
+      if (["chair", "rest"].includes(name)) return `<path class="gold" d="M56 103c36-6 78-6 128 0"/>`;
+      if (["smallStone", "twoStones", "heavyStone", "fogStone"].includes(name)) return `<path class="gold" d="M45 103c32-9 80-9 144 0"/>`;
+      if (["signClear", "signSlow", "crossroad", "pushedRoad", "pathTurn", "blockedPath", "choice", "step"].includes(name)) return `<path class="stroke" d="M92 135c21-34 39-58 57-90"/>`;
+      if (["flame", "risingFire", "ember", "sparkAction"].includes(name)) return `<path class="gold" d="M82 105c27-8 64-8 94 0"/>`;
+      return `<path class="gold" d="M24 29c9-3 20-4 34-1"/>`;
+    }
+
+    function paperTexture() {
+      return `<path class="paper-crack" d="M12 16c8 8 2 18 12 25M49 8c-4 12 8 17 3 31M199 12c-10 9-1 17-9 29M217 66c-13 6-5 18-17 25M26 108c9-9 18-2 26-12M124 15c8 5 3 14 12 20"/>`;
+    }
+
+    function jungleFrame(name) {
+      const animal = animalFor(name);
+      return `
+        <g class="foliage-left">
+          <path class="jungle-leaf" d="M18 30c11-15 21-16 31-6-13 2-22 9-31 6z"/>
+          <path class="jungle-light" d="M12 57c12-18 28-18 39-4-14 2-26 9-39 4z"/>
+          <path class="jungle-leaf" d="M23 82c16-12 29-9 36 5-13-4-25-1-36-5z"/>
+          <path class="stroke" d="M20 93c11-29 18-54 24-78"/>
+          <path class="jungle-light" d="M57 111c-15-11-26-10-34 2 13-2 22 2 34-2z"/>
+        </g>
+        <g class="foliage-right">
+          <path class="jungle-leaf" d="M218 30c-10-13-24-15-35-5 13 2 24 8 35 5z"/>
+          <path class="jungle-light" d="M226 64c-13-16-29-16-41-1 16 1 28 8 41 1z"/>
+          <path class="jungle-leaf" d="M205 92c-16-13-31-8-39 5 15-4 27-1 39-5z"/>
+          <path class="stroke" d="M214 100c-9-32-16-58-26-84"/>
+        </g>
+        <g class="small-botanicals">
+          <path class="jungle-light" d="M70 118c7-10 16-10 22 0-8-2-14-2-22 0z"/>
+          <path class="jungle-leaf" d="M170 116c8-11 18-10 24 1-8-3-16-2-24-1z"/>
+          <circle class="jungle-red" cx="196" cy="26" r="7"/>
+          ${animal}
+        </g>
+      `;
+    }
+
+    function animalFor(name) {
+      if (["waterPath", "rainCloud", "wave", "release", "waterDrop"].includes(name)) {
+        return `<path class="jungle-blue" d="M180 92c10-5 19-4 27 2-8 6-17 7-27-2z"/><path class="stroke" d="M204 94l8-4M204 94l8 5"/>`;
+      }
+      if (["flame", "risingFire", "ember", "sparkAction", "sun"].includes(name)) {
+        return `<path class="jungle-bird" d="M165 45c13-7 22-4 28 5-12 1-21 1-28-5z"/><path class="accent" d="M187 50l9 4"/>`;
+      }
+      if (["stonePath", "smallStone", "twoStones", "heavyStone", "fogStone"].includes(name)) {
+        return `<path class="jungle-animal" d="M46 96c13-7 25-4 32 5-9 8-24 7-32-5z"/><circle class="stroke" cx="70" cy="96" r="2"/><path class="stroke" d="M52 101l-5 8M65 103l-2 8"/>`;
+      }
+      return `<path class="jungle-bird" d="M164 45c11-6 20-3 27 5-10 2-19 1-27-5z"/><path class="gold" d="M188 50l9-3"/>`;
+    }
+
+    function motifTransform(name) {
+      const large = ["rainCloud", "mist", "thunder", "chair", "window", "manyWindows", "alert", "fist", "shell", "heavyStone", "crossroad", "bridgeClosed", "flame", "risingFire", "map"];
+      const wide = ["wave", "exhale", "release", "bridgeOpen", "bridgeSoft", "bridgeWatch", "rest"];
+      if (wide.includes(name)) return "translate(48 37) scale(2.2)";
+      if (large.includes(name)) return "translate(62 28) scale(2.0)";
+      return "translate(66 33) scale(1.85)";
+    }
+
+    function sceneOverride(name, label) {
+      const scenes = {
+        stonePath: `<svg viewBox="0 0 240 135" role="img" aria-label="選項${label}石階路情境圖">
+          <rect class="scene-bg" x="0" y="0" width="240" height="135"/>
+          <path class="scene-paper" d="M0 0h240v135H0z"/>
+          ${paperTexture()}
+          <path class="wash-gold" d="M28 18c29-11 62-9 86 4 24 14 56 12 92-3v45H28z"/>
+          ${jungleFrame("stonePath")}
+          <path class="scene-ground" d="M0 82h240v53H0z"/>
+          <path class="wash-sand" d="M0 96c45-12 93-9 135-2 42 8 74 5 105-10v51H0z"/>
+          <path class="stroke" d="M0 82h240"/>
+          <path class="scene-shadow" d="M83 135l22-53h32l27 53z"/>
+          <path class="wash-brown" d="M91 131l19-44h24l22 44z"/>
+          <path class="stroke" d="M105 82L83 135M137 82l27 53"/>
+          <path class="gold" d="M113 91c5-2 12-2 20 0M107 105c10-3 21-3 34 0M99 121c14-4 32-4 52 0"/>
+          <path class="scene-fill" d="M111 86h22l3 9c-9 3-18 3-27 0z"/>
+          <path class="scene-fill" d="M104 101h34l5 12c-14 4-28 4-43 0z"/>
+          <path class="scene-fill" d="M94 119h54l7 14c-23 4-45 4-67 0z"/>
+          <path class="accent" d="M29 81c20-12 39-16 57-12M157 69c23-8 41-4 56 10"/>
+          <path class="gold" d="M196 27c6-2 12-2 18 0M205 18c-1 6-1 12 0 18"/>
+          <text x="206" y="28" fill="#b8913e" font-size="18" font-family="Georgia, 'Times New Roman', serif">${label}</text>
+        </svg>`,
+        waterPath: `<svg viewBox="0 0 240 135" role="img" aria-label="選項${label}湖邊情境圖">
+          <rect class="scene-bg" x="0" y="0" width="240" height="135"/>
+          <path class="scene-paper" d="M0 0h240v135H0z"/>
+          ${paperTexture()}
+          <path class="wash-sand" d="M24 18c42-11 74 9 105 4 34-5 57-17 90-4v48H24z"/>
+          ${jungleFrame("waterPath")}
+          <path class="scene-ground" d="M0 84h240v51H0z"/>
+          <path class="stroke" d="M0 84h240"/>
+          <path class="wash-terra" d="M13 91c35-19 59 13 91 1 30-11 62-8 121 6v37H13z"/>
+          <path class="accent" d="M20 96c24-18 48 18 72 0s48 18 72 0 38-9 56 1"/>
+          <path class="gold" d="M24 112c22-12 44 12 66 0s42 12 64 0"/>
+          <path class="stroke" d="M67 77c12-17 24-26 42-35M108 82c13-20 29-31 52-45"/>
+          <circle class="scene-gold" cx="183" cy="32" r="11"/>
+          <text x="206" y="28" fill="#b8913e" font-size="18" font-family="Georgia, 'Times New Roman', serif">${label}</text>
+        </svg>`,
+        mistPath: `<svg viewBox="0 0 240 135" role="img" aria-label="選項${label}霧中小路情境圖">
+          <rect class="scene-bg" x="0" y="0" width="240" height="135"/>
+          <path class="scene-paper" d="M0 0h240v135H0z"/>
+          ${paperTexture()}
+          <path class="wash-sand" d="M18 25c48-16 70 12 113 4 32-6 56-18 94-4v49H18z"/>
+          ${jungleFrame("mistPath")}
+          <path class="scene-ground" d="M0 86h240v49H0z"/>
+          <path class="stroke" d="M0 86h240"/>
+          <path class="scene-shadow" d="M98 135l10-49h23l13 49z"/>
+          <path class="stroke" d="M108 86L98 135M131 86l13 49"/>
+          <path class="gold" d="M28 41c28-4 58-4 92 0M54 57c38-5 80-4 124 0M19 74c22-4 46-4 72 0M132 74c22-4 46-4 73 0"/>
+          <path class="accent" d="M174 35c10-2 20-2 31 0"/>
+          <text x="206" y="28" fill="#b8913e" font-size="18" font-family="Georgia, 'Times New Roman', serif">${label}</text>
+        </svg>`,
+        lightPath: `<svg viewBox="0 0 240 135" role="img" aria-label="選項${label}光路情境圖">
+          <rect class="scene-bg" x="0" y="0" width="240" height="135"/>
+          <path class="scene-paper" d="M0 0h240v135H0z"/>
+          ${paperTexture()}
+          <path class="wash-gold" d="M131 8c28-9 60 0 84 20v52c-35-11-69-14-106-8z"/>
+          ${jungleFrame("lightPath")}
+          <path class="scene-ground" d="M0 85h240v50H0z"/>
+          <path class="stroke" d="M0 85h240"/>
+          <path class="scene-shadow" d="M71 135c36-29 62-51 103-93l18 18c-29 31-55 56-75 75z"/>
+          <path class="stroke" d="M71 135c36-29 62-51 103-93M117 135c20-19 46-44 75-75"/>
+          <path class="scene-gold" d="M176 24h20v20h-20z"/>
+          <path class="accent" d="M186 14c-1 13-1 27 0 40M166 34c13-2 26-2 40 0"/>
+          <text x="206" y="28" fill="#b8913e" font-size="18" font-family="Georgia, 'Times New Roman', serif">${label}</text>
+        </svg>`
+      };
+
+      if (name.startsWith("door")) {
+        return `<svg viewBox="0 0 240 135" role="img" aria-label="選項${label}門的情境圖">
+          <rect class="scene-bg" x="0" y="0" width="240" height="135"/>
+          <path class="scene-paper" d="M0 0h240v135H0z"/>
+          ${paperTexture()}
+          <path class="wash-gold" d="M37 14c39-13 73 8 110 3 27-4 49-9 70 1v42H37z"/>
+          ${jungleFrame(name)}
+          <path class="scene-ground" d="M0 92h240v43H0z"/>
+          <path class="stroke" d="M0 92h240"/>
+          <path class="wash-sand" d="M58 104c34-11 77-12 120-2 18 4 34 4 54-2v35H58z"/>
+          <rect class="scene-fill" x="88" y="28" width="64" height="64"/>
+          <rect class="stroke" x="88" y="28" width="64" height="64"/>
+          <path class="stroke" d="M108 92V52h24v40"/>
+          <path class="accent" d="M137 67h5"/>
+          <g transform="translate(90 34) scale(.9)">${doorSymbol(name)}</g>
+          <path class="gold" d="M60 102c38-5 78-5 120 0M76 114c27-3 56-3 88 0"/>
+          <text x="206" y="28" fill="#b8913e" font-size="18" font-family="Georgia, 'Times New Roman', serif">${label}</text>
+        </svg>`;
+      }
+
+      return scenes[name] || "";
+    }
+
+    function doorSymbol(name) {
+      const symbols = {
+        doorWork: `<path class="accent" d="M38 28h24M38 38h16"/>`,
+        doorHeart: `<path class="accent" d="M50 49c-15-9-15-22-4-22 4 0 5 2 5 5 1-3 4-5 8-5 10 1 8 14-9 22z"/>`,
+        doorGold: `<circle class="gold" cx="51" cy="39" r="12"/><path class="accent" d="M51 27v24M39 39h24"/>`,
+        doorHome: `<path class="accent" d="M28 36l24-17 24 17"/><path class="gold" d="M45 62V45h13v17"/>`,
+        doorPeople: `<circle class="gold" cx="43" cy="38" r="6"/><circle class="accent" cx="59" cy="38" r="6"/><path class="stroke" d="M33 56c4-8 16-8 20 0M50 56c4-8 16-8 20 0"/>`,
+        doorSpark: `<path class="gold" d="M52 21v40M32 41h40"/><path class="accent" d="M39 28l26 26M65 28L39 54"/>`,
+        doorBody: `<path class="accent" d="M52 25c9 10 9 24 0 36-9-12-9-26 0-36z"/><path class="gold" d="M39 42h26"/>`,
+        doorCloud: `<path class="accent" d="M36 48c3-12 17-12 23-4 7-5 16 0 15 8H32"/>`
+      };
+      return symbols[name] || "";
+    }
+
+    function finishQuiz() {
+      state.basic = {
+        name: document.getElementById("name").value.trim(),
+        age: document.getElementById("age").value,
+        location: document.getElementById("location").value,
+        phone: document.getElementById("phone").value.trim(),
+        line: document.getElementById("line").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        note: document.getElementById("note").value.trim()
+      };
+      state.step = questions.length + 1;
+      renderResult();
+    }
+
+    function renderBasicFromResult() {
+      state.step = questions.length;
+      renderBasic();
+    }
+
+    function calculateResult() {
+      const scores = { A: 0, B: 0, C: 0, D: 0 };
+      const singleIds = ["gate", "weather", "stress_response", "need", "voice", "difficulty"];
+      singleIds.forEach(id => {
+        const value = state.answers[id];
+        if (scores[value] !== undefined) scores[value] += 2;
+      });
+
+      const scaleMap = {
+        stress: "B",
+        body_tension: "A",
+        relax: "A",
+        tired: "C",
+        work: "C",
+        effort: "A",
+        relationship: "B",
+        boundary: "B",
+        direction: "C",
+        inner_power: "D"
+      };
+      Object.keys(scaleMap).forEach(id => {
+        const value = Number(state.answers[id] || 0);
+        if (value >= 3) scores[scaleMap[id]] += value - 1;
+      });
+
+      const themeMap = {
+        career: "C",
+        intimacy: "B",
+        money: "A",
+        family: "B",
+        people: "B",
+        growth: "D",
+        body: "A",
+        emotion: "B"
+      };
+      const theme = state.answers.themes;
+      if (themeMap[theme]) scores[themeMap[theme]] += 2;
+
+      const top = Object.keys(scores).sort((a, b) => scores[b] - scores[a])[0];
+      const maxScore = Math.max(...Object.values(scores), 1);
+      return { scores, top, maxScore };
+    }
+
+    function getHighMetrics() {
+      return questions
+        .filter(q => q.type === "scale" && Number(state.answers[q.id] || 0) >= 3)
+        .map(q => `${q.metric} ${state.answers[q.id]}/4`);
+    }
+
+    function getAnswerLabels(id) {
+      const q = questions.find(item => item.id === id);
+      const answer = state.answers[id];
+      if (!q || answer === undefined || answer === null || answer === "") return [];
+      const values = Array.isArray(answer) ? answer : [answer];
+      return values.map(value => {
+        const found = q.options.find(opt => opt[0] === value);
+        return found ? found[1] : value;
+      });
+    }
+
+    function answerText(id) {
+      const q = questions.find(item => item.id === id);
+      const value = state.answers[id];
+      if (!q || value === undefined) return "";
+      if (q.type === "single") {
+        const found = q.options.find(opt => opt[0] === value);
+        return found ? found[1] : value;
+      }
+      if (Array.isArray(value)) return getAnswerLabels(id).join("、");
+      return value;
+    }
+
+    function buildSummary(result, type, highMetrics, themes, schedule) {
+      const b = state.basic;
+      return [
+        "一對一重生呼吸前導測驗摘要",
+        "",
+        `姓名：${b.name || ""}`,
+        `年齡區間：${b.age || ""}`,
+        `現居地：${b.location || ""}`,
+        `電話：${b.phone || ""}`,
+        `Line ID：${b.line || ""}`,
+        `Email：${b.email || ""}`,
+        "",
+        `主要原型：${type.name}`,
+        `原型分數：守門人 ${result.scores.A}／感受者 ${result.scores.B}／尋路者 ${result.scores.C}／火種 ${result.scores.D}`,
+        `最想被支持的主題：${themes.join("、") || "尚未填寫"}`,
+        `較高身心訊號：${highMetrics.join("、") || "無特別高分項目"}`,
+        `重生呼吸經驗：${answerText("breath_exp") || "尚未填寫"}`,
+        `其他身心練習：${state.answers.practices || "尚未填寫"}`,
+        "",
+        `目前最卡住：${state.answers.stuck || "尚未填寫"}`,
+        `最想改變：${state.answers.change || "尚未填寫"}`,
+        `期待支持：${state.answers.expectation || "尚未填寫"}`,
+        `希望被尊重／避開：${state.answers.respect || "尚未填寫"}`,
+        `安全確認：${state.answers.safety || "尚未填寫"}`,
+        `強烈情緒時希望如何被支持：${state.answers.support || "尚未填寫"}`,
+        `可預約時段：${schedule.join("、") || "尚未填寫"}`,
+        `其他補充：${b.note || "無"}`
+      ].join("\n");
+    }
+
+    async function copySummary() {
+      try {
+        await navigator.clipboard.writeText(state.summary || "");
+        showToast("已複製摘要");
+      } catch (error) {
+        showToast("無法自動複製，可用列印保存");
+      }
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    function escapeAttribute(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    renderStart();
+  </script>
+</body>
+</html>
