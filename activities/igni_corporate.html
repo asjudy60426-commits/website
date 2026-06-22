@@ -232,17 +232,20 @@
       color: var(--muted);
       line-height: 2;
     }
+    .price-note,
     .venue-fee {
       display: inline-flex;
       align-items: flex-start;
       gap: 0.25rem;
       position: relative;
     }
+    .meta-info,
     .venue-info {
       display: inline-block;
       position: relative;
       line-height: 1;
     }
+    .meta-info summary,
     .venue-info summary {
       list-style: none;
       cursor: pointer;
@@ -259,7 +262,9 @@
       line-height: 1;
       transform: translateY(-0.35rem);
     }
+    .meta-info summary::-webkit-details-marker,
     .venue-info summary::-webkit-details-marker { display: none; }
+    .meta-tip,
     .venue-tip {
       position: absolute;
       right: 0;
@@ -284,6 +289,12 @@
       font-size: 0.85rem;
       font-family: 'Noto Serif TC', serif;
       color: var(--muted);
+    }
+    .price-note {
+      margin-top: 0.25rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 2;
     }
 
     /* LECTURES */
@@ -448,7 +459,7 @@
 
           <div class="plan-meta">
             適合：團隊合作、新創產業、創意領域<br>
-            最低人數：10 人　·　交通費另計<br>
+            <div>最低人數：10 人</div>
             <div class="venue-fee">不包含場地費
               <details class="venue-info">
                 <summary aria-label="場地費說明">i</summary>
@@ -457,6 +468,12 @@
             </div>
           </div>
           <div class="plan-price">NT. 1,200 <small>/ 人</small></div>
+          <div class="price-note">交通費另計
+            <details class="meta-info">
+              <summary aria-label="交通費說明">i</summary>
+              <span class="meta-tip">雙北地區免交通費</span>
+            </details>
+          </div>
         </div>
 
         <div class="plan-card featured">
@@ -487,7 +504,7 @@
 
           <div class="plan-meta">
             適合：高階主管、新創產業、創意領域、專案啟動<br>
-            最低人數：10 人　·　交通費另計<br>
+            <div>最低人數：10 人</div>
             <div class="venue-fee">不包含場地費
               <details class="venue-info">
                 <summary aria-label="場地費說明">i</summary>
@@ -496,6 +513,12 @@
             </div>
           </div>
           <div class="plan-price">NT. 1,500 <small>/ 人</small></div>
+          <div class="price-note">交通費另計
+            <details class="meta-info">
+              <summary aria-label="交通費說明">i</summary>
+              <span class="meta-tip">雙北地區免交通費</span>
+            </details>
+          </div>
         </div>
 
       </div>

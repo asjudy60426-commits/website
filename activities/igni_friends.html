@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IGNI 三五好友重生呼吸包班體驗，讓一場相聚從好玩回憶，走向更深的友誼連結。">
+  <title>三五好友包班體驗 — IGNI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&amp;family=Noto+Serif+TC:wght@300;400;500&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #fffcf7;
+      --bg-2: #f3eee7;
+      --text: #2c2416;
+      --muted: #786957;
+      --gold: #b8913e;
+      --cta: #b85c40;
+      --line: #d4c5b0;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Noto Serif TC", serif;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+    .page { max-width: 880px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .hero { text-align: center; padding: 5rem 1rem 4rem; border-bottom: 1px solid var(--gold); }
+    .eyebrow, .section-label {
+      color: var(--gold);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 13px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+    }
+    .eyebrow { margin-bottom: 1.5rem; }
+    .hero h1 {
+      font-family: "Cormorant Garamond", "Noto Serif TC", serif;
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.28;
+      margin-bottom: 1.4rem;
+    }
+    .hero-tags { color: var(--gold); font-family: "Cormorant Garamond", serif; font-size: 1.05rem; font-style: italic; }
+    .hero-tags span { color: var(--muted); font-style: normal; padding: 0 .45rem; }
+    .copy { max-width: 680px; margin: 0 auto; padding: 3.5rem 0; text-align: center; }
+    .copy-question {
+      color: var(--gold);
+      font-family: "Cormorant Garamond", "Noto Serif TC", serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .copy h2 { color: var(--cta); font-size: 1.85rem; font-weight: 300; margin-bottom: 1.5rem; }
+    .copy p:not(.copy-question) { color: var(--muted); font-size: .95rem; line-height: 2.05; margin-bottom: 1rem; }
+    .divider { height: 1px; border: 0; margin: 3rem 0; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .layers { padding: 2rem 0; text-align: center; }
+    .layers img { display: block; width: min(560px, 100%); height: auto; margin: 0 auto; }
+    .plans { padding: 3rem 0; }
+    .section-label { margin-bottom: 2.5rem; text-align: center; }
+    .plan-card {
+      position: relative;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3.5rem 3rem 3rem;
+      border: 1px solid var(--gold);
+      outline: 1px solid rgba(184, 145, 62, .42);
+      outline-offset: -10px;
+      background:
+        radial-gradient(circle at 50% 0, rgba(184, 145, 62, .08), transparent 36%),
+        var(--bg);
+      text-align: center;
+      box-shadow: 0 18px 50px rgba(44, 36, 22, .06);
+    }
+    .plan-card::before,
+    .plan-card::after {
+      position: absolute;
+      left: 50%;
+      color: var(--gold);
+      background: var(--bg);
+      padding: 0 .8rem;
+      transform: translateX(-50%);
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: .45em;
+      content: "✦  ·  ✦";
+    }
+    .plan-card::before { top: -15px; }
+    .plan-card::after { bottom: -15px; }
+    .plan-badge {
+      display: inline-block;
+      position: static;
+      margin-bottom: 1.5rem;
+      padding: 4px 18px;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: .22em;
+    }
+    .duration { font-family: "Cormorant Garamond", serif; font-size: 2.65rem; font-weight: 300; line-height: 1; }
+    .duration span { color: var(--muted); font-family: "Noto Serif TC", serif; font-size: 1rem; }
+    .tagline { color: var(--muted); font-size: .9rem; line-height: 1.9; margin: .9rem 0 2.5rem; }
+    .part-title {
+      color: var(--cta);
+      margin: 2rem auto .75rem;
+      padding-bottom: .55rem;
+      border-bottom: 1px solid #e8dfd4;
+      font-size: 1.05rem;
+      font-weight: 400;
+      letter-spacing: .04em;
+    }
+    .items { color: var(--muted); font-size: .86rem; line-height: 2.1; list-style: none; }
+    .items li::before { content: "·"; display: inline-block; color: var(--gold); margin-right: .5rem; }
+    .meta { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid #e8dfd4; color: var(--muted); font-size: .85rem; }
+    .meta-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      min-height: 2.4rem;
+      border-bottom: 1px dotted #e8dfd4;
+    }
+    .meta-row > span:first-child { grid-column: 2; }
+    .meta-row details { grid-column: 3; justify-self: end; }
+    .meta-row:last-child { border-bottom: 0; }
+    .fees-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding-top: .6rem;
+      font-size: .75rem;
+    }
+    .fee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      white-space: nowrap;
+    }
+    details.info { position: relative; flex: 0 0 auto; line-height: 1; }
+    details.info summary {
+      display: inline-flex;
+      width: 18px;
+      height: 18px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+      cursor: pointer;
+      font-family: Georgia, serif;
+      font-size: 11px;
+      font-style: italic;
+      list-style: none;
+    }
+    details.info summary::-webkit-details-marker { display: none; }
+    details.info summary:focus-visible { outline: 2px solid var(--cta); outline-offset: 3px; }
+    .tip {
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + .6rem);
+      z-index: 5;
+      width: min(320px, 78vw);
+      padding: .75rem .9rem;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      box-shadow: 0 10px 30px rgba(44, 36, 22, .1);
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.75;
+      text-align: left;
+    }
+    .price { color: var(--cta); font-family: "Cormorant Garamond", serif; font-size: 1.55rem; margin-top: 1.75rem; }
+    .price small { color: var(--muted); font-family: "Noto Serif TC", serif; font-size: .85rem; }
+    .cta { margin: 3rem -2rem 0; padding: 4rem 1rem; border-top: 1px solid var(--line); background: var(--bg-2); text-align: center; }
+    .cta h2 { font-size: 1.8rem; font-weight: 300; margin-bottom: .85rem; }
+    .cta p { color: var(--muted); font-size: .9rem; margin-bottom: 2rem; }
+    .cta-button { display: inline-flex; align-items: center; gap: .75rem; padding: .8rem 2rem; background: var(--cta); color: white; letter-spacing: .08em; text-decoration: none; transition: opacity .2s, transform .2s; }
+    .cta-button:hover { opacity: .9; transform: translateY(-1px); }
+    .line-icon { display: inline-grid; width: 25px; height: 25px; place-items: center; border-radius: 50%; background: white; color: var(--cta); font-family: Arial, sans-serif; font-size: 7px; font-weight: 700; letter-spacing: -.05em; }
+    @media (max-width: 600px) {
+      .page { padding: 0 1rem 2rem; }
+      .hero { padding: 4rem .25rem 3rem; }
+      .hero h1 { font-size: 2.15rem; }
+      .copy { padding: 3rem .35rem; }
+      .plan-card { padding: 3rem 1.5rem 2.5rem; }
+      .fees-row { gap: .9rem; font-size: .7rem; }
+      .cta { margin: 3rem -1rem 0; }
+      .tip { position: fixed; right: 1rem; bottom: 1rem; width: calc(100vw - 2rem); }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">IGNI FRIENDS PRIVATE SESSION</div>
+      <h1>三五好友包班體驗<br>打造友誼新高度</h1>
+      <div class="hero-tags">一起呼吸 <span>×</span> 真實靠近 <span>×</span> 深度連結</div>
+    </header>
+
+    <section class="copy" aria-labelledby="connection-title">
+      <p class="copy-question">聚會不只留下照片，<br>也能留下一次真正靠近彼此的記憶。</p>
+      <h2 id="connection-title">創造不一樣的連結</h2>
+      <p>吃飯、旅行、唱歌，為友誼收藏了許多好玩的回憶；但在忙碌與玩笑之間，我們未必總有機會好好聽見彼此。</p>
+      <p>IGNI 為三五好友設計的包班體驗，透過呼吸卸下日常角色與防備，讓每個人更自在地回到自己，也更真實地靠近身邊的人。</p>
+      <p>當一場相聚不只好玩，還多了理解、陪伴與信任，娛樂性的回憶便會成為友誼裡更深的連結——多年以後，仍記得那一次，我們真正看見了彼此。</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="layers" aria-label="重生呼吸可以觸及的三個層面">
+      <img src="igni_friends_assets/breathwork_layers.jpg" alt="重生呼吸可以觸及身體、心理與靈性三個層面">
+    </section>
+
+    <hr class="divider">
+
+    <section class="plans" aria-labelledby="plans-title">
+      <div class="section-label" id="plans-title">服務方案</div>
+      <article class="plan-card">
+        <div class="plan-badge">好友包班</div>
+        <div class="duration">3 <span>小時</span></div>
+        <p class="tagline">從一起玩，到一起感受與理解<br>為熟悉的友情，打開一扇新的門</p>
+
+        <h3 class="part-title">第一小時：暖身、連結</h3>
+        <ul class="items">
+          <li>暖身連結，從日常節奏回到當下</li>
+          <li>呼吸法介紹與身心安全引導</li>
+        </ul>
+
+        <h3 class="part-title">第二小時：重生呼吸體驗</h3>
+        <ul class="items">
+          <li>在引導與陪伴中進入完整呼吸歷程</li>
+          <li>釋放壓力，讓情緒流動</li>
+          <li>重新感受真實的自己</li>
+        </ul>
+
+        <h3 class="part-title">第三小時：整合與友誼對話</h3>
+        <ul class="items">
+          <li>分享體驗，看見彼此不同的生命風景</li>
+          <li>把理解、信任與陪伴帶回日常友誼</li>
+        </ul>
+
+        <div class="meta">
+          <div class="meta-row"><span>6 人成團</span></div>
+          <div class="fees-row">
+            <div class="fee-item">
+              <span>交通費另計</span>
+              <details class="info">
+                <summary aria-label="交通費說明">i</summary>
+                <span class="tip">雙北地區免交通費</span>
+              </details>
+            </div>
+            <div class="fee-item">
+              <span>不含場地費</span>
+              <details class="info">
+                <summary aria-label="場地費說明">i</summary>
+                <span class="tip">場地請自行提供，建議通風良好、可平躺的空間，亦有提供場館代訂服務，請私訊洽詢</span>
+              </details>
+            </div>
+          </div>
+        </div>
+        <div class="price">NT. 2,000 <small>/ 人</small></div>
+      </article>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-title">
+      <h2 id="cta-title">下一次相聚，創造一段更深的共同回憶</h2>
+      <p>邀請你的好友，一起用三小時重新認識彼此。</p>
+      <a class="cta-button" href="https://line.me/R/ti/p/@012gesap" target="_blank" rel="noopener noreferrer" aria-label="前往 IGNI 官方 LINE 私訊預約">
+        <span class="line-icon" aria-hidden="true">LINE</span>
+        <span>官方 LINE 預約</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </section>
+  </main>
+</body>
+</html>
