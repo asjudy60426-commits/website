@@ -1,755 +1,687 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IGNI Retreat｜重生之旅・峇里島</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+TC:wght@200;300;400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IGNI — 重生呼吸・身心整合</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #fffcf7;
+      --bg2: #F3EEE7;
+      --text: #2C2416;
+      --cta: #B85C40;
+      --gold: #B8913E;
+      --muted: #7a6b58;
+      --faint: #e8dfd4;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Serif TC', serif;
+      font-weight: 300;
+      line-height: 1.8;
+    }
 
-/* ── Reset & Tokens ─────────────────────────────── */
-:root {
-  --cream:      #f5f0e8;
-  --warm-white: #faf7f2;
-  --charcoal:   #2a2520;
-  --ash:        #5a5248;
-  --mist:       #8a9090;
-  --sage:       #7a8c74;
-  --gold:       #b8965a;
-  --gold-lt:    #d4b07a;
-}
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { background: var(--warm-white); color: var(--charcoal); font-family: 'Noto Serif TC', serif; overflow-x: hidden; }
-img { display: block; max-width: 100%; }
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(255,252,247,0.92);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(184,145,62,0.18);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 1.5rem;
+      letter-spacing: 0.25em;
+      color: var(--text);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      color: #fff;
+      background: var(--cta);
+      padding: 0.5rem 1.4rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
 
-/* ── Nav ─────────────────────────────────────────── */
-.tab-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: rgba(42,37,32,0.96);
-  backdrop-filter: blur(12px);
-  display: flex; justify-content: center; align-items: center;
-  border-bottom: 1px solid rgba(184,150,90,0.22);
-  height: 56px;
-}
-.tab-logo {
-  font-family: 'Cinzel', serif;
-  font-size: 0.78rem; letter-spacing: 0.3em; color: var(--gold);
-  padding: 0 2rem; border-right: 1px solid rgba(184,150,90,0.2);
-  height: 100%; display: flex; align-items: center; white-space: nowrap;
-}
-.tab-btn {
-  font-family: 'Cinzel', serif;
-  font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
-  color: rgba(245,240,232,0.48); background: none; border: none; cursor: pointer;
-  padding: 0 1.5rem; height: 100%; transition: color 0.3s;
-  border-bottom: 2px solid transparent; white-space: nowrap;
-}
-.tab-btn:hover { color: var(--gold-lt); }
-.tab-btn.active { color: var(--gold-lt); border-bottom-color: var(--gold); }
+    /* ── HERO ── */
+    .hero {
+      min-height: clamp(680px, 100vh, 860px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 3rem 5rem 5rem;
+    }
+    .hero-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--cta);
+    }
+    .hero-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+    .hero-body {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 2;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--cta);
+      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-secondary {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover {
+      background: var(--gold);
+      color: #fff;
+    }
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      padding: 2rem;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      filter: brightness(0.92) sepia(0.12);
+    }
+    .hero-right-overlay {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 2.5rem;
+      right: 2.5rem;
+      background: rgba(255,252,247,0.88);
+      backdrop-filter: blur(4px);
+      padding: 1.5rem 2rem;
+      border-left: 2px solid var(--cta);
+    }
+    .overlay-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: var(--cta);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .overlay-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+    }
+    .overlay-link {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      color: var(--cta);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+    .overlay-link::after { content: ' →'; }
 
-/* ── Pages ───────────────────────────────────────── */
-.page { display: none; padding-top: 56px; }
-.page.active { display: block; }
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0;
+      border: none;
+    }
 
-/* ── Shared ──────────────────────────────────────── */
-.divider { width: 44px; height: 1px; background: var(--gold); margin: 0 auto 3rem; opacity: 0.6; }
-.section-label {
-  font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.38em;
-  color: var(--gold); text-transform: uppercase; margin-bottom: 1.8rem; text-align: center;
-}
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.9rem, 4.5vw, 3.2rem); font-weight: 300;
-  line-height: 1.22; color: var(--charcoal); margin-bottom: 2.8rem;
-  letter-spacing: 0.02em; text-align: center;
-}
-.section-title em { font-style: italic; color: var(--sage); }
-.body-text { font-size: 1rem; line-height: 2.1; color: var(--ash); font-weight: 300; margin-bottom: 1.6rem; }
-.cta-btn {
-  display: inline-block; font-family: 'Cinzel', serif;
-  font-size: 0.68rem; letter-spacing: 0.38em; text-transform: uppercase;
-  color: var(--charcoal); background: var(--gold-lt);
-  padding: 1.1rem 3.5rem; text-decoration: none; cursor: pointer; border: none;
-  transition: background 0.3s, letter-spacing 0.3s;
-}
-.cta-btn:hover { background: var(--gold); letter-spacing: 0.48em; }
-.inline-link {
-  color: var(--gold); text-decoration: none;
-  border-bottom: 1px solid rgba(184,150,90,0.4);
-  transition: border-color 0.3s, color 0.3s; cursor: pointer;
-}
-.inline-link:hover { color: var(--gold-lt); border-bottom-color: var(--gold-lt); }
+    /* ── WHAT IS IGNI ── */
+    .about-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 60vh;
+    }
+    .about-text {
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .section-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-body {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 2;
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+    .about-bg {
+      background:
+        linear-gradient(rgba(44, 36, 22, 0.28), rgba(44, 36, 22, 0.28)),
+        url('img/terra.png') center / cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem;
+    }
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-style: italic;
+      font-weight: 300;
+      color: #F3EEE7;
+      line-height: 1.6;
+      text-align: center;
+      position: relative;
+      padding: 0 1rem;
+    }
+    .about-quote::before {
+      content: '"';
+      display: block;
+      font-size: 5rem;
+      color: rgba(243,238,231,0.35);
+      line-height: 0.6;
+      margin-bottom: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .about-quote::after {
+      content: '"';
+      display: block;
+      font-size: 5rem;
+      color: rgba(243,238,231,0.35);
+      line-height: 0.6;
+      margin-top: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      text-align: right;
+    }
 
-/* ── Reveal animation ────────────────────────────── */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.9s ease, transform 0.9s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+    /* ── SERVICES ── */
+    .services {
+      padding: 5rem 3rem;
+      background: var(--bg);
+    }
+    .services-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5px;
+      background: var(--faint);
+    }
+    .service-card {
+      position: relative;
+      background: var(--bg);
+      padding: 2.5rem 1.8rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      transition: background 0.2s;
+    }
+    .service-card:hover { background: var(--bg2); }
+    .service-badge {
+      position: absolute;
+      top: 1.35rem;
+      right: 1.35rem;
+      border: 1px solid rgba(184,145,62,0.55);
+      color: var(--gold);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      line-height: 1;
+      padding: 0.35rem 0.55rem;
+      white-space: nowrap;
+    }
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--faint);
+      line-height: 1;
+      margin-bottom: 1.2rem;
+    }
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    .service-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.9;
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+    .service-link {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-decoration: none;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+      align-self: flex-start;
+    }
+    .service-link:hover { border-color: var(--gold); }
+    .service-link::after { content: ' →'; }
 
-/* ── HERO ────────────────────────────────────────── */
-.hero {
-  position: relative; height: 100vh; min-height: 680px;
-  overflow: hidden; display: flex; align-items: flex-end; justify-content: center;
-}
-.hero-img {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  filter: brightness(0.84); transform: scale(1.04);
-  animation: slowZoom 20s ease-out forwards;
-}
-@keyframes slowZoom { from { transform: scale(1.04); } to { transform: scale(1); } }
-.hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(20,15,10,0.08) 0%, rgba(20,15,10,0) 32%, rgba(20,15,10,0.58) 72%, rgba(20,15,10,0.9) 100%);
-}
-.hero-content {
-  position: relative; z-index: 2; text-align: center;
-  padding: 0 2rem 9vh;
-  animation: fadeUp 2s ease 0.6s both;
-}
-@keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-.hero-eyebrow {
-  font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.42em;
-  color: var(--gold-lt); text-transform: uppercase; margin-bottom: 2rem;
-}
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.4rem, 6vw, 4.8rem); font-weight: 300;
-  color: #fff; line-height: 1.18; margin-bottom: 1.8rem; letter-spacing: 0.03em;
-}
-.hero-title em { font-style: italic; color: var(--gold-lt); }
-.hero-sub { font-size: 0.85rem; color: rgba(255,255,255,0.6); letter-spacing: 0.2em; font-weight: 200; margin-bottom: 2rem; }
-.hero-tagline {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.08rem; font-style: italic; color: rgba(255,255,255,0.52);
-  letter-spacing: 0.06em; max-width: 580px; margin: 0 auto; line-height: 1.75;
-}
-.scroll-cue {
-  position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
-  z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-}
-.scroll-line {
-  width: 1px; height: 50px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
-  animation: pulse 2.4s ease-in-out infinite;
-}
-@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-.scroll-cue span { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.3em; color: rgba(255,255,255,0.38); text-transform: uppercase; }
+    /* ── BALI RETREAT FEATURE ── */
+    .retreat-feature {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 70vh;
+    }
+    .retreat-img {
+      background: var(--bg2);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .retreat-img img {
+      width: 100%;
+      height: 100%;
+      padding: 2rem;
+      object-fit: contain;
+      filter: brightness(0.9) sepia(0.1);
+    }
+    .retreat-content {
+      background: var(--text);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .retreat-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .retreat-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.15;
+      color: #fffcf7;
+      margin-bottom: 1.5rem;
+    }
+    .retreat-title em { font-style: italic; color: var(--gold); }
+    .retreat-rule {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem 0;
+    }
+    .retreat-body {
+      font-size: 0.9rem;
+      color: rgba(255,252,247,0.7);
+      line-height: 2;
+      margin-bottom: 1rem;
+    }
+    .retreat-tags {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0 2rem;
+    }
+    .retreat-tag {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      border: 1px solid rgba(184,145,62,0.4);
+      padding: 0.3rem 0.8rem;
+      text-transform: uppercase;
+    }
+    .retreat-cta {
+      display: inline-block;
+      background: var(--cta);
+      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      padding: 0.9rem 2.2rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+      align-self: flex-start;
+    }
+    .retreat-cta:hover { opacity: 0.88; }
 
-/* ── Resonance Band ──────────────────────────────── */
-.resonance-band { background: var(--charcoal); padding: 7rem 2rem; }
-.resonance-inner { max-width: 860px; margin: 0 auto; }
-.resonance-band .section-label { color: var(--gold-lt); }
-.resonance-band .section-title { color: var(--cream); }
-.resonance-statements {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1px; background: rgba(184,150,90,0.15);
-  margin: 3.5rem 0; border: 1px solid rgba(184,150,90,0.15);
-}
-.resonance-item { background: var(--charcoal); padding: 2.4rem 2.2rem; transition: background 0.3s; }
-.resonance-item:hover { background: rgba(184,150,90,0.06); }
-.resonance-dash { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 0.8rem; display: block; opacity: 0.5; }
-.resonance-text { font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; font-style: italic; font-weight: 300; color: rgba(245,240,232,0.8); line-height: 1.85; }
-.resonance-closing { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-style: italic; font-weight: 300; color: rgba(245,240,232,0.6); text-align: center; line-height: 1.85; margin-top: 3rem; padding: 2.5rem; border-top: 1px solid rgba(184,150,90,0.18); }
+    /* ── CONTACT CTA STRIP ── */
+    .contact-strip {
+      background: var(--bg2);
+      padding: 5rem 3rem;
+      text-align: center;
+      border-top: 1px solid var(--faint);
+    }
+    .contact-strip h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 1rem;
+    }
+    .contact-strip p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
 
-/* ── About ───────────────────────────────────────── */
-.about-section { padding: 7rem 2rem; max-width: 820px; margin: 0 auto; }
-.about-centered { text-align: center; max-width: 620px; margin: 0 auto 1.8rem; font-size: 1rem; line-height: 2.1; color: var(--ash); font-weight: 300; }
-.pullquote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.45rem; font-style: italic; font-weight: 300;
-  color: var(--charcoal); text-align: center; line-height: 1.75;
-  margin: 3.5rem auto; max-width: 620px; padding: 0 1.2rem;
-  border-left: 2px solid var(--gold); border-right: 2px solid var(--gold);
-}
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text);
+      color: rgba(255,252,247,0.55);
+      padding: 3rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem 2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: rgba(255,252,247,0.9);
+      text-transform: uppercase;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a {
+      color: rgba(255,252,247,0.55);
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
 
-/* ── Solution Band ───────────────────────────────── */
-.solution-band { background: var(--warm-white); padding: 7rem 2rem; }
-.solution-inner { max-width: 900px; margin: 0 auto; }
-.solution-intro { text-align: center; max-width: 660px; margin: 0 auto 3.5rem; font-size: 1rem; line-height: 2.1; color: var(--ash); font-weight: 300; }
-.pillars-grid {
-  display: grid; grid-template-columns: 1fr 1fr 1fr;
-  gap: 2px; background: rgba(184,150,90,0.12);
-  border: 1px solid rgba(184,150,90,0.18); margin: 0 0 2.5rem;
-}
-.pillar { background: var(--warm-white); padding: 2.2rem 2rem; transition: background 0.3s; }
-.pillar:hover { background: rgba(184,150,90,0.04); }
-.pillar-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: rgba(184,150,90,0.22); line-height: 1; margin-bottom: 0.6rem; }
-.pillar-title { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.2em; color: var(--charcoal); text-transform: uppercase; margin-bottom: 0.9rem; }
-.pillar-desc { font-size: 0.86rem; line-height: 1.95; color: var(--ash); font-weight: 300; }
-.myth-box { padding: 2.5rem; background: rgba(42,37,32,0.04); border-left: 3px solid var(--gold); }
-.myth-label { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.28em; color: var(--gold); text-transform: uppercase; margin-bottom: 1rem; }
-.myth-text { font-size: 0.92rem; line-height: 2; color: var(--ash); font-weight: 300; }
-.myth-text strong { color: var(--charcoal); font-weight: 400; }
-.outcome-box {
-  margin-top: 3rem; max-width: 660px; margin-left: auto; margin-right: auto;
-  border: 1px solid rgba(184,150,90,0.35); padding: 2.5rem 3rem;
-  position: relative; background: rgba(184,150,90,0.04);
-}
-.outcome-label {
-  position: absolute; top: -0.75rem; left: 50%; transform: translateX(-50%);
-  background: var(--warm-white); padding: 0 1.2rem;
-  font-family: 'Cinzel', serif; font-size: 0.58rem;
-  letter-spacing: 0.32em; color: var(--gold); text-transform: uppercase;
-}
-.outcome-text {
-  font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300;
-  line-height: 1.95; color: var(--charcoal); text-align: center; font-style: italic;
-}
-
-/* ── Dark Band (Why Bali) ────────────────────────── */
-.dark-band { background: var(--charcoal); padding: 7rem 2rem; }
-.dark-band-inner { max-width: 820px; margin: 0 auto; }
-.dark-band .section-label { color: var(--gold-lt); }
-.dark-band .section-title { color: var(--cream); }
-.dark-band .body-text-dark {
-  font-size: 1rem; line-height: 2.1; color: rgba(245,240,232,0.68);
-  font-weight: 300; margin-bottom: 1.6rem; text-align: center;
-  max-width: 680px; margin-left: auto; margin-right: auto;
-}
-.dark-band .pullquote { color: var(--cream); border-color: var(--gold); }
-.mountain-row { display: flex; justify-content: center; gap: 5rem; margin: 2.5rem 0; flex-wrap: wrap; }
-.mountain-name { font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 0.2em; color: var(--gold-lt); text-align: center; }
-.mountain-dot { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 2rem; align-self: center; }
-
-/* arch photos */
-.arch-photos {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-  margin: 2.5rem auto; max-width: 820px;
-}
-.arch-photos img { width: 100%; height: 280px; object-fit: cover; filter: brightness(0.9) saturate(0.85); transition: filter 0.5s; }
-.arch-photos img:hover { filter: brightness(1) saturate(1); }
-
-/* ── Food Section ────────────────────────────────── */
-.food-section { padding: 7rem 0; }
-.food-header { text-align: center; padding: 0 2rem; max-width: 820px; margin: 0 auto 4rem; }
-.cook-img-wrap { max-width: 820px; margin: 0 auto 2rem; padding: 0 2rem; }
-.cook-img-wrap img { width: 100%; height: 380px; object-fit: cover; filter: brightness(0.92) saturate(0.88); }
-.food-gallery {
-  display: grid; grid-template-columns: 1fr 1fr;
-  grid-template-rows: 320px 270px;
-  gap: 6px; margin: 0 auto; max-width: 1000px; padding: 0 2rem;
-}
-.food-gallery img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.95) saturate(0.9); transition: filter 0.5s, transform 0.6s; }
-.food-gallery img:hover { filter: brightness(1) saturate(1); transform: scale(1.02); }
-.fi1 { grid-column: 1; grid-row: 1; }
-.fi2 { grid-column: 2; grid-row: 1 / 3; height: 100%; }
-.fi3 { grid-column: 1; grid-row: 2; }
-.food-body { max-width: 820px; margin: 3.5rem auto 0; padding: 0 2rem; }
-
-/* ── CTA Mid ─────────────────────────────────────── */
-.cta-block { background: linear-gradient(135deg, #2a2520 0%, #1c1810 100%); padding: 7rem 2rem; text-align: center; }
-.cta-block .section-label { color: var(--gold-lt); }
-.cta-block .section-title { color: var(--cream); }
-.cta-block .body-text-sm { font-size: 1rem; line-height: 2; color: rgba(245,240,232,0.6); max-width: 540px; margin: 0 auto 2.8rem; text-align: center; font-weight: 300; }
-
-/* ── Itinerary ───────────────────────────────────── */
-.itinerary-section { padding: 8rem 0; background: #f2ede4; overflow: hidden; }
-.itinerary-header { text-align: center; padding: 0 2rem; margin-bottom: 5rem; }
-.days-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--gold) transparent; padding: 0 3rem 3rem; }
-.days-wrapper::-webkit-scrollbar { height: 2px; }
-.days-wrapper::-webkit-scrollbar-thumb { background: var(--gold); }
-.days-track { display: flex; gap: 1.5rem; width: max-content; align-items: flex-start; }
-.day-block { width: 280px; flex-shrink: 0; background: var(--warm-white); border: 1px solid rgba(184,150,90,0.18); overflow: hidden; box-shadow: 0 2px 20px rgba(42,37,32,0.06); transition: box-shadow 0.3s, transform 0.3s; }
-.day-block:hover { box-shadow: 0 6px 32px rgba(42,37,32,0.12); transform: translateY(-3px); }
-.day-head { padding: 2rem 2rem 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; background: var(--warm-white); border-bottom: 1px solid rgba(184,150,90,0.12); }
-.day-num { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(184,150,90,0.14); line-height: 1; margin-bottom: 0.1rem; }
-.day-lbl { font-family: 'Cinzel', serif; font-size: 0.52rem; letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.1rem; }
-/* element circle icon */
-.day-icon {
-  width: 68px; height: 68px; border-radius: 50%;
-  border: 1px solid rgba(184,150,90,0.3);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.6rem; margin: 0 auto 1rem;
-  background: rgba(184,150,90,0.04);
-}
-.day-title { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 400; color: var(--charcoal); line-height: 1.2; margin-bottom: 0.3rem; }
-.day-tag { font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.2em; color: var(--mist); text-transform: uppercase; }
-.day-body { padding: 0.3rem 0 0.5rem; }
-.act { display: flex; align-items: baseline; padding: 0.52rem 1.5rem; border-bottom: 1px solid rgba(184,150,90,0.07); transition: background 0.18s; gap: 0.4rem; }
-.act:last-child { border-bottom: none; }
-.act:hover { background: rgba(184,150,90,0.04); }
-.act-en { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; white-space: nowrap; flex-shrink: 0; line-height: 1.8; }
-.act-zh { font-size: 0.72rem; color: #5a5248; font-weight: 300; line-height: 1.8; }
-
-.rb-head { display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 1.5rem 0.55rem; }
-.rb-n { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.2em; font-weight: 600; text-transform: uppercase; opacity: 0.9; white-space: nowrap; }
-.rb-t { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-style: italic; font-weight: 400; }
-.rb-d { font-size: 0.7rem; font-weight: 300; font-style: italic; padding: 0.1rem 1.5rem 0.75rem; opacity: 0.72; line-height: 1.55; }
-.swipe-hint { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 3rem; font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.3em; color: var(--mist); text-transform: uppercase; }
-.swipe-line { width: 40px; height: 1px; background: var(--gold); opacity: 0.5; }
-
-/* ── Final CTA ───────────────────────────────────── */
-.final-cta { background: var(--charcoal); padding: 9rem 2rem; text-align: center; }
-.final-cta .section-label { color: var(--gold-lt); }
-.final-cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 300; color: var(--cream); line-height: 1.25; margin-bottom: 1.5rem; }
-.final-cta-title em { font-style: italic; color: var(--gold-lt); }
-.final-cta-body { font-size: 1rem; line-height: 2; color: rgba(245,240,232,0.6); max-width: 540px; margin: 0 auto 1rem; font-weight: 300; }
-.final-cta-small { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.28em; color: rgba(245,240,232,0.3); margin-bottom: 3rem; text-transform: uppercase; }
-.final-cta-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
-.btn-ghost { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 0.38em; text-transform: uppercase; color: rgba(245,240,232,0.6); background: none; padding: 1.2rem 3rem; border: 1px solid rgba(245,240,232,0.25); cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.3s, color 0.3s; }
-.btn-ghost:hover { border-color: var(--gold-lt); color: var(--gold-lt); }
-.final-note { margin-top: 3rem; font-size: 0.8rem; color: rgba(245,240,232,0.3); font-weight: 200; letter-spacing: 0.08em; line-height: 1.8; }
-
-/* ── Page 2 — Five Layers ────────────────────────── */
-.map-hero { background: var(--charcoal); padding: 9rem 2rem 6rem; text-align: center; }
-.map-hero .section-label { color: var(--gold-lt); }
-.map-hero .section-title { color: var(--cream); margin-bottom: 1.2rem; }
-.map-hero .body-text-dark { font-size: 1rem; line-height: 2; color: rgba(245,240,232,0.6); max-width: 620px; margin: 0 auto; text-align: center; font-weight: 300; }
-.layers-container { max-width: 900px; margin: 0 auto; padding: 5rem 2rem; }
-.layer-card { display: grid; grid-template-columns: 180px 1fr; border: 1px solid rgba(184,150,90,0.15); border-bottom: none; overflow: hidden; transition: transform 0.3s; }
-.layer-card:last-child { border-bottom: 1px solid rgba(184,150,90,0.15); }
-.layer-card:hover { transform: translateX(4px); }
-.layer-left { padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-right: 1px solid rgba(184,150,90,0.15); }
-.layer-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
-.layer-element-name { font-family: 'Cinzel', serif; font-size: 0.95rem; letter-spacing: 0.15em; margin-bottom: 0.3rem; }
-.layer-zh { font-size: 0.72rem; color: var(--mist); letter-spacing: 0.12em; margin-bottom: 0.6rem; }
-.layer-days { font-family: 'Cinzel', serif; font-size: 0.55rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; }
-.layer-right { padding: 2.5rem; }
-.layer-direction { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.8rem; }
-.layer-question { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-style: italic; font-weight: 300; color: var(--charcoal); margin-bottom: 1rem; line-height: 1.5; }
-.layer-desc { font-size: 0.88rem; line-height: 1.95; color: var(--ash); font-weight: 300; }
-.layer-rb { margin-top: 1.2rem; padding: 0.8rem 1rem; background: rgba(184,150,90,0.06); border-left: 2px solid var(--gold); font-size: 0.78rem; color: var(--ash); font-style: italic; line-height: 1.6; }
-.layer-earth .layer-left { background: rgba(232,196,184,0.12); }
-.layer-earth .layer-element-name { color: #8a5a4a; }
-.layer-water .layer-left { background: rgba(184,212,232,0.12); }
-.layer-water .layer-element-name { color: #3a6888; }
-.layer-fire .layer-left { background: rgba(240,200,176,0.12); }
-.layer-fire .layer-element-name { color: #904828; }
-.layer-wind .layer-left { background: rgba(184,216,192,0.12); }
-.layer-wind .layer-element-name { color: #386848; }
-.layer-space .layer-left { background: rgba(200,192,224,0.12); }
-.layer-space .layer-element-name { color: #484080; }
-
-/* ── Responsive ──────────────────────────────────── */
-@media (max-width: 900px) {
-  .pillars-grid { grid-template-columns: 1fr 1fr; }
-  .layer-card { grid-template-columns: 140px 1fr; }
-}
-@media (max-width: 720px) {
-  .tab-logo { display: none; }
-  .tab-btn { padding: 0 0.9rem; font-size: 0.5rem; }
-  .resonance-statements { grid-template-columns: 1fr; }
-  .pillars-grid { grid-template-columns: 1fr; }
-  .arch-photos { grid-template-columns: 1fr; }
-  .arch-photos img { height: 220px; }
-  .food-gallery { grid-template-columns: 1fr; grid-template-rows: 260px 260px 260px; }
-  .fi2 { grid-column: 1; grid-row: 2; height: 260px; }
-  .fi3 { grid-column: 1; grid-row: 3; }
-  .cook-img-wrap img { height: 260px; }
-  .layer-card { grid-template-columns: 1fr; }
-  .layer-left { border-right: none; border-bottom: 1px solid rgba(184,150,90,0.15); padding: 1.5rem 2rem; }
-}
-@media (max-width: 480px) {
-  .hero-title { font-size: 2.4rem; }
-  .final-cta-buttons { flex-direction: column; align-items: center; }
-}
-</style>
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 4rem 1.5rem 3rem; }
+      .hero-right { height: 60vw; }
+      .about-strip { grid-template-columns: 1fr; }
+      .about-text { padding: 3rem 1.5rem; }
+      .about-bg { padding: 3rem 1.5rem; }
+      .services { padding: 3rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .retreat-feature { grid-template-columns: 1fr; }
+      .retreat-img { height: 55vw; }
+      .retreat-content { padding: 3rem 1.5rem; }
+      footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem 1.5rem; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+    @media (max-width: 520px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; }
+      .btn-primary, .btn-secondary { text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ═══ NAV ═══════════════════════════════════════ -->
-<nav class="tab-nav">
-  <div class="tab-logo">IGNI</div>
-  <button class="tab-btn active" onclick="showTab('tab1')">活動介紹 · 七日旅程</button>
-  <button class="tab-btn" onclick="showTab('tab2')">五層工作地圖</button>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">IGNI</a>
+    <ul class="nav-links">
+      <li><a href="https://asjudy60426-commits.github.io/website/activities/IGNI_about.html">關於 IGNI</a></li>
+      <li><a href="#services">服務</a></li>
+      <li><a href="#retreat">峇里島之旅</a></li>
+    </ul>
+    <a class="nav-cta" href="https://line.me/R/ti/p/@012gesap" target="_blank" rel="noopener">聯絡我們</a>
+  </nav>
 
-<!-- ═══ PAGE 1 ════════════════════════════════════ -->
-<div class="page active" id="tab1">
-
-<!-- HERO -->
-<div class="hero">
-  <img class="hero-img" src="img/view4.jpg" alt="峇里島火山景觀">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">IGNI Retreat · Bali · 7 Days</p>
-    <h1 class="hero-title">望向那座山<br><em>你看見的，是你自己</em></h1>
-    <p class="hero-sub">峇里島深度轉化七日營</p>
-    <p class="hero-tagline">在喧囂的決策邊緣，找回身體最純粹的定錨點。</p>
-  </div>
-  <div class="scroll-cue"><div class="scroll-line"></div><span>Scroll</span></div>
-</div>
-
-<!-- RESONANCE -->
-<div class="resonance-band reveal">
-  <div class="resonance-inner">
-    <p class="section-label">你是否也有這樣的時刻</p>
-    <div class="divider" style="background:var(--gold-lt);"></div>
-    <h2 class="section-title" style="color:var(--cream);">不是不夠努力，<br><em style="color:var(--gold-lt);">是太習慣用頭腦解決一切了</em></h2>
-    <div class="resonance-statements">
-      <div class="resonance-item"><span class="resonance-dash">—</span><p class="resonance-text">拼命努力工作、賺更多錢、開好車住好房，但總覺得心裡空了一塊？</p></div>
-      <div class="resonance-item"><span class="resonance-dash">—</span><p class="resonance-text">連療癒都要很努力，去上一堆課程，把身體搞得很累，但生活感覺也沒變比較好？</p></div>
-      <div class="resonance-item"><span class="resonance-dash">—</span><p class="resonance-text">身體發出的訊號，你已經很久沒有認真聽了。疲憊、緊繃、那個說不上來的空洞感。</p></div>
-      <div class="resonance-item"><span class="resonance-dash">—</span><p class="resonance-text">在某個夜深人靜的時刻，心裡不自覺地飄出一句懷疑：「這真的是我要的嗎？」</p></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">重生呼吸 · Rebirthing Breathwork</div>
+      <h1 class="hero-title">
+        從呼吸開始，<br>
+        讓身體<em>重新</em>校準
+      </h1>
+      <div class="hero-rule"></div>
+      <p class="hero-body">
+        IGNI 透過重生呼吸，連結身體、心理與靈性三個層面。每一口呼吸，都是釋放壓力、喚醒覺察、重建生命動能的開始。
+      </p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="https://asjudy60426-commits.github.io/website/activities/igni_retreat_bali.html" target="_blank">峇里島深度之旅</a>
+        <a class="btn-secondary" href="#services">查看所有服務</a>
+      </div>
     </div>
-    <p class="resonance-closing">這趟旅程，為那些已經準備好<br>認真對待自己生命的人而設計。</p>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<div class="about-section reveal">
-  <p class="section-label">關於這趟旅程</p>
-  <div class="divider"></div>
-  <h2 class="section-title">這是一趟充滿未知、<br><em>向內探索的旅程</em></h2>
-  <p class="about-centered">七天，你將完整走過 <a class="inline-link" onclick="showTab('tab2')">IGNI Method 五層工作地圖</a>——土、水、火、風、空——每一層都有對應的呼吸工作、知識課程與整合空間。</p>
-  <p class="about-centered" style="font-family:'Cormorant Garamond',serif;font-size:1.18rem;font-style:italic;color:var(--charcoal);">每一天的呼吸都是層層推進的基礎。</p>
-  <div class="pullquote">大多數人想改變，卻跳過了身體。重生呼吸 從身體開始、深入細胞，讓改變自然發生。</div>
-  <p class="about-centered">峇里島的火山、溫泉、瀑布、星空——每一個地景都是課程的一部分。你用身體和這個地方真正相遇。</p>
-</div>
-
-<!-- SOLUTION -->
-<div class="solution-band reveal">
-  <div class="solution-inner">
-    <p class="section-label" style="text-align:center;">The IGNI Approach</p>
-    <div class="divider"></div>
-    <h2 class="section-title">不是靈性逃避，<br><em>是一套有系統的自我調節技術</em></h2>
-    <p class="solution-intro">這趟重生之旅，會透過重生呼吸、結合神經科學與心理學知識，建立在清晰的邏輯與可重複的系統之上。</p>
-    <div class="pillars-grid">
-      <div class="pillar"><div class="pillar-num">01</div><div class="pillar-title">重生呼吸</div><div class="pillar-desc">Rebirthing Breathwork 是一種持續、有意識的呼吸技術。透過調整呼吸節律，直接影響自律神經系統，讓身體進入深層釋放狀態——讓積壓在細胞裡的情緒記憶，有機會真正流動、被看見，並整合進當下的意識。</div></div>
-      <div class="pillar"><div class="pillar-num">02</div><div class="pillar-title">五層結構邏輯</div><div class="pillar-desc">土、水、火、風、空，層層推進。每一層的工作是下一層的地基。這個設計確保你的身體真正走過每一個階段，而非只是在思想層面理解它。</div></div>
-      <div class="pillar"><div class="pillar-num">03</div><div class="pillar-title">身體先行</div><div class="pillar-desc">大多數的改變嘗試都從頭腦出發——新的信念、新的習慣、新的框架。IGNI 從身體開始。當神經系統真正重組，行為改變不再需要意志力來強撐。</div></div>
-      <div class="pillar"><div class="pillar-num">04</div><div class="pillar-title">神經科學</div><div class="pillar-desc">每一場呼吸工作都有神經生理學依據——從多重迷走神經理論到自律神經系統的調節，你不需要「相信」，你只需要帶著好奇心，觀察身體誠實的變化。</div></div>
-      <div class="pillar"><div class="pillar-num">05</div><div class="pillar-title">心理學</div><div class="pillar-desc">理解原生家庭模式、情緒反應模式，如何影響我們的生命，並在身體層次重新改寫程式。</div></div>
-      <div class="pillar"><div class="pillar-num">06</div><div class="pillar-title">自然環境</div><div class="pillar-desc">海拔兩千米、兩座火山盡收眼底、溫泉、瀑布、星空——這些不是配景，是課程的一部分。土地的能量支持著你的蛻變，這是任何室內課程無可取代的奢華。</div></div>
+    <div class="hero-right">
+      <img src="img/bali_封面.png" alt="峇里島重生之旅" onerror="this.style.background='#F3EEE7';this.style.minHeight='100%';">
+      <div class="hero-right-overlay">
+        <div class="overlay-label">2026 深度探索</div>
+        <div class="overlay-title">重生之旅 · 峇里島<br>七日深度轉化</div>
+        <a class="overlay-link" href="https://asjudy60426-commits.github.io/website/activities/igni_retreat_bali.html" target="_blank">了解詳情</a>
+      </div>
     </div>
-    <div class="myth-box">
-      <div class="myth-label">關於這趟旅程，我們想說清楚的是</div>
-      <p class="myth-text">這是一個動態的、需要你親身參與的過程。<strong>邀請你帶著覺知來，帶著好奇心進入，讓身體真實感受每一個時刻的變化。當身體鬆開了，改變就自然發生了。</strong></p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ABOUT -->
+  <section class="about-strip">
+    <div class="about-text">
+      <div class="section-eyebrow">IGNI 是什麼</div>
+      <h2 class="section-title">不是靈性逃避，<br>是<em>有系統的</em>自我調節</h2>
+      <p class="section-body">
+        IGNI Method 建立在神經科學與心理學的清晰邏輯之上。透過重生呼吸，直接影響自律神經系統，讓積壓在細胞裡的情緒記憶，有機會真正流動、被看見，並整合進當下的意識。
+      </p>
+      <a class="btn-secondary" href="https://asjudy60426-commits.github.io/website/activities/IGNI_about.html" target="_blank">關於 IGNI</a>
     </div>
-    <div class="outcome-box">
-      <span class="outcome-label">結束後你將會得到</span>
-      <p class="outcome-text">結束這七天、連續九場重生呼吸後，<br>你將會完整了解並掌握呼吸方法，<br>並且能夠為自己做重生呼吸。</p>
+    <div class="about-bg">
+      <blockquote class="about-quote">
+        呼吸，連結身心靈。<br>重生，從每一口開始。
+      </blockquote>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- WHY BALI -->
-<div class="dark-band reveal">
-  <div class="dark-band-inner">
-    <p class="section-label">為何我們選在峇里島</p>
-    <div class="divider" style="background:var(--gold-lt);"></div>
-    <h2 class="section-title">你可能去過峇里島，<br><em>但你絕對沒來過這裡</em></h2>
-    <div class="mountain-row">
-      <div class="mountain-name">Mt. Agung</div>
-      <div class="mountain-dot">·</div>
-      <div class="mountain-name">Mt. Batur</div>
+  <hr class="divider">
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-header">
+      <div class="section-eyebrow">服務項目</div>
+      <h2 class="section-title" style="margin:0 auto;max-width:500px;text-align:center;">找到最適合你的<em>呼吸體驗</em></h2>
     </div>
-    <p class="body-text-dark">峇里島最重要的兩座山，在島民心中宛如神的居所、生活的靈性軸心。這裡的人們敬天地、禮神明，家家戶戶可見祭祀、花供。這不是迷信，這是與自然萬物共生，與內在神性的致意。</p>
-    <div class="pullquote">我們的七日旅程場地位處海拔兩千多米，從半開放的教室露台向外望去，兩座火山盡收眼底，與一望無際的田野、直達海岸線。</div>
+    <div class="services-grid">
 
-    <!-- 莊園主人從歐洲返鄉 -->
-    <p class="body-text-dark">莊園主人從歐洲返鄉，決定以生物動力農法開拓這片土地。所有建設以自然為基礎，用最少的破壞與之共生。你所看到的建物，皆是天然木材、竹子、廢物再生建構而成。或許不如市區度假酒店那樣富麗堂皇，但這樣充滿手感的建築之美，對我們來說是真正的自然奢華。</p>
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-title">一對一<br>重生呼吸個案</div>
+        <p class="service-desc">深度個人化的呼吸引導，針對你當下的身心狀態，量身打造釋放與整合的歷程。</p>
+        <a class="service-link" href="https://asjudy60426-commits.github.io/website/activities/igni_1on1session.html" target="_blank">了解詳情</a>
+      </div>
 
-    <!-- arch photos -->
-    <div class="arch-photos">
-      <img src="img/arch1.jpg" alt="莊園建築 — 天然木材與竹構">
-      <img src="img/arch2.jpg" alt="莊園建築 — 手工建造之美">
+      <div class="service-card">
+        <div class="service-badge">線上課程</div>
+        <div class="service-num">02</div>
+        <div class="service-title">早晨呼吸圈</div>
+        <p class="service-desc">以呼吸開啟一天，在群體共鳴的場域中，喚醒覺察力，為身心注入清晨的生命力。</p>
+        <a class="service-link" href="https://asjudy60426-commits.github.io/website/activities/morning_breath_circle.html" target="_blank">了解詳情</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-title">三五好友<br>包班體驗</div>
+        <p class="service-desc">與最親近的人一起呼吸、釋放、深聊。這不是娛樂，是真正連結彼此的空間。</p>
+        <a class="service-link" href="https://asjudy60426-commits.github.io/website/activities/igni_friends" target="_blank">了解詳情</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-title">企業包場<br>Corporate</div>
+        <p class="service-desc">同樣是 team building 預算，讓它發揮更深的價值——為團隊提供真正有感的身心充電。</p>
+        <a class="service-link" href="https://asjudy60426-commits.github.io/website/activities/igni_corporate" target="_blank">了解詳情</a>
+      </div>
+
     </div>
+  </section>
 
-    <p class="body-text-dark" style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:rgba(245,240,232,0.72);">呼吸，就是生命。我們想要將這樣充滿生命力的場域，帶入課程之中。</p>
-  </div>
-</div>
+  <hr class="divider">
 
-<!-- FOOD -->
-<div class="food-section reveal">
-  <div class="food-header">
-    <p class="section-label">What We Eat</p>
-    <div class="divider"></div>
-    <h2 class="section-title">最奢華的禮物，<br><em>來自土地本身</em></h2>
-  </div>
-
-  <!-- cook1 — 料理現場 -->
-  <div class="cook-img-wrap">
-    <img src="img/cook1.jpg" alt="莊園夥伴親手料理蔬食">
-  </div>
-
-  <!-- food gallery -->
-  <div class="food-gallery">
-    <img class="fi1" src="img/food1.jpg" alt="蔬食料理">
-    <img class="fi2" src="img/food2.jpg" alt="蔬食饗宴">
-    <img class="fi3" src="img/food3.jpg" alt="在地食材">
-  </div>
-
-  <div class="food-body">
-    <p class="body-text" style="text-align:center;">這七日的旅程，每日餐食皆由莊園夥伴們親自料理。早晨會遇見夥伴們提著籃子上山，摘採新鮮蔬菜，用傳統的竹編容器炊飯。對我們來說，這是最奢華的禮物。</p>
-    <p class="body-text" style="text-align:center;">將順應宇宙時序、自然法則的食物吃下肚，也是在幫助我們調頻。自然土地、場域、食物都在支持著我們的蛻變，而我們能為自己做的，就是好好呼吸。</p>
-    <p class="body-text" style="text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--sage);">全程蔬食，用最清淨的身體，打開覺知，體會生命的每一刻。</p>
-  </div>
-</div>
-
-<!-- CTA MID -->
-<div class="cta-block reveal">
-  <p class="section-label">你感受到召喚了嗎</p>
-  <div class="divider" style="background:var(--gold-lt);"></div>
-  <h2 class="section-title" style="color:var(--cream);">若你的身體<em style="color:var(--gold-lt);">已有所震動</em></h2>
-  <p class="body-text-sm">看到這裡，若你已經感到身體有所震動、感受到來自內在的召喚，歡迎你一同趟上這段旅程。</p>
-  <a class="cta-btn" href="https://forms.gle/zkbBryL3MF3SHgVw7" target="_blank">我想踏上旅程</a>
-</div>
-
-<!-- ITINERARY -->
-<div class="itinerary-section">
-  <div class="itinerary-header reveal">
-    <p class="section-label">Seven Days · One Journey</p>
-    <div class="divider"></div>
-    <h2 class="section-title">七日行程</h2>
-    <p class="body-text" style="text-align:center;max-width:480px;margin:0 auto;">每一天都是一個完整的宇宙。向右滑動，展開你的旅程。</p>
-  </div>
-
-  <div class="days-wrapper">
-    <div class="days-track">
-
-<!-- DAY 1 -->
-<div class="day-block">
-  <div class="day-head">
-    <div class="day-num">01</div>
-    <div class="day-lbl">Day One · Arrival</div>
-    <div class="day-icon" style="border-color:rgba(232,196,184,0.5);">⊕</div>
-    <div class="day-title">落地・存在</div>
-    <span class="day-tag">土｜存在層</span>
-  </div>
-  <div class="day-body">
-    <div class="rb-block" style="background:rgba(232,196,184,0.12);border-left:3px solid #e8c4b8;">
-      <div class="rb-head" style="background:#e8c4b8;"><span class="rb-n" style="color:#8a5a4a;">RB1</span><span class="rb-t" style="color:#8a5a4a;">落地</span></div>
-      <div class="rb-d" style="color:#8a5a4a;">扎根・連結身體・允許存在</div>
+  <!-- RETREAT FEATURE -->
+  <section class="retreat-feature" id="retreat">
+    <div class="retreat-img">
+      <img src="img/bali_封面.png" alt="峇里島七日深度轉化" onerror="this.style.background='#2C2416';">
     </div>
-    <div class="act"><span class="act-en">Arrived｜</span><span class="act-zh">接送。抵達莊園</span></div>
-    <div class="act"><span class="act-en">Welcome｜</span><span class="act-zh">歡迎</span></div>
-    <div class="act"><span class="act-en">Dinner｜</span><span class="act-zh">蔬食饗宴</span></div>
-    <div class="act"><span class="act-en">Circle｜</span><span class="act-zh">分享圈</span></div>
-  </div>
-</div>
-
-<!-- DAY 2 -->
-<div class="day-block">
-  <div class="day-head">
-    <div class="day-num">02</div>
-    <div class="day-lbl">Day Two · Feeling</div>
-    <div class="day-icon" style="border-color:rgba(184,212,232,0.5);">☽</div>
-    <div class="day-title">流動・釋放</div>
-    <span class="day-tag">水｜感受層</span>
-  </div>
-  <div class="day-body">
-    <div class="act"><span class="act-en">Morning｜</span><span class="act-zh">早晨冥想</span></div>
-    <div class="act"><span class="act-en">Breakfast｜</span><span class="act-zh">輕盈早餐</span></div>
-    <div class="rb-block" style="background:rgba(184,212,232,0.12);border-left:3px solid #b8d4e8;">
-      <div class="rb-head" style="background:#b8d4e8;"><span class="rb-n" style="color:#3a6888;">RB2</span><span class="rb-t" style="color:#3a6888;">流動</span></div>
-      <div class="rb-d" style="color:#3a6888;">情緒・流動・釋放</div>
+    <div class="retreat-content">
+      <div class="retreat-eyebrow">2026 深度探索</div>
+      <h2 class="retreat-title">
+        望向那座山，<br>
+        你看見的，<br>
+        <em>是你自己</em>
+      </h2>
+      <div class="retreat-rule"></div>
+      <p class="retreat-body">七天，你將完整走過 IGNI Method 五層工作地圖——土、水、火、風、空。峇里島的火山、溫泉、瀑布、星空，每一個地景都是課程的一部分。</p>
+      <p class="retreat-body">這趟旅程，為那些已經準備好認真對待自己生命的人而設計。</p>
+      <div class="retreat-tags">
+        <span class="retreat-tag">七日沉浸</span>
+        <span class="retreat-tag">重生呼吸</span>
+        <span class="retreat-tag">五層工作地圖</span>
+        <span class="retreat-tag">峇里島火山</span>
+      </div>
+      <a class="retreat-cta" href="https://asjudy60426-commits.github.io/website/activities/igni_retreat_bali.html" target="_blank">查看完整行程 →</a>
     </div>
-    <div class="act"><span class="act-en">Lunch｜</span><span class="act-zh">療癒午餐</span></div>
-    <div class="act"><span class="act-en">Circle｜</span><span class="act-zh">分享圈</span></div>
-    <div class="act"><span class="act-en">Family｜</span><span class="act-zh">原生家庭</span></div>
-    <div class="act"><span class="act-en">Writing｜</span><span class="act-zh">自由書寫</span></div>
-    <div class="act"><span class="act-en">Dinner｜</span><span class="act-zh">蔬食饗宴</span></div>
-    <div class="act"><span class="act-en">Story｜</span><span class="act-zh">生之故事</span></div>
-  </div>
-</div>
+  </section>
 
-<!-- DAY 3 -->
-<div class="day-block">
-  <div class="day-head">
-    <div class="day-num">03</div>
-    <div class="day-lbl">Day Three · Rebirth</div>
-    <div class="day-icon" style="border-color:rgba(170,204,224,0.5);">☽</div>
-    <div class="day-title">回到源頭</div>
-    <span class="day-tag">水（溫水）｜重生層</span>
-  </div>
-  <div class="day-body">
-    <div class="rb-block" style="background:rgba(170,204,224,0.12);border-left:3px solid #aacce0;">
-      <div class="rb-head" style="background:#aacce0;"><span class="rb-n" style="color:#2a6080;">RB3</span><span class="rb-t" style="color:#2a6080;">回到源頭</span></div>
-      <div class="rb-d" style="color:#2a6080;">出生記憶・三層細胞整合</div>
-    </div>
-    <div class="act"><span class="act-en">Lunch｜</span><span class="act-zh">療癒午餐</span></div>
-    <div class="act"><span class="act-en">Circle｜</span><span class="act-zh">分享圈</span></div>
-    <div class="act"><span class="act-en">Pattern｜</span><span class="act-zh">生命模式</span></div>
-    <div class="act"><span class="act-en">Dinner｜</span><span class="act-zh">蔬食饗宴</span></div>
-    <div class="act"><span class="act-en">Fire｜</span><span class="act-zh">火的力量</span></div>
-  </div>
-</div>
+  <!-- CONTACT STRIP -->
+  <section class="contact-strip">
+    <div class="section-eyebrow" style="margin-bottom:1rem;">開始你的旅程</div>
+    <h2>有任何問題，歡迎與我們聯絡</h2>
+    <p>每個人的需求不同——我們在 LINE 等你。</p>
+    <a class="btn-primary" href="https://line.me/R/ti/p/@012gesap" target="_blank" rel="noopener">聯絡我們 →</a>
+  </section>
 
-<!-- DAY 4 -->
-<div class="day-block">
-  <div class="day-head">
-    <div class="day-num">04</div>
-    <div class="day-lbl">Day Four · Fire</div>
-    <div class="day-icon" style="border-color:rgba(240,200,176,0.5);">△</div>
-    <div class="day-title">啟動。生命之火</div>
-    <span class="day-tag">火｜力量層</span>
-  </div>
-  <div class="day-body">
-    <div class="rb-block" style="background:rgba(240,200,176,0.12);border-left:3px solid #f0c8b0;">
-      <div class="rb-head" style="background:#f0c8b0;"><span class="rb-n" style="color:#904828;">RB4</span><span class="rb-t" style="color:#904828;">火。毀滅與重生</span></div>
-      <div class="rb-d" style="color:#904828;">轉化能量・啟動太陽神經叢</div>
-    </div>
-    <div class="act"><span class="act-en">Breakfast｜</span><span class="act-zh">豐盛早餐</span></div>
-    <div class="act"><span class="act-en">Circle｜</span><span class="act-zh">分享圈</span></div>
-    <div class="act"><span class="act-en">Drawing｜</span><span class="act-zh">力量繪圖</span></div>
-    <div class="act"><span class="act-en">Lunch｜</span><span class="act-zh">療癒午餐</span></div>
-    <div class="act"><span class="act-en">Sound｜</span><span class="act-zh">聲音探索</span></div>
-    <div class="rb-block" style="background:rgba(240,200,176,0.12);border-left:3px solid #f0c8b0;">
-      <div class="rb-head" style="background:#f0c8b0;"><span class="rb-n" style="color:#904828;">RB5</span><span class="rb-t" style="color:#904828;">舞動 Movement</span></div>
-      <div class="rb-d" style="color:#904828;">鬆動。延展。表達</div>
-    </div>
-    <div class="act"><span class="act-en">Dinner｜</span><span class="act-zh">蔬食饗宴</span></div>
-    <div class="act"><span class="act-en">Ritual｜</span><span class="act-zh">秋分儀式</span></div>
-  </div>
-</div>
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">IGNI</span>
+    <ul class="footer-links">
+      <li><a href="https://asjudy60426-commits.github.io/website/activities/IGNI_about.html" target="_blank">關於 IGNI</a></li>
+      <li><a href="https://asjudy60426-commits.github.io/website/activities/igni_retreat_bali.html" target="_blank">峇里島之旅</a></li>
+      <li><a href="https://asjudy60426-commits.github.io/website/activities/igni_1on1session.html" target="_blank">一對一個案</a></li>
+      <li><a href="https://asjudy60426-commits.github.io/website/activities/morning_breath_circle.html" target="_blank">早晨呼吸圈</a></li>
+      <li><a href="https://asjudy60426-commits.github.io/website/activities/igni_corporate" target="_blank">企業包場</a></li>
+      <li><a href="https://asjudy60426-commits.github.io/website/activities/igni_friends" target="_blank">好友包班</a></li>
+      <li><a href="https://line.me/R/ti/p/@012gesap" target="_blank">LINE 聯絡</a></li>
+    </ul>
+    <span>© 2025 IGNI Studio</span>
+  </footer>
 
-<!-- DAY 5 -->
-<div class="day-block">
-  <div class="day-head">
-    <div class="day-num">05</div>
-    <div class="day-lbl">Day Five · Wind</div>
-    <div class="day-icon" style="border-color:rgba(184,216,192,0.5);">☊</div>
-    <div class="day-title">轉化。創造力</div>
-    <span class="day-tag">風｜表達層</span>
-  </div>
-  <div class="day-body">
-    <div class="act"><span class="act-en">Morning｜</span><span class="act-zh">早晨冥想</span></div>
-    <div class="act"><span class="act-en">Breakfast｜</span><span class="act-zh">輕盈早餐</span></div>
-    <div class="act"><span class="act-en">Walk｜</span><span class="act-zh">行禪</span></div>
-    <div class="rb-block" style="background:rgba(184,216,192,0.12);border-left:3px solid #b8d8c0;">
-      <div class="rb-head" style="background:#b8d8c0;"><span class="rb-n" style="color:#386848;">RB6</span><span class="rb-t" style="color:#386848;">轉化的力量</span></div>
-      <div class="rb-d" style="color:#386848;">恐懼即創造力・找回表達與聲音</div>
-    </div>
-    <div class="act"><span class="act-en">Lunch｜</span><span class="act-zh">療癒午餐</span></div>
-    <div class="act"><span class="act-en">Circle｜</span><span class="act-zh">分享圈</span></div>
-    <div class="act"><span class="act-en">Express｜</span><span class="act-zh">溝通與表達</span></div>
-    <div class="act"><span class="act-en">Dinner｜</span><span class="act-zh">蔬食饗宴</span></div>
-  </div>
-</div>
-
-<!-- DAY 6 -->
-<div class="day-block">
-  <div class="day-head">
-    <div class="day-num">06</div>
-    <div class="day-lbl">Day Six · Space</div>
-    <div class="day-icon" style="border-color:rgba(200,192,224,0.5);">✦</div>
-    <div class="day-title">接收。感恩</div>
-    <span class="day-tag">空｜整合層</span>
-  </div>
-  <div class="day-body">
-    <div class="act"><span class="act-en">Morning｜</span><span class="act-zh">早晨冥想</span></div>
-    <div class="act"><span class="act-en">Breakfast｜</span><span class="act-zh">輕盈早餐</span></div>
-    <div class="act"><span class="act-en">Manifest｜</span><span class="act-zh">顯化</span></div>
-    <div class="rb-block" style="background:rgba(200,192,224,0.12);border-left:3px solid #c8c0e0;">
-      <div class="rb-head" style="background:#c8c0e0;"><span class="rb-n" style="color:#484080;">RB7</span><span class="rb-t" style="color:#484080;">整合</span></div>
-      <div class="rb-d" style="color:#484080;">連結高維意識，顯化力量</div>
-    </div>
-    <div class="act"><span class="act-en">Lunch｜</span><span class="act-zh">療癒午餐</span></div>
-    <div class="act"><span class="act-en">Blueprint｜</span><span class="act-zh">生命藍圖</span></div>
-    <div class="act"><span class="act-en">Action｜</span><span class="act-zh">行動實踐</span></div>
-    <div class="act"><span class="act-en">Dinner｜</span><span class="act-zh">蔬食饗宴</span></div>
-    <div class="rb-block" style="background:rgba(200,192,224,0.12);border-left:3px solid #c8c0e0;">
-      <div class="rb-head" style="background:#c8c0e0;"><span class="rb-n" style="color:#484080;">RB8</span><span class="rb-t" style="color:#484080;">星空</span></div>
-      <div class="rb-d" style="color:#484080;">以太元素 × 星空 × 滿月儀式</div>
-    </div>
-  </div>
-</div>
-
-<!-- DAY 7 -->
-<div class="day-block">
-  <div class="day-head">
-    <div class="day-num">07</div>
-    <div class="day-lbl">Day Seven · Return</div>
-    <div class="day-icon" style="border-color:rgba(224,204,192,0.5);">◎</div>
-    <div class="day-title">整合。圓滿</div>
-    <span class="day-tag">落地｜整合層</span>
-  </div>
-  <div class="day-body">
-    <div class="act"><span class="act-en">Morning｜</span><span class="act-zh">早晨冥想</span></div>
-    <div class="rb-block" style="background:rgba(224,204,192,0.12);border-left:3px solid #e0ccc0;">
-      <div class="rb-head" style="background:#e0ccc0;"><span class="rb-n" style="color:#6a4838;">RB9</span><span class="rb-t" style="color:#6a4838;">圓滿</span></div>
-      <div class="rb-d" style="color:#6a4838;">與萬物融合</div>
-    </div>
-    <div class="act"><span class="act-en">Breakfast｜</span><span class="act-zh">豐盛早餐</span></div>
-    <div class="act"><span class="act-en">Ceremony｜</span><span class="act-zh">結業儀式</span></div>
-    <div class="act"><span class="act-en">Rebirth｜</span><span class="act-zh">蛻變。重生</span></div>
-  </div>
-</div>
-
-    </div><!-- /days-track -->
-  </div><!-- /days-wrapper -->
-  <div class="swipe-hint"><div class="swipe-line"></div><span>Swipe to explore</span><div class="swipe-line"></div></div>
-</div><!-- /itinerary-section -->
-
-<!-- FINAL CTA -->
-<div class="final-cta reveal">
-  <p class="section-label">準備好了，就從這裡開始</p>
-  <div class="divider" style="background:var(--gold-lt);"></div>
-  <h2 class="final-cta-title">這趟旅程<em>不收走馬看花的人</em>，<br>只為真正準備好的人而開</h2>
-  <p class="final-cta-body">名額有限，且每一位參與者在出發前都會經過一次前導對話——確認這趟旅程與你當下的狀態真正契合。</p>
-  <p class="final-cta-small">· 本期名額有限 · 申請後 48 小時內回覆 ·</p>
-  <div class="final-cta-buttons">
-    <a class="btn-ghost" href="https://line.me/R/ti/p/@012gesap" target="_blank">預約 15 分鐘前導對話</a>
-  </div>
-  <p class="final-note">前導對話的目的，是讓你和我們都確認這是對的時機。</p>
-</div>
-
-</div><!-- /tab1 -->
-
-
-<!-- ═══ PAGE 2 — FIVE LAYERS ═══════════════════════ -->
-<div class="page" id="tab2">
-  <div class="map-hero">
-    <p class="section-label">IGNI Method</p>
-    <div class="divider" style="background:var(--gold-lt);"></div>
-    <h2 class="section-title" style="color:var(--cream);">五層工作地圖</h2>
-    <p class="body-text-dark">重生之旅是完整的沈浸式體驗，其不可取代性在於進程的連續性，這種疊加效應所能帶來的翻轉是超乎預期的。</p>
-  </div>
-
-  <div class="layers-container">
-    <div class="layer-card layer-earth reveal">
-      <div class="layer-left"><span class="layer-icon">⊕</span><div class="layer-element-name">Earth · 土</div><div class="layer-zh">存在層</div><div class="layer-days">DAY 1–2</div></div>
-      <div class="layer-right"><div class="layer-direction">向內・向下・扎根</div><div class="layer-question">我允許自己存在嗎？</div><div class="layer-desc">土元素工作從最基本的地方開始——允許自己真正抵達。擁有你的身體，你才會存在，所有的想望與前進，都需要身體存在才得以發生，這是我們生命最根本的載體。</div><div class="layer-rb">RB1｜土元素呼吸 — 扎根・連結身體・允許存在</div></div>
-    </div>
-    <div class="layer-card layer-water reveal">
-      <div class="layer-left"><span class="layer-icon">☽</span><div class="layer-element-name">Water · 水</div><div class="layer-zh">感受層</div><div class="layer-days">DAY 2–3</div></div>
-      <div class="layer-right"><div class="layer-direction">向內・融化・流動</div><div class="layer-question">我允許自己感受嗎？什麼被凍住了？</div><div class="layer-desc">細胞記憶儲存著過去的情緒模式，神經系統決定你對情境的反應。水元素的工作，是讓凍住的感受開始流動。溫水重生呼吸更深入——讓身體回到子宮狀態，讓出生記憶的細胞印記有機會被重新看見、理解，甚至改寫。</div><div class="layer-rb">RB2｜水元素呼吸 — 情緒・流動・釋放<br>RB3｜溫水重生呼吸 — 回到源頭</div></div>
-    </div>
-    <div class="layer-card layer-fire reveal">
-      <div class="layer-left"><span class="layer-icon">△</span><div class="layer-element-name">Fire · 火</div><div class="layer-zh">力量層</div><div class="layer-days">DAY 4</div></div>
-      <div class="layer-right"><div class="layer-direction">轉化點，方向翻轉</div><div class="layer-question">啟動生命之火</div><div class="layer-desc">從身體的鬆開、情緒的流動，到內在火元素的啟動，連結內核力量，激活太陽神經叢——你的意志中心。</div><div class="layer-rb">RB4｜火元素呼吸 — 轉化能量・啟動內在力量<br>RB5｜舞動呼吸 — 鬆動。延展。表達</div></div>
-    </div>
-    <div class="layer-card layer-wind reveal">
-      <div class="layer-left"><span class="layer-icon">☊</span><div class="layer-element-name">Wind · 風</div><div class="layer-zh">表達層</div><div class="layer-days">DAY 5</div></div>
-      <div class="layer-right"><div class="layer-direction">向外，穿透邊界</div><div class="layer-question">我允許自己被看見嗎？</div><div class="layer-desc">我們最深的恐懼，往往有著無限的創造力，當你不再壓抑，而是練習駕馭能量，所有萬物都能為你所用。Everything happens for you, not to you.</div><div class="layer-rb">RB6｜風元素呼吸 — 觀。馭。表達</div></div>
-    </div>
-    <div class="layer-card layer-space reveal">
-      <div class="layer-left"><span class="layer-icon">✦</span><div class="layer-element-name">Ether · 空</div><div class="layer-zh">整合層</div><div class="layer-days">DAY 6–7</div></div>
-      <div class="layer-right"><div class="layer-direction">由中軸向高維</div><div class="layer-question">超越所有角色與故事——我是誰？</div><div class="layer-desc">空性不是虛無。是沒有執著之後，才能真正接收的狀態。整合層是五層工作地圖的最高點。在星空下完成以太元素呼吸，感知自身存在與萬物的關係。</div><div class="layer-rb">RB7｜整合 — 連結高維意識，顯化力量<br>RB8｜星空 — 乙太元素 × 星空<br>RB9｜圓滿 — 與萬物融合</div></div>
-    </div>
-  </div>
-
-  <div style="text-align:center;padding:5rem 2rem;">
-    <a class="cta-btn" href="https://forms.gle/zkbBryL3MF3SHgVw7" target="_blank">我想踏上旅程</a>
-  </div>
-</div><!-- /tab2 -->
-
-
-<script>
-(function () {
-  'use strict';
-
-  function showTab(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    const idx = id === 'tab1' ? 0 : 1;
-    document.querySelectorAll('.tab-btn')[idx].classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setTimeout(triggerReveal, 80);
-  }
-  window.showTab = showTab;
-
-  function triggerReveal() {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
-  }
-
-  triggerReveal();
-})();
-</script>
 </body>
 </html>
