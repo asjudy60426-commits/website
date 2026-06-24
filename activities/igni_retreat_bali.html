@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IGNI Retreat｜重生之旅・峇里島</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+TC:wght@200;300;400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&amp;family=Noto+Serif+TC:wght@200;300;400&amp;family=Cinzel:wght@400;600&amp;display=swap" rel="stylesheet">
 <style>
 :root{--cream:#F3EEE7;--warm-white:#fffcf7;--charcoal:#2C2416;--ash:#7A7060;--mist:#8a9090;--sage:#7a8c74;--gold:#B8913E;--gold-light:#D4A86A;}
 *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
@@ -324,15 +324,218 @@ body{background:var(--warm-white);color:var(--charcoal);font-family:'Noto Serif 
   .mob-br{display:block;}
   .scroll-cue{display:none;}
 }
+
+
+/* SHARED SITE NAVIGATION */
+.site-nav,
+.site-nav * ,
+.site-footer,
+.site-footer * { box-sizing: border-box; }
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 76px;
+  padding: 1rem 2rem;
+  background: rgba(255,252,247,0.94);
+  border-bottom: 1px solid rgba(44,36,22,0.14);
+  backdrop-filter: blur(8px);
+}
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 1;
+}
+.site-logo img {
+  display: block;
+  width: 96px;
+  height: auto;
+}
+.site-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.site-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #B8913E;
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+.site-home-link:hover { color: #B85C40; }
+.site-home-link svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  fill: none;
+}
+.site-menu {
+  position: relative;
+  line-height: 1;
+}
+.site-menu summary {
+  width: 2.3rem;
+  height: 2.3rem;
+  border: 1px solid rgba(184,145,62,0.55);
+  border-radius: 50%;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  list-style: none;
+  background: rgba(255,252,247,0.75);
+}
+.site-menu summary::-webkit-details-marker { display: none; }
+.site-menu summary span {
+  width: 15px;
+  height: 1px;
+  background: #B8913E;
+  display: block;
+}
+.site-menu-panel {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 0;
+  min-width: 240px;
+  padding: 0.75rem 0;
+  background: #fffcf7;
+  border: 1px solid rgba(184,145,62,0.32);
+  box-shadow: 0 18px 44px rgba(44,36,22,0.12);
+}
+.site-menu-panel a {
+  display: block;
+  padding: 0.65rem 1rem;
+  color: #2C2416;
+  text-decoration: none;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.site-menu-panel a:hover {
+  color: #B85C40;
+  background: #F3EEE7;
+}
+.site-footer {
+  background: #2C2416;
+  padding: 2.4rem 2rem;
+  border-top: 1px solid rgba(255,252,247,0.12);
+}
+.site-footer-inner {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+.site-footer-brand {
+  color: rgba(255,252,247,0.42);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.site-footer-services {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem 1.25rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.site-footer-services a {
+  color: rgba(255,252,247,0.68);
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.site-footer-services a:hover {
+  color: #fffcf7;
+  transform: translateY(-1px);
+}
+.site-footer .site-home-link { color: rgba(255,252,247,0.72); }
+.site-footer .site-home-link:hover { color: #fffcf7; }
+@media (max-width: 640px) {
+  .site-nav {
+    min-height: 68px;
+    padding: 0.85rem 1rem;
+  }
+  .site-logo img { width: 82px; }
+  .site-home-link span { display: none; }
+  .site-menu-panel {
+    position: fixed;
+    top: 68px;
+    right: 1rem;
+    left: 1rem;
+    min-width: 0;
+  }
+  .site-menu-panel a {
+    white-space: normal;
+    text-align: left;
+  }
+  .site-footer-inner {
+    align-items: stretch;
+    text-align: left;
+  }
+  .site-footer-services {
+    justify-content: flex-start;
+  }
+  .site-footer-services a {
+    width: calc(50% - 0.625rem);
+  }
+  .site-footer .site-home-link span { display: inline; }
+}
+
 </style>
 </head>
 <body>
 
-<nav class="tab-nav">
-  <div class="tab-logo">IGNI</div>
-  <button class="tab-btn active" onclick="showTab('tab1')">活動介紹 · 七日旅程</button>
-  <button class="tab-btn" onclick="showTab('tab2')">五層工作地圖</button>
-
+<nav class="site-nav" aria-label="主要導覽">
+  <a class="site-logo" href="https://asjudy60426-commits.github.io/website/" aria-label="回到 IGNI 首頁">
+    <img src="../img/黑色logo.PNG" alt="IGNI">
+  </a>
+  <div class="site-nav-actions">
+    <a class="site-home-link" href="https://asjudy60426-commits.github.io/website/" aria-label="回首頁">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 11.5 12 4l9 7.5"></path>
+          <path d="M5.5 10.5V20h13v-9.5"></path>
+          <path d="M9.5 20v-6h5v6"></path>
+        </svg>
+      <span>回首頁</span>
+    </a>
+    <details class="site-menu">
+      <summary aria-label="開啟服務選單">
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
+      <div class="site-menu-panel">
+        <a href="https://asjudy60426-commits.github.io/website/activities/igni_retreat_bali.html">峇里島深度轉化之旅</a>
+        <a href="https://asjudy60426-commits.github.io/website/activities/morning_breath_circle.html">早晨呼吸圈</a>
+        <a href="https://asjudy60426-commits.github.io/website/activities/igni_corporate">企業包班</a>
+        <a href="https://asjudy60426-commits.github.io/website/activities/igni_friends">三五好友包班</a>
+        <a href="https://asjudy60426-commits.github.io/website/activities/igni_1on1session.html">一對一重生呼吸個案</a>
+        <a href="https://asjudy60426-commits.github.io/website/activities/IGNI_about.html">關於 IGNI</a>
+        <a href="https://line.me/R/ti/p/@012gesap">聯絡我們</a>
+      </div>
+    </details>
+  </div>
 </nav>
 
 <!-- PAGE 1 -->
@@ -673,9 +876,10 @@ body{background:var(--warm-white);color:var(--charcoal);font-family:'Noto Serif 
 <script>
 function showTab(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  tabButtons.forEach(b => b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  ['tab1','tab2'].forEach((t,i) => { if(t===id) document.querySelectorAll('.tab-btn')[i].classList.add('active'); });
+  ['tab1','tab2'].forEach((t,i) => { if(t===id && tabButtons[i]) tabButtons[i].classList.add('active'); });
   window.scrollTo({top:0,behavior:'smooth'});
   setTimeout(triggerReveal, 80);
 }
@@ -687,5 +891,28 @@ function triggerReveal() {
 }
 triggerReveal();
 </script>
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-brand">IGNI</div>
+    <nav class="site-footer-services" aria-label="IGNI 服務連結">
+      <a href="https://asjudy60426-commits.github.io/website/activities/igni_retreat_bali.html">峇里島深度轉化之旅</a>
+      <a href="https://asjudy60426-commits.github.io/website/activities/morning_breath_circle.html">早晨呼吸圈</a>
+      <a href="https://asjudy60426-commits.github.io/website/activities/igni_corporate">企業包班</a>
+      <a href="https://asjudy60426-commits.github.io/website/activities/igni_friends">三五好友包班</a>
+      <a href="https://asjudy60426-commits.github.io/website/activities/igni_1on1session.html">一對一重生呼吸個案</a>
+      <a href="https://asjudy60426-commits.github.io/website/activities/IGNI_about.html">關於 IGNI</a>
+      <a href="https://line.me/R/ti/p/@012gesap">聯絡我們</a>
+    </nav>
+    <a class="site-home-link" href="https://asjudy60426-commits.github.io/website/" aria-label="回首頁">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 11.5 12 4l9 7.5"></path>
+          <path d="M5.5 10.5V20h13v-9.5"></path>
+          <path d="M9.5 20v-6h5v6"></path>
+        </svg>
+      <span>回首頁</span>
+    </a>
+  </div>
+</footer>
+
 </body>
 </html>
