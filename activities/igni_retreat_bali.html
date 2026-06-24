@@ -505,6 +505,34 @@ body{background:var(--warm-white);color:var(--charcoal);font-family:'Noto Serif 
   letter-spacing: 0.08em;
   color: currentColor;
 }
+.site-contact-link--facebook {
+  background: #1877F2;
+  border-color: #1877F2;
+  color: #fff;
+}
+.site-contact-link--line {
+  background: #06C755;
+  border-color: #06C755;
+  color: #fff;
+}
+.site-contact-link--facebook:hover,
+.site-contact-link--line:hover {
+  color: #fff;
+  border-color: currentColor;
+}
+.site-contact-link--facebook svg,
+.site-contact-link--line svg {
+  fill: currentColor;
+  stroke: none;
+}
+.site-contact-link--facebook svg {
+  width: 0.72rem;
+  height: 1.35rem;
+}
+.site-contact-link--line svg {
+  width: 1.55rem;
+  height: 1.55rem;
+}
 .site-footer .site-home-link { color: rgba(255,252,247,0.72); }
 .site-footer .site-home-link:hover { color: #fffcf7; }
 @media (max-width: 640px) {
@@ -946,8 +974,10 @@ triggerReveal();
           <path d="m4.5 7 7.5 6 7.5-6"></path>
         </svg>
       </a>
-      <a class="site-contact-link" href="https://www.facebook.com/feillarebirthingbreathwork/" aria-label="Facebook">
-        <span class="site-contact-text">FB</span>
+      <a class="site-contact-link site-contact-link--facebook" href="https://www.facebook.com/feillarebirthingbreathwork/" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15.6 8.1h-2.2V6.7c0-.6.4-.8.8-.8h1.3V3.6l-1.9-.1c-2.1 0-3.5 1.3-3.5 3.6v1H8v2.6h2.1v7.8h3.3v-7.8h1.9l.3-2.6Z"></path>
+        </svg>
       </a>
       <a class="site-contact-link" href="https://www.instagram.com/feilla_rebirthingbreathwork?igsh=MTR3ZHFhN3RiMHFrbQ%3D%3D&amp;utm_source=qr" aria-label="Instagram">
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -956,8 +986,11 @@ triggerReveal();
           <circle cx="16.4" cy="7.8" r="0.55" fill="currentColor" stroke="none"></circle>
         </svg>
       </a>
-      <a class="site-contact-link" href="https://line.me/R/ti/p/@012gesap" aria-label="Line">
-        <span class="site-contact-text">LINE</span>
+      <a class="site-contact-link site-contact-link--line" href="https://line.me/R/ti/p/@012gesap" aria-label="Line">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M40.4 20.5c0-7.2-7.2-13-16.1-13S8.2 13.3 8.2 20.5c0 6.5 5.7 12 13.4 13.1.5.1 1.2.3 1.4.8.2.4.1 1 .1 1.4l-.2 1.3c-.1.4-.3 1.6 1.4.9 1.7-.7 9.1-5.4 12.4-9.2 2.3-2.5 3.7-5 3.7-8.3Z"></path>
+          <path fill="#06C755" d="M18.1 18.1h-1.3v5.7h3.7v-1.2h-2.4v-4.5Zm4.3 0h-1.3v5.7h1.3v-5.7Zm5.8 0h-1.3v3.4l-2.5-3.4h-1.2v5.7h1.3v-3.5l2.6 3.5h1.1v-5.7Zm4.5 1.2v-1.2h-3.8v5.7h3.8v-1.2h-2.5v-1.1h2.3v-1.2h-2.3v-1h2.5Z"></path>
+        </svg>
       </a>
     </div>
     <a class="site-home-link" href="https://asjudy60426-commits.github.io/website/" aria-label="回首頁">
