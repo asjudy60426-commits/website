@@ -469,6 +469,42 @@ body{background:var(--warm-white);color:var(--charcoal);font-family:'Noto Serif 
   color: #fffcf7;
   transform: translateY(-1px);
 }
+.site-contact-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.site-contact-link {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid rgba(184,145,62,0.46);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,252,247,0.76);
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.site-contact-link:hover {
+  color: #fffcf7;
+  border-color: #B8913E;
+  transform: translateY(-1px);
+}
+.site-contact-link svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  stroke: currentColor;
+  stroke-width: 1.55;
+  fill: none;
+}
+.site-contact-link .site-contact-text {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: currentColor;
+}
 .site-footer .site-home-link { color: rgba(255,252,247,0.72); }
 .site-footer .site-home-link:hover { color: #fffcf7; }
 @media (max-width: 640px) {
@@ -903,6 +939,27 @@ triggerReveal();
       <a href="https://asjudy60426-commits.github.io/website/activities/IGNI_about.html">關於 IGNI</a>
       <a href="https://line.me/R/ti/p/@012gesap">聯絡我們</a>
     </nav>
+    <div class="site-contact-links" aria-label="聯絡方式">
+      <a class="site-contact-link" href="mailto:igni@igni-tw.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3.5" y="5.5" width="17" height="13" rx="1.8"></rect>
+          <path d="m4.5 7 7.5 6 7.5-6"></path>
+        </svg>
+      </a>
+      <a class="site-contact-link" href="https://www.facebook.com/feillarebirthingbreathwork/" aria-label="Facebook">
+        <span class="site-contact-text">FB</span>
+      </a>
+      <a class="site-contact-link" href="https://www.instagram.com/feilla_rebirthingbreathwork?igsh=MTR3ZHFhN3RiMHFrbQ%3D%3D&amp;utm_source=qr" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="5" y="5" width="14" height="14" rx="4"></rect>
+          <circle cx="12" cy="12" r="3.25"></circle>
+          <circle cx="16.4" cy="7.8" r="0.55" fill="currentColor" stroke="none"></circle>
+        </svg>
+      </a>
+      <a class="site-contact-link" href="https://line.me/R/ti/p/@012gesap" aria-label="Line">
+        <span class="site-contact-text">LINE</span>
+      </a>
+    </div>
     <a class="site-home-link" href="https://asjudy60426-commits.github.io/website/" aria-label="回首頁">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M3 11.5 12 4l9 7.5"></path>
