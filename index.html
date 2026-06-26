@@ -290,6 +290,63 @@
       text-align: right;
     }
 
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      padding: 5rem 3rem;
+      background: #B85C40;
+    }
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .testimonials .section-eyebrow,
+    .testimonials .section-title,
+    .testimonials .section-title em {
+      color: #F3EEE7;
+    }
+    .testimonials-grid {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .testimonial-card {
+      background: var(--bg);
+      border: 1px solid rgba(184,145,62,0.22);
+      padding: 2rem 1.6rem;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 16px 36px rgba(44,36,22,0.12);
+      animation: testimonialFloat 6.8s ease-in-out infinite;
+      will-change: transform;
+    }
+    .testimonial-card:nth-child(2) { animation-delay: -1.4s; }
+    .testimonial-card:nth-child(3) { animation-delay: -2.8s; }
+    .testimonial-quote {
+      color: var(--text);
+      font-size: 0.9rem;
+      line-height: 2;
+    }
+    .testimonial-meta {
+      margin-top: 1.8rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--faint);
+      color: var(--gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      line-height: 1.8;
+    }
+    @keyframes testimonialFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .testimonial-card { animation: none; }
+    }
+
     /* ── SERVICES ── */
     .services {
       padding: 5rem 3rem;
@@ -561,6 +618,8 @@
       .about-strip { grid-template-columns: 1fr; }
       .about-text { padding: 3rem 1.5rem; }
       .about-bg { padding: 3rem 1.5rem; }
+      .testimonials { padding: 3rem 1.5rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
       .services { padding: 3rem 1.5rem; }
       .services-grid { grid-template-columns: 1fr 1fr; }
       .retreat-feature { grid-template-columns: 1fr; }
@@ -632,6 +691,36 @@
       <blockquote class="about-quote">
         呼吸，連結身心靈。<br>重生，從每一口開始。
       </blockquote>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="testimonials-header">
+      <div class="section-eyebrow">學員見證</div>
+      <h2 class="section-title" style="margin:0 auto;max-width:520px;text-align:center;">呼吸之後，生命開始<em>重新流動</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <article class="testimonial-card">
+        <p class="testimonial-quote">
+          「那時我正在經歷生命中巨大的分離，有許多悲傷與困頓。呼吸過程中，我強烈感受到身體裡卡住的悲傷被看見。課後我開始有意識地覺察胸口與背部的堵塞，也透過創作慢慢理解與修復自己。」
+        </p>
+        <p class="testimonial-meta">21-30y ｜ 藝術／創作領域 ｜ 第一次體驗重生呼吸</p>
+      </article>
+      <article class="testimonial-card">
+        <p class="testimonial-quote">
+          「一直以來有些未解的情緒會冒出來困擾我。重生呼吸讓我能面對過往創傷與壓抑的東西，雖然過程不一定舒服，但經歷過後會放下不少，也有一種被解救的感覺，生活變得更輕盈。」
+        </p>
+        <p class="testimonial-meta">31-40y ｜ 上班族 ｜ 重生呼吸體驗3-5次</p>
+      </article>
+      <article class="testimonial-card">
+        <p class="testimonial-quote">
+          「最一開始狀況相當不好，後來透過練習和自己的調整，狀態越來越好。課後我重新把『愛自己』當成優先順序，也重新看見自己的內在力量，是一種喚起內在力量幫助自己的呼吸方式。」
+        </p>
+        <p class="testimonial-meta">41-50y ｜ 自由軟體工程師 ｜ 重生呼吸體驗6次以上</p>
+      </article>
     </div>
   </section>
 
